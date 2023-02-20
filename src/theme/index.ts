@@ -15,9 +15,15 @@ const components = {
   Button,
 }
 
+const fonts = {
+  heading: `'Tinos', serif`,
+  body: `'Tinos', serif`,
+}
+
 export const theme = extendTheme({
   colors,
   textStyles,
   components,
   breakpoints,
+  fonts,
 })
