@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react"
+import { Glass } from "./custom"
 import { Button } from "./Button"
 import { colors } from "./colors"
 import { textStyles } from "./textStyles"
@@ -13,14 +14,26 @@ const breakpoints = {
 
 const components = {
   Button,
+  Glass,
 }
 
 const fonts = {
-  heading: `'Tinos', serif`,
+  heading: `'Nunito Sans', sans-serif`,
   body: `'Tinos', serif`,
 }
 
+const styles = {
+  global: {
+    "html, body": {
+      "&::-webkit-scrollbar": {
+        display: "none",
+      },
+    },
+  },
+}
+
 export const theme = extendTheme({
+  styles,
   colors,
   textStyles,
   components,

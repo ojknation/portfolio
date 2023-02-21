@@ -1,7 +1,22 @@
 import { MotionBox } from "@/reuseables"
-import { Box, Container, Text } from "@chakra-ui/react"
-import { motion } from "framer-motion"
-import { letter, sentence } from "./motionVariants"
+import GlassTint from "@/reuseables/GlassTint"
+
+import {
+  Box,
+  //   Center,
+  Container,
+  Heading,
+  Highlight,
+  Text,
+} from "@chakra-ui/react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import Blobs from "./Blobs"
+import {
+  easeVariants,
+  letter,
+  marqueeVariants,
+  sentence,
+} from "./motionVariants"
 
 const textToAnimate = [
   `You know the business, and I know the chemistry. `,
@@ -11,36 +26,159 @@ const textToAnimate = [
 ]
 
 const LandingPage = () => {
+  const { scrollYProgress } = useScroll()
+  const x = useTransform(scrollYProgress, [0, 1], [0, 600])
+  const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
+  const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
+
   return (
-    <Box bg="brand.bg" height="100vh" color="#fff">
-      <Container height="inherit" maxWidth="lg">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
+    <Box
+      sx={{
+        bg: "brand.bg",
+        color: "#fff",
+        overflowY: "scroll",
+        overflowX: "hidden",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+      }}
+    >
+      <Box pos="relative">
+        <Blobs />
+
+        <GlassTint
+          variant="rounded"
+          m={{ base: "0px", lg: "30px" }}
+          sx={{
+            width: "inherit",
+            height: "inherit",
+          }}
         >
-          <MotionBox variants={sentence} initial="hidden" animate="visible">
-            {textToAnimate[0].split("").map((char, index) => (
-              <Text key={char + "-" + index} as={motion.span} variants={letter}>
-                {char}
-              </Text>
-            ))}
-            <br />
-            {textToAnimate[1].split("").map((char, index) => (
-              <Text key={char + "-" + index} as={motion.span} variants={letter}>
-                {char}
-              </Text>
-            ))}
-            <br />
-            {textToAnimate[2].split("").map((char, index) => (
-              <Box key={char + "-" + index} as={motion.span} variants={letter}>
-                {char}
-              </Box>
-            ))}
-          </MotionBox>
-        </Box>
-      </Container>
+          <Container height="80vh" maxWidth="lg">
+            <Box
+              as={motion.div}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              height="100%"
+              fontSize="20px"
+              style={{ x }}
+            >
+              <MotionBox>
+                <MotionBox
+                  variants={sentence}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {textToAnimate[0].split("").map((char, index) => (
+                    <Text
+                      key={char + "-" + index}
+                      as={motion.span}
+                      variants={letter}
+                    >
+                      {char}
+                    </Text>
+                  ))}
+                  <br />
+                  {textToAnimate[1].split("").map((char, index) => (
+                    <Text
+                      key={char + "-" + index}
+                      as={motion.span}
+                      variants={letter}
+                    >
+                      {char}
+                    </Text>
+                  ))}
+                  <br />
+                  {textToAnimate[2].split("").map((char, index) => (
+                    <Box
+                      key={char + "-" + index}
+                      as={motion.span}
+                      variants={letter}
+                    >
+                      {char}
+                    </Box>
+                  ))}
+                </MotionBox>
+              </MotionBox>
+            </Box>
+          </Container>
+        </GlassTint>
+      </Box>
+
+      <MotionBox
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pl="10%"
+        pr="10%"
+        style={{ x: xSlideL }}
+      >
+        <Heading
+          mb={2}
+          size={{ base: "2xl", md: "3xl", xl: "4xl" }}
+          lineHeight="shorter"
+        >
+          <Highlight query={["HI"]} styles={{ color: "brand.primary" }}>
+            {`Friends don't lie. Hi I'm Boluwatife,`}
+          </Highlight>
+          <br />
+          <Highlight
+            query={["React", "Typescript", "nodejs"]}
+            styles={{ color: "brand.accent" }}
+          >
+            {` a frontend engineer with experience in React, nodejs and Typescript and other technologies`}
+          </Highlight>
+        </Heading>
+      </MotionBox>
+      <MotionBox
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pl="10%"
+        pr="10%"
+        mt="50px"
+        style={{ x: xSlideR }}
+        initial="offscreen"
+        whileInView="onscreen"
+        variants={easeVariants.slideUp}
+        viewport={{ once: false }}
+      >
+        <Heading
+          mb={2}
+          size={{ base: "2xl", md: "3xl", xl: "4xl" }}
+          lineHeight="shorter"
+        >
+          <Highlight
+            query={["3", "years", "experience", "grade"]}
+            styles={{ color: "brand.accent" }}
+          >
+            {` Over the Past 3 years, I have had a lot of experience building production grade UI's`}
+          </Highlight>
+        </Heading>
+      </MotionBox>
+      <MotionBox
+        whiteSpace="nowrap"
+        variants={marqueeVariants}
+        animate="container"
+        pos="relative"
+        marginBottom="900px"
+      >
+        <MotionBox
+          as="h1"
+          sx={{
+            textTransform: "upperCase",
+            fontSize: { base: "4rem", md: "6rem", xl: "8rem" },
+            "-webkit-text-fill-color": "transparent",
+            "-webkit-text-stroke-width": "8px",
+          }}
+          variants={marqueeVariants}
+          animate="text"
+          fontFamily="monospace"
+        >
+          streams tournaments teams fun games live news tours
+        </MotionBox>
+      </MotionBox>
     </Box>
   )
 }

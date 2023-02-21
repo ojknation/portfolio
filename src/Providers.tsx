@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ChakraProvider } from "@chakra-ui/react"
 import "@fontsource/tinos/400.css"
 import "@fontsource/tinos/700.css"
+import "@fontsource/nunito-sans"
 
 type Props = {
   children: React.ReactNode
