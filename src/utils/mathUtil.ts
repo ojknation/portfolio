@@ -1,15 +1,14 @@
 export const randomScale = [
-  0.5,
+  2.6,
   Math.random() * (1.5 - 0.5) + 0.5,
-  2,
+  3,
   Math.random() * (1.5 - 0.5) + 0.5,
-  0.4,
+  2.9,
 ]
 
-// eslint-disable-next-line unused-imports/no-unused-vars
 const axisMap = {
   x: {
-    upperLimit: 1000,
+    upperLimit: 1400,
     lowerLimit: 70,
   },
   y: {
@@ -18,7 +17,7 @@ const axisMap = {
   },
   scale: {
     lowerLimit: 0.2,
-    upperLimit: 1.2,
+    upperLimit: 5,
   },
 }
 

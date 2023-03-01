@@ -22,7 +22,7 @@ const Blobs = () => {
         <Blob
           key={color}
           bg={color}
-          x={motionGenerator((index + 1) * 2, "x")}
+          x={motionGenerator((index + 1) * 32, "x")}
           y={motionGenerator((index + 1) * 0.6, "y")}
           scale={motionGenerator((index + 1) * 64, "scale")}
         />

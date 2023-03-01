@@ -19,13 +19,13 @@ export const letter = {
 
 export const marqueeVariants = {
   container: {
-    x: [0, -1300],
+    x: [0, -2000],
     transition: {
       x: {
         repeat: Infinity,
-        repeatType: "loop",
-        duration: 5,
-        ease: "anticipate",
+        repeatType: "reverse",
+        duration: 45,
+        ease: "circInOut",
       },
     },
   },

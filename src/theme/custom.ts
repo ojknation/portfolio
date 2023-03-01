@@ -14,7 +14,7 @@ export const Glass = defineStyleConfig({
     },
     smooth: {
       padding: 6,
-      borderRadius: "base",
+      borderRadius: "0px",
       boxShadow: "md",
     },
   },
