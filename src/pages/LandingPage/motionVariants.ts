@@ -56,4 +56,19 @@ export const easeVariants = {
       opacity: [0, 0.2, 0.4, 0.8, 1],
     },
   },
+  slowAppear: {
+    offscreen: {
+      opacity: 0,
+      y: -20,
+      scale: 0,
+    },
+    onscreen: {
+      y: 1,
+      transition: {
+        duration: 2,
+      },
+      opacity: [0, 0.2, 0.4, 0.8, 1],
+      scale: [1, 1.02, 1],
+    },
+  },
 }

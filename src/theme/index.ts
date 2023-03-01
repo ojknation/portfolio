@@ -28,6 +28,8 @@ const styles = {
       "&::-webkit-scrollbar": {
         display: "none",
       },
+      scrollBehaviour: "smooth",
+      scrollSnapType: "mandatory",
     },
   },
 }

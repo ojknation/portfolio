@@ -16,7 +16,7 @@ const axisMap = {
     lowerLimit: 60,
   },
   scale: {
-    lowerLimit: 0.2,
+    lowerLimit: 1.5,
     upperLimit: 5,
   },
 }

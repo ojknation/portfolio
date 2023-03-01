@@ -29,7 +29,7 @@ const Blob = ({ bg, x, y, scale }: IBlob) => {
         borderRadius: ["40%", "40%", "50%", "50%", "20%"],
       }}
       transition={{
-        duration: 12,
+        duration: 120,
         ease: "easeInOut",
         times: [0, 0.4, 0.6, 0.8, 1],
         repeat: Infinity,

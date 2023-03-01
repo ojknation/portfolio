@@ -123,7 +123,7 @@ const LandingPage = () => {
             alignItems="center"
             pl="10%"
             pr="10%"
-            pt="64px"
+            pt="4%"
             style={{ x: xSlideL }}
           >
             <Heading
