@@ -123,7 +123,7 @@ const LandingPage = () => {
             alignItems="center"
             pl="10%"
             pr="10%"
-            pt="4%"
+            pt="5%"
             style={{ x: xSlideL }}
           >
             <Heading
@@ -131,13 +131,26 @@ const LandingPage = () => {
               size={{ base: "2xl", md: "2xl", xl: "4xl" }}
               lineHeight="shorter"
             >
-              <Highlight query={["Hi"]} styles={{ color: "brand.primary" }}>
-                {`Let's get into it. Hi I'm Boluwatife,`}
+              <Highlight
+                query={["Hey", "you"]}
+                styles={{
+                  color: "brand.primary",
+                  background: "brand.secondary",
+                  padding: "2px 30px 60px",
+                  borderRadius: "70%",
+                }}
+              >
+                {`Hey nice to meet you. I'm Boluwatife,`}
               </Highlight>
               <br />
               <Highlight
-                query={["React", "Typescript", "nodejs"]}
-                styles={{ color: "brand.accent" }}
+                query={["React", "Typescript", "nodejs", "3 years"]}
+                styles={{
+                  color: "brand.secondary",
+                  background: "brand.primary",
+                  padding: "2px 30px",
+                  borderRadius: "70%",
+                }}
               >
                 {` a frontend engineer with experience in React, nodejs and Typescript and other technologies`}
               </Highlight>
@@ -162,10 +175,15 @@ const LandingPage = () => {
               lineHeight="shorter"
             >
               <Highlight
-                query={["3", "years", "experience", "grade"]}
-                styles={{ color: "brand.accent" }}
+                query={["5 years", "grade", "wealth"]}
+                styles={{
+                  color: "brand.primary",
+                  background: "brand.secondary",
+                  padding: "2px 30px 40px",
+                  borderRadius: "70%",
+                }}
               >
-                {` Over the Past 3 years, I have had a lot of experience building production grade UI's`}
+                {` Over the Past 5 years, I have had a wealth of experience building production grade UI's`}
               </Highlight>
             </Heading>
           </MotionBox>

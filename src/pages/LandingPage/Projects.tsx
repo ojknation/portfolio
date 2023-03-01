@@ -68,7 +68,6 @@ const Projects = () => {
       opacity: [1, 0.8, 1],
       x: [0, 400, 800, 1200, 2400],
       transition: {
-        // type: "tween",
         duration: 2,
         delay: 0.8,
         ease: "easeInOut",
@@ -76,7 +75,6 @@ const Projects = () => {
     })
 
     await updateBGToMatchCard(cards[0])
-    await updateBGToMatchCard(cards[1])
   }
   return (
     <Box

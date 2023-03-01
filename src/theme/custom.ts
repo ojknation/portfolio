@@ -4,7 +4,7 @@ export const Glass = defineStyleConfig({
   baseStyle: {
     background: "rgb(255, 255, 255, 0.11)",
     boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-    backdropFilter: "blur(80px)",
+    backdropFilter: "blur(90px)",
   },
   variants: {
     rounded: {
