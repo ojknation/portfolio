@@ -71,7 +71,6 @@ const Projects = () => {
       minHeight="100vh"
       p="40px"
       pr="0px"
-      borderRadius="16px"
       background={cards[0]}
       animate={sectionControl}
     >
@@ -106,8 +105,10 @@ const Projects = () => {
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{
-                  scale: 0.9,
-                  transition: { duration: 0.5 },
+                  scale: [0.9, 0.8, 0.1],
+                  borderRadius: ["30%", "60%", "10px"],
+                  // rotate: [360],
+                  transition: { duration: 1.2 },
                 }}
                 style={{
                   background: cards[index],

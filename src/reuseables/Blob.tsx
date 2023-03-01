@@ -25,7 +25,7 @@ const Blob = ({ bg, x, y, scale }: IBlob) => {
         scale: scale ?? genScale(),
         x: x ?? [10, 500, 320, 20, 60],
         y: y ?? [0, 450, 30, -2, 0],
-        rotate: [20, 360, 270, 270, 0],
+        rotate: [20, 360, 70, -70, 0],
         borderRadius: ["40%", "40%", "50%", "50%", "20%"],
       }}
       transition={{
