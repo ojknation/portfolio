@@ -230,7 +230,7 @@ const LandingPage = () => {
                     background: "#fff0f0",
                   }}
                 >
-                  and I am always eager to take on
+                  as I am always eager to take on
                 </Highlight>
                 <br />
                 <Highlight

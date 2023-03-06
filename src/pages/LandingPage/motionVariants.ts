@@ -66,6 +66,7 @@ export const easeVariants = {
       y: 1,
       transition: {
         duration: 2,
+        delay: 0.2,
       },
       opacity: [0, 0.2, 0.4, 0.8, 1],
       scale: [1, 1.02, 1],
@@ -94,6 +95,7 @@ export const easeVariants = {
         duration: 2.9,
         type: "spring",
         stiffness: 100,
+        delay: 0.2,
       },
       opacity: [0, 0.2, 0.4, 0.8, 1],
       letterSpacing: ["-10px", "40px", "-3px"],
