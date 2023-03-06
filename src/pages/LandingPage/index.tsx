@@ -1,30 +1,18 @@
 import { MotionBox } from "@/reuseables"
 import GlassTint from "@/reuseables/GlassTint"
 
-import {
-  Box,
-  //   Center,
-  Container,
-  Heading,
-  Highlight,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Container, Heading, Highlight } from "@chakra-ui/react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Blobs from "./Blobs"
 import {
   easeVariants,
   letter,
-  marqueeVariants,
+  // marqueeVariants,
   sentence,
 } from "./motionVariants"
 import Projects from "./Projects"
 
-const textToAnimate = [
-  `You know the business, and I know the chemistry. `,
-  `I'm not saying you're not good at what you do.`,
-  `I'm just saying I'm the guy you need
-    to see if you want to stay ahead of the game.`,
-]
+const textToAnimate = [`Play by the rules.`, `but be ferocious`]
 
 const LandingPage = () => {
   const { scrollYProgress } = useScroll()
@@ -40,7 +28,7 @@ const LandingPage = () => {
   return (
     <Box
       sx={{
-        bg: "brand.bg",
+        bg: "brand.offWhite",
         color: "#fff",
         overflowY: "scroll",
         overflowX: "hidden",
@@ -54,7 +42,7 @@ const LandingPage = () => {
           background: bgTweak,
         }}
       >
-        <Box pos="relative">
+        <Box pos="relative" bg="brand.bg">
           <Blobs />
 
           <GlassTint
@@ -71,7 +59,6 @@ const LandingPage = () => {
                 justifyContent="center"
                 alignItems="center"
                 height="100%"
-                fontSize="20px"
                 style={{ x }}
               >
                 <MotionBox>
@@ -81,24 +68,28 @@ const LandingPage = () => {
                     animate="visible"
                   >
                     {textToAnimate[0].split("").map((char, index) => (
-                      <Text
+                      <Heading
                         key={char + "-" + index}
                         as={motion.span}
                         variants={letter}
+                        fontSize="6vw"
+                        fontWeight={850}
+                        lineHeight={0.9}
                       >
                         {char}
-                      </Text>
+                      </Heading>
                     ))}
                     <br />
                     {textToAnimate[1].split("").map((char, index) => (
-                      <Text
+                      <Heading
                         key={char + "-" + index}
                         as={motion.span}
                         variants={letter}
                       >
                         {char}
-                      </Text>
+                      </Heading>
                     ))}
+                    {/* 
                     <br />
                     {textToAnimate[2].split("").map((char, index) => (
                       <Box
@@ -108,7 +99,7 @@ const LandingPage = () => {
                       >
                         {char}
                       </Box>
-                    ))}
+                    ))} */}
                   </MotionBox>
                 </MotionBox>
               </Box>
@@ -116,28 +107,28 @@ const LandingPage = () => {
           </GlassTint>
         </Box>
 
-        <Box bg="brand.bg" position="relative">
+        <Box
+          pl="10%"
+          pr="10%"
+          bg="brand.offWhite"
+          position="relative"
+          color="Text.dark"
+          minHeight="60vh"
+        >
           <MotionBox
             display="flex"
             justifyContent="center"
             alignItems="center"
-            pl="10%"
-            pr="10%"
-            pt="5%"
+            pt="4%"
             style={{ x: xSlideL }}
           >
-            <Heading
-              mb={2}
-              size={{ base: "2xl", md: "2xl", xl: "4xl" }}
-              lineHeight="shorter"
-            >
+            <Heading mb={2} fontSize="3.5vw" lineHeight="shorter">
               <Highlight
-                query={["Hey", "you"]}
+                query={["Hey"]}
                 styles={{
-                  color: "brand.primary",
-                  background: "brand.secondary",
-                  padding: "2px 30px 60px",
-                  borderRadius: "70%",
+                  background: "brand.pink",
+                  padding: "2px",
+                  borderRadius: "16px",
                 }}
               >
                 {`Hey nice to meet you. I'm Boluwatife,`}
@@ -146,10 +137,11 @@ const LandingPage = () => {
               <Highlight
                 query={["React", "Typescript", "nodejs", "3 years"]}
                 styles={{
-                  color: "brand.secondary",
-                  background: "brand.primary",
+                  background: "brand.green",
                   padding: "2px 30px",
-                  borderRadius: "70%",
+                  borderRadius: "30%",
+                  borderTopRadius: "60%",
+                  borderRightRadius: "60%",
                 }}
               >
                 {` a frontend engineer with experience in React, nodejs and Typescript and other technologies`}
@@ -160,8 +152,6 @@ const LandingPage = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            pl="10%"
-            pr="10%"
             mt="50px"
             style={{ x: xSlideR }}
             initial="offscreen"
@@ -169,16 +159,12 @@ const LandingPage = () => {
             variants={easeVariants.slideUp}
             viewport={{ once: false }}
           >
-            <Heading
-              mb={2}
-              size={{ base: "2xl", md: "3xl", xl: "4xl" }}
-              lineHeight="shorter"
-            >
+            <Heading mb={2} fontSize="3.5vw" lineHeight="shorter">
               <Highlight
                 query={["5 years", "grade", "wealth"]}
                 styles={{
                   color: "brand.primary",
-                  background: "brand.secondary",
+                  background: "brand.lightblue",
                   padding: "2px 30px 40px",
                   borderRadius: "70%",
                 }}
@@ -187,9 +173,145 @@ const LandingPage = () => {
               </Highlight>
             </Heading>
           </MotionBox>
+          <Box my="10%">
+            <MotionBox
+              display="flex"
+              justifyContent="start"
+              alignItems="center"
+              fontSize="2vw"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.swooshIn}
+              zIndex={3}
+              pos="relative"
+            >
+              <Heading mb={2} fontSize="3.5vw" lineHeight="shorter">
+                <Highlight
+                  query={["love"]}
+                  styles={{
+                    color: "Text.dark",
+                    background: "white",
+                    border: "4px solid #f91d78",
+                    borderRadius: "30%",
+                    borderTopRadius: "60%",
+                    borderRightRadius: "60%",
+                  }}
+                >
+                  I love solving problems,
+                </Highlight>
+              </Heading>
+            </MotionBox>
+            <MotionBox
+              display="flex"
+              justifyContent="start"
+              alignItems="center"
+              fontSize="2vw"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.swooshIn}
+              zIndex={3}
+              pos="relative"
+            >
+              <Heading
+                whiteSpace="nowrap"
+                mb={2}
+                fontSize="3.5vw"
+                lineHeight="shorter"
+              >
+                <Highlight
+                  query={["eager", "new"]}
+                  styles={{
+                    color: "Text.dark",
+                    border: "8px solid #9400D3",
+                    padding: "2px 30px",
+                    borderRadius: "30%",
+                    borderTopRadius: "60%",
+                    borderRightRadius: "60%",
+                    background: "#fff0f0",
+                  }}
+                >
+                  and I am always eager to take on
+                </Highlight>
+                <br />
+                <Highlight
+                  query={["challenges"]}
+                  styles={{
+                    color: "Text.dark",
+                    border: "3px solid #0a0000",
+                    padding: "2px",
+                    borderRadius: "16px",
+                    borderTopRadius: "60%",
+                  }}
+                >
+                  new challenges,
+                </Highlight>
+              </Heading>
+            </MotionBox>
+            <MotionBox
+              mt="50px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              fontSize="2vw"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.swooshOut}
+              zIndex={3}
+              pos="relative"
+            >
+              <Heading
+                whiteSpace="nowrap"
+                mb={2}
+                fontSize="3.5vw"
+                lineHeight="shorter"
+              >
+                <Highlight
+                  query={["boundaries"]}
+                  styles={{
+                    color: "Text.dark",
+                    border: "4px solid red",
+                    padding: "25px 30px 10px",
+                    borderRadius: "60%",
+                    borderLeftRadius: 0,
+                    background: "white",
+                  }}
+                >
+                  Pushing boundaries
+                </Highlight>
+              </Heading>
+            </MotionBox>
+            <MotionBox
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              fontSize="2vw"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.swooshIn}
+            >
+              <Heading
+                whiteSpace="nowrap"
+                mb={2}
+                fontSize="3.5vw"
+                lineHeight="shorter"
+              >
+                <Highlight
+                  query={["box"]}
+                  styles={{
+                    color: "Text.dark",
+                    border: "8px solid #090b2a",
+                    padding: "10px 10px 0px",
+                    background: "brand.green",
+                  }}
+                >
+                  and thinking outside the box.
+                </Highlight>
+              </Heading>
+            </MotionBox>
+          </Box>
         </Box>
 
-        <MotionBox
+        {/* <MotionBox
           whiteSpace="nowrap"
           variants={marqueeVariants}
           animate="container"
@@ -210,7 +332,7 @@ const LandingPage = () => {
           >
             streams tournaments teams fun games live news tours
           </MotionBox>
-        </MotionBox>
+        </MotionBox> */}
       </motion.div>
       <Projects />
     </Box>

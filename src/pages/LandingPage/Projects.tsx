@@ -69,7 +69,7 @@ const Projects = () => {
       x: [0, 400, 800, 1200, 2400],
       transition: {
         duration: 2,
-        delay: 0.8,
+        delay: 1,
         ease: "easeInOut",
       },
     })

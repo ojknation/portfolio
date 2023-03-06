@@ -71,4 +71,32 @@ export const easeVariants = {
       scale: [1, 1.02, 1],
     },
   },
+  swooshIn: {
+    offscreen: {
+      opacity: 0,
+      x: -400,
+    },
+    onscreen: {
+      x: 0,
+      transition: {
+        duration: 1.2,
+      },
+      opacity: [0, 0.2, 0.4, 0.8, 1],
+    },
+  },
+  swooshOut: {
+    offscreen: {
+      opacity: 0,
+      letterSpacing: "22px",
+    },
+    onscreen: {
+      transition: {
+        duration: 2.9,
+        type: "spring",
+        stiffness: 100,
+      },
+      opacity: [0, 0.2, 0.4, 0.8, 1],
+      letterSpacing: ["-10px", "40px", "-3px"],
+    },
+  },
 }
