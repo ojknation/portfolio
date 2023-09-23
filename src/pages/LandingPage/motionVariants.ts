@@ -98,7 +98,7 @@ export const easeVariants = {
         delay: 0.2,
       },
       opacity: [0, 0.2, 0.4, 0.8, 1],
-      letterSpacing: ["-10px", "40px", "-3px"],
+      letterSpacing: ["-10px", "40px", "-3px", "0px"],
     },
   },
 }

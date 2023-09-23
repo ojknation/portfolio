@@ -11,6 +11,7 @@ import { easeVariants } from "./motionVariants"
 const Projects = () => {
   const sectionControl = useAnimationControls()
   const cardSlideControl = useAnimationControls()
+  const projectDetailsTextControl = useAnimationControls()
   const projectsOverlayControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
@@ -41,19 +42,25 @@ const Projects = () => {
     }
 
     await cardSlideControl.start({
+      x: [50, 0],
+      opacity: [0.2, 1],
+      transition: {
+        duration: 0.7,
+      },
+    })
+
+    await projectDetailsTextControl.start({
       opacity: [0, 0.5, 0.7, 0.98, 1],
       y: [0, -16, -24, 0],
-      width: ["30%", "40%", "50%", "60%"],
+      // width: ["70%", "60%"],
       transition: {
         duration: 0.7,
       },
     })
 
     await sectionControl.start({
-      scale: [0.99, 1],
-      x: [-1, -16, 0],
-      opacity: [0.8, 0.9, 0.98, 1],
-      backgroundColor: [bg],
+      opacity: [0.8, 1],
+      backgroundColor: [`${bg}80`, bg],
       transition: {
         type: "spring",
         stiffness: 50,
@@ -89,15 +96,26 @@ const Projects = () => {
       whileInView="onscreen"
       variants={easeVariants.slowAppear}
     >
-      <HStack mt="350px" alignItems="start">
+      <Box
+        mt="100px"
+        as={motion.div}
+        animate={projectDetailsTextControl}
+        width="60%"
+      >
+        <Text>Hello</Text>
+        <Heading maxInlineSize="19ch">
+          Project and Details Description and Title
+        </Heading>
+        <Text>Hello some Sample subtext for the project.</Text>
+        <Text>TaDA!</Text>
+      </Box>
+      <HStack mt="150px" alignItems="start" spacing={2}>
         {" "}
-        <Box as={motion.div} animate={cardSlideControl} width="60%">
-          <Text>Hello</Text>
-          <Heading maxInlineSize="19ch">
-            Project and Details Description and Title
-          </Heading>
-          <Text>Hello some Sample subtext for the project.</Text>
-          <Text>TaDA!</Text>
+        <Box as={motion.div} animate={projectDetailsTextControl} width="60%">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro
+          qui eum ipsam eaque ut vero quo nesciunt dolorum harum, incidunt
+          veniam minima similique expedita. Voluptate illo quisquam sapiente
+          error!
         </Box>
         <Box
           as={motion.div}
@@ -120,29 +138,28 @@ const Projects = () => {
               <motion.div
                 layout
                 whileHover={{
-                  scale: 0.99,
+                  scale: 0.97,
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{
                   scale: [0.9, 0.8, 0.1],
                   borderRadius: ["30%", "60%", "10px"],
-                  // rotate: [360],
                   transition: { duration: 1.2 },
                 }}
                 style={{
                   background: cards[index],
                   minWidth: "350px",
                   marginRight: "20px",
-                  height: "400px",
+                  height: "450px",
                   borderRadius: "10px",
                   cursor: "pointer",
                 }}
                 role="button"
                 tabIndex={0}
                 key={index}
-                animate={{ scale: 1, opacity: 1 }}
+                animate={cardSlideControl}
                 exit={{ scale: 1.5 }}
-                transition={{ type: "spring" }}
+                transition={{ type: "tween", duration: 0.9 }}
                 onClick={() => updateBGToMatchCard(cards[index])}
               />
             ))}

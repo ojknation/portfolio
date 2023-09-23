@@ -10,6 +10,7 @@ export const colors = {
     offWhite: "#efefef",
     green: "#cafb9d",
     lightblue: "#dbfdff",
+    mink: "#ebf7ff",
   },
   Text: {
     dark: "#020202",

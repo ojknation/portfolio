@@ -19,7 +19,8 @@ const components = {
 
 const fonts = {
   heading: `'Nunito Sans', sans-serif`,
-  body: `'Tinos', serif`,
+  body: `'Nunito Sans', sans-serif`,
+  // body: `'Tinos', serif`,
 }
 
 const styles = {

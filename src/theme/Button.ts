@@ -1,5 +1,3 @@
-import { glass } from "./customStyles"
-
 export const Button = {
   variants: {
     "app-primary": {
@@ -13,7 +11,13 @@ export const Button = {
       color: "#101017",
     },
 
-    "app-iconButton": glass,
+    "app-iconButton": {
+      background: "rgb(245, 255, 255, 0.11)",
+      boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+      backdropFilter: "blur(2px)",
+      border: "1px solid #efefef60",
+      outline: "none",
+    },
   },
   sizes: {
     xl: {

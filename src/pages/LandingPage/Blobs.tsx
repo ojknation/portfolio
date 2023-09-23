@@ -13,7 +13,6 @@ const Blobs = () => {
         "#00FFFF",
         // "#00FF7F",
         "#FF1493",
-        "#FFC0CB",
         "#FF8F00",
         "#00CED1",
         "#7928CA",
