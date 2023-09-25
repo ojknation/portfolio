@@ -413,9 +413,8 @@ const LandingPage = () => {
           </MotionBox>
         </MotionBox> */}
       </motion.div>
-      <div ref={sectionCRef}>
-        <Projects />
-      </div>
+      <Projects />
+      <div ref={sectionCRef} />
     </Box>
   )
 }

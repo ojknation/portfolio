@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react"
 import {
-  Avatar,
-  AvatarGroup,
   Box,
   Heading,
   HStack,
@@ -9,7 +7,9 @@ import {
   List,
   ListIcon,
   ListItem,
+  Stack,
   Text,
+  Icon,
 } from "@chakra-ui/react"
 import {
   AnimatePresence,
@@ -22,11 +22,42 @@ import { MotionBox } from "@/reuseables"
 import Blobs from "./Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
+import { ReactComponent as ReactIcon } from "@/assets/stack/react.svg"
+import { ReactComponent as ReduxIcon } from "@/assets/stack/redux.svg"
+import { ReactComponent as MaterialUIIcon } from "@/assets/stack/materialUI.svg"
+import { ReactComponent as CSharpIcon } from "@/assets/stack/csharp.svg"
+import { ReactComponent as AntDIcon } from "@/assets/stack/antDesign.svg"
+import { ReactComponent as TypescriptIcon } from "@/assets/stack/typescript.svg"
+import { ReactComponent as FirebaseIcon } from "@/assets/stack/firebase.svg"
+import { ReactComponent as QueryIcon } from "@/assets/stack/query.svg"
+import { ReactComponent as JSIcon } from "@/assets/stack/javascript.svg"
+import { ReactComponent as CodeIcon } from "@/assets/stack/code.svg"
+import { ReactComponent as ChakraIcon } from "@/assets/stack/chakra.svg"
+import { ReactComponent as DjangoIcon } from "@/assets/stack/django.svg"
+import { ReactComponent as CloudflareIcon } from "@/assets/stack/cloudflare.svg"
+
+import { TProject, projects } from "@/data/projectList"
+
+const stackMap = {
+  react: ReactIcon,
+  redux: ReduxIcon,
+  materialUI: MaterialUIIcon,
+  dotNet: CSharpIcon,
+  antD: AntDIcon,
+  typescript: TypescriptIcon,
+  firebase: FirebaseIcon,
+  tanstackQuery: QueryIcon,
+  javascript: JSIcon,
+  code: CodeIcon,
+  chakraUI: ChakraIcon,
+  django: DjangoIcon,
+  cloudflare: CloudflareIcon,
+}
 
 const Projects = () => {
   const sectionControl = useAnimationControls()
   const cardSlideControl = useAnimationControls()
-  const projectDetailsTextControl = useAnimationControls()
+  // const projectDetailsTextControl = useAnimationControls()
   const projectsOverlayControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
@@ -39,36 +70,35 @@ const Projects = () => {
     "#FF0080",
     "#00FFFF",
   ])
+  const [projectList, setProjectList] = useState(projects)
 
   useEffect(() => {
     if (projectIsInView) moveProjectsOverlay()
   }, [projectIsInView])
 
   const [lastRemovedCard, setLastRemovedCard] = useState<string>()
+  const [lastProject, setLastProject] = useState<TProject>()
 
   const updateBGToMatchCard = async (bg: string) => {
     const cardShift = cards.filter((c) => c !== bg)
+    const projectShift = projectList.filter((p) => p.bg !== bg)
+    const selectedProject = projectList.find((p) => p.bg === bg)
 
     setLastRemovedCard(bg)
+    setLastProject(selectedProject!)
     if (cards.length < 7) {
       setCards([...cardShift, lastRemovedCard!])
+      setProjectList([...projectShift, lastProject as TProject])
     } else {
       setCards(cardShift)
+      setProjectList(projectShift)
     }
 
     await cardSlideControl.start({
       x: [50, 0],
-      opacity: [0.2, 1],
+      opacity: [0.6, 1],
       transition: {
-        duration: 0.7,
-      },
-    })
-
-    await projectDetailsTextControl.start({
-      opacity: [0, 1],
-      y: [24, 0],
-      transition: {
-        duration: 0.7,
+        duration: 0.5,
       },
     })
 
@@ -78,39 +108,25 @@ const Projects = () => {
         type: "spring",
         stiffness: 50,
         damping: 10,
-        duration: 0.8,
+        duration: 0.5,
       },
     })
   }
 
   const moveProjectsOverlay = async () => {
     await projectsOverlayControl.start({
-      opacity: [1, 0.8, 1],
-      x: [0, 400, 800, 1200, 2400],
+      opacity: [1, 0.8],
+      x: [0, 2400],
       transition: {
-        duration: 2,
-        delay: 1,
-        ease: "easeInOut",
+        duration: 1.2,
+        delay: 0.5,
+        ease: "linear",
       },
     })
 
-    await projectDetailsTextControl.start({
-      opacity: [0.8, 0.4, 1],
-      y: [-15, 0],
-      transition: {
-        duration: 0.7,
-      },
-    })
+    setLastProject(projects[0] as TProject)
 
-    await cardSlideControl.start({
-      x: [50, 0],
-      opacity: [0.2, 1],
-      transition: {
-        duration: 0.6,
-      },
-    })
-
-    // await updateBGToMatchCard(cards[0])
+    await updateBGToMatchCard(cards[0])
   }
   return (
     <Box
@@ -126,7 +142,7 @@ const Projects = () => {
       <Blobs />
       <Box
         pl={{ base: "10px", md: "40px" }}
-        pt="40px"
+        // pt="40px"
         minHeight="100vh"
         display="flex"
         justifyContent="center"
@@ -141,37 +157,50 @@ const Projects = () => {
           backdropFilter: "blur(90px)",
         }}
       >
-        <Box
-          // mt="20px"
-          as={motion.div}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          textAlign="center"
-          flexDir="column"
-          initial={{ opacity: 0.3 }}
-          animate={projectDetailsTextControl}
-        >
-          <Box>
-            <Text>Hello</Text>
-            <Heading maxInlineSize="19ch">
-              Project and Details Description and Title
-            </Heading>
-            <Text>Hello some Sample subtext for the project.</Text>
-            <Text>TaDA!</Text>
-          </Box>
+        <AnimatePresence initial={false} mode="popLayout">
           <Box
-            mt="20px"
+            // mt="20px"
             as={motion.div}
-            animate={projectDetailsTextControl}
-            width={{ base: "100%", md: "60%" }}
+            display="flex"
+            key={lastProject?.name}
+            minHeight="25vh"
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
+            flexDir="column"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.1, 1],
+              y: [24, 0],
+              transition: {
+                duration: 0.9,
+              },
+            }}
+            // animate={projectDetailsTextControl}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro
-            qui eum ipsam eaque ut vero quo nesciunt dolorum harum, incidunt
-            veniam minima similique expedita. Voluptate illo quisquam sapiente
-            error!
+            <Box>
+              {/* <Text>Project</Text> */}
+              <Heading maxInlineSize="19ch" size={{ base: "2xl", md: "4xl" }}>
+                {lastProject?.name ?? projectList[0]?.name}
+              </Heading>
+              <Text fontWeight="bold">
+                {lastProject?.synopsis ?? projectList[0]?.synopsis}
+              </Text>
+              {/* <Text>TaDA!</Text> */}
+            </Box>
+            <Box
+              mt="20px"
+              as={motion.div}
+              // animate={projectDetailsTextControl}
+              width={{ base: "100%", md: "60%" }}
+            >
+              <Text noOfLines={4}>
+                {lastProject?.description ?? projectList[0]?.description}
+              </Text>
+            </Box>
           </Box>
-        </Box>
+        </AnimatePresence>
+
         <HStack
           mt="20px"
           alignItems="start"
@@ -198,9 +227,9 @@ const Projects = () => {
             variants={easeVariants.slideUp}
           >
             <AnimatePresence mode="popLayout" initial={false}>
-              {cards.map((item, index) => (
+              {projectList.map((project, index) => (
                 <MotionBox
-                  layout
+                  // layout
                   position="relative"
                   boxShadow="lg"
                   p={{ base: "20px", md: "30px" }}
@@ -209,9 +238,11 @@ const Projects = () => {
                     transition: { duration: 0.2 },
                   }}
                   whileTap={{
-                    scale: [0.9, 0.8, 0.1],
+                    scale: [0.9, 0.5],
                     borderRadius: ["30%", "10px"],
-                    transition: { duration: 1.2 },
+                    x: 150,
+                    opacity: [1, 0.6],
+                    transition: { duration: 0.5, ease: "easeInOut" },
                   }}
                   minWidth={{ base: "250px", md: "320px" }}
                   height={{ base: "350px", md: "400px" }}
@@ -220,13 +251,16 @@ const Projects = () => {
                     marginRight: "20px",
                     borderRadius: "10px",
                     cursor: "pointer",
+                    userSelect: "none",
+                    "&::-webkit-user-select": "none",
+                    "&::-ms-user-select": "none",
                   }}
                   role="button"
                   tabIndex={0}
                   key={index}
                   animate={cardSlideControl}
                   exit={{ scale: 1.5 }}
-                  transition={{ type: "tween", duration: 0.9 }}
+                  transition={{ type: "tween", duration: 0.6 }}
                   onClick={() => updateBGToMatchCard(cards[index])}
                 >
                   <IconButton
@@ -251,51 +285,43 @@ const Projects = () => {
                   />
                   <Heading
                     my={{ base: "5px", md: "8px" }}
-                    // maxInlineSize="25ch"
+                    maxInlineSize="80%"
                     size="2xl"
                   >
-                    Nakise Digital
+                    {project.name}
                   </Heading>
                   <Text maxInlineSize="20ch" mt="5px">
-                    Programs/event management software
+                    {project.synopsis}
                   </Text>
-                  <List spacing={1} mt={{ base: "8px", md: "10px" }}>
-                    <ListItem>
-                      <ListIcon as={BsCheck2Circle} />
-                      Form Builder
-                    </ListItem>
-                    <ListItem>
-                      <ListIcon as={BsCheck2Circle} />
-                      Rich Text Editing
-                    </ListItem>
-                    <ListItem>
-                      <ListIcon as={BsCheck2Circle} />
-                      Roles and permissions
-                    </ListItem>
-                  </List>
+                  {project.summary.map((s, i) => (
+                    <List
+                      key={i}
+                      spacing={1}
+                      mt={{ base: "8px", md: "10px" }}
+                      textTransform="capitalize"
+                    >
+                      <ListItem>
+                        <ListIcon as={BsCheck2Circle} />
+                        {s}
+                      </ListItem>
+                    </List>
+                  ))}
                   <Box position="absolute" sx={{ bottom: 5, right: 5 }}>
-                    <AvatarGroup size="sm" max={2}>
-                      <Avatar
-                        name="Ryan Florence"
-                        src="https://bit.ly/ryan-florence"
-                      />
-                      <Avatar
-                        name="Segun Adebayo"
-                        src="https://bit.ly/sage-adebayo"
-                      />
-                      <Avatar
-                        name="Kent Dodds"
-                        src="https://bit.ly/kent-c-dodds"
-                      />
-                      <Avatar
-                        name="Prosper Otemuyiwa"
-                        src="https://bit.ly/prosper-baba"
-                      />
-                      <Avatar
-                        name="Christian Nwamba"
-                        src="https://bit.ly/code-beast"
-                      />
-                    </AvatarGroup>
+                    <Stack direction="row" spacing="1">
+                      {project.stack.map((s, i) => (
+                        <Icon
+                          boxSize={6}
+                          key={i}
+                          name={s}
+                          as={stackMap[s as keyof typeof stackMap]}
+                          sx={{
+                            background: "#fff",
+                            border: `none`,
+                            borderRadius: "8px",
+                          }}
+                        />
+                      ))}
+                    </Stack>
                   </Box>
                 </MotionBox>
               ))}
@@ -303,7 +329,7 @@ const Projects = () => {
           </Box>
         </HStack>
       </Box>
-      <Box
+      {/* <Box
         as={motion.div}
         position="absolute"
         minHeight="100vh"
@@ -330,7 +356,7 @@ const Projects = () => {
         >
           Projects
         </Heading>
-      </Box>
+      </Box> */}
       <div ref={projectDivRef} />
     </Box>
   )
