@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from "react"
-import { Box, Heading, HStack, Text } from "@chakra-ui/react"
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Heading,
+  HStack,
+  IconButton,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+} from "@chakra-ui/react"
 import {
   AnimatePresence,
   motion,
@@ -7,6 +18,10 @@ import {
   useInView,
 } from "framer-motion"
 import { easeVariants } from "./motionVariants"
+import { MotionBox } from "@/reuseables"
+import Blobs from "./Blobs"
+import { LuExternalLink } from "react-icons/lu"
+import { BsCheck2Circle } from "react-icons/bs"
 
 const Projects = () => {
   const sectionControl = useAnimationControls()
@@ -20,9 +35,9 @@ const Projects = () => {
     "#7FFF00",
     "#0bc5ea",
     "#9400D3",
+    "#00FF7F",
     "#FF0080",
     "#00FFFF",
-    "#00FF7F",
   ])
 
   useEffect(() => {
@@ -50,16 +65,14 @@ const Projects = () => {
     })
 
     await projectDetailsTextControl.start({
-      opacity: [0, 0.5, 0.7, 0.98, 1],
-      y: [0, -16, -24, 0],
-      // width: ["70%", "60%"],
+      opacity: [0, 1],
+      y: [24, 0],
       transition: {
         duration: 0.7,
       },
     })
 
     await sectionControl.start({
-      opacity: [0.8, 1],
       backgroundColor: [`${bg}80`, bg],
       transition: {
         type: "spring",
@@ -81,91 +94,215 @@ const Projects = () => {
       },
     })
 
-    await updateBGToMatchCard(cards[0])
+    await projectDetailsTextControl.start({
+      opacity: [0.8, 0.4, 1],
+      y: [-15, 0],
+      transition: {
+        duration: 0.7,
+      },
+    })
+
+    await cardSlideControl.start({
+      x: [50, 0],
+      opacity: [0.2, 1],
+      transition: {
+        duration: 0.6,
+      },
+    })
+
+    // await updateBGToMatchCard(cards[0])
   }
   return (
     <Box
       as={motion.div}
-      minHeight="100vh"
       position="relative"
-      p="40px"
-      pr="0px"
       background={cards[0]}
       animate={sectionControl}
       initial="offscreen"
       whileInView="onscreen"
+      overflow="hidden"
       variants={easeVariants.slowAppear}
     >
+      <Blobs />
       <Box
-        mt="100px"
-        as={motion.div}
-        animate={projectDetailsTextControl}
-        width="60%"
+        pl={{ base: "10px", md: "40px" }}
+        pt="40px"
+        minHeight="100vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDir="column"
+        sx={{
+          width: "inherit",
+          height: "inherit",
+          background: "rgb(0, 0, 0, 0.75)",
+          // background: "rgb(255, 255, 255, 0.41)",
+          boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+          backdropFilter: "blur(90px)",
+        }}
       >
-        <Text>Hello</Text>
-        <Heading maxInlineSize="19ch">
-          Project and Details Description and Title
-        </Heading>
-        <Text>Hello some Sample subtext for the project.</Text>
-        <Text>TaDA!</Text>
-      </Box>
-      <HStack mt="150px" alignItems="start" spacing={2}>
-        {" "}
-        <Box as={motion.div} animate={projectDetailsTextControl} width="60%">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro
-          qui eum ipsam eaque ut vero quo nesciunt dolorum harum, incidunt
-          veniam minima similique expedita. Voluptate illo quisquam sapiente
-          error!
-        </Box>
         <Box
+          // mt="20px"
           as={motion.div}
           display="flex"
-          justifyContent="space-between"
-          flexWrap="nowrap"
-          overflowX="auto"
-          sx={{
-            marginTop: "46px",
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
-          }}
-          initial="offscreen"
-          whileInView="onscreen"
-          variants={easeVariants.slideUp}
+          justifyContent="center"
+          alignItems="center"
+          textAlign="center"
+          flexDir="column"
+          initial={{ opacity: 0.3 }}
+          animate={projectDetailsTextControl}
         >
-          <AnimatePresence mode="popLayout" initial={false}>
-            {cards.map((item, index) => (
-              <motion.div
-                layout
-                whileHover={{
-                  scale: 0.97,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{
-                  scale: [0.9, 0.8, 0.1],
-                  borderRadius: ["30%", "60%", "10px"],
-                  transition: { duration: 1.2 },
-                }}
-                style={{
-                  background: cards[index],
-                  minWidth: "350px",
-                  marginRight: "20px",
-                  height: "450px",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
-                role="button"
-                tabIndex={0}
-                key={index}
-                animate={cardSlideControl}
-                exit={{ scale: 1.5 }}
-                transition={{ type: "tween", duration: 0.9 }}
-                onClick={() => updateBGToMatchCard(cards[index])}
-              />
-            ))}
-          </AnimatePresence>
+          <Box>
+            <Text>Hello</Text>
+            <Heading maxInlineSize="19ch">
+              Project and Details Description and Title
+            </Heading>
+            <Text>Hello some Sample subtext for the project.</Text>
+            <Text>TaDA!</Text>
+          </Box>
+          <Box
+            mt="20px"
+            as={motion.div}
+            animate={projectDetailsTextControl}
+            width={{ base: "100%", md: "60%" }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro
+            qui eum ipsam eaque ut vero quo nesciunt dolorum harum, incidunt
+            veniam minima similique expedita. Voluptate illo quisquam sapiente
+            error!
+          </Box>
         </Box>
-      </HStack>
+        <HStack
+          mt="20px"
+          alignItems="start"
+          spacing={2}
+          justify="center"
+          width="100%"
+        >
+          {" "}
+          <Box
+            as={motion.div}
+            maxW={{ base: "container.xl" }}
+            display="flex"
+            justifyContent="space-between"
+            flexWrap="nowrap"
+            overflowX="auto"
+            sx={{
+              marginTop: "46px",
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+            }}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={easeVariants.slideUp}
+          >
+            <AnimatePresence mode="popLayout" initial={false}>
+              {cards.map((item, index) => (
+                <MotionBox
+                  layout
+                  position="relative"
+                  boxShadow="lg"
+                  p={{ base: "20px", md: "30px" }}
+                  whileHover={{
+                    scale: 0.97,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{
+                    scale: [0.9, 0.8, 0.1],
+                    borderRadius: ["30%", "10px"],
+                    transition: { duration: 1.2 },
+                  }}
+                  minWidth={{ base: "250px", md: "320px" }}
+                  height={{ base: "350px", md: "400px" }}
+                  style={{
+                    background: `${cards[index]}89`,
+                    marginRight: "20px",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  key={index}
+                  animate={cardSlideControl}
+                  exit={{ scale: 1.5 }}
+                  transition={{ type: "tween", duration: 0.9 }}
+                  onClick={() => updateBGToMatchCard(cards[index])}
+                >
+                  <IconButton
+                    as={motion.div}
+                    variant="app-iconButton"
+                    sx={{
+                      position: "absolute",
+                      right: "15px",
+                      top: "15px",
+                    }}
+                    aria-label="link"
+                    whileHover={{
+                      scale: 1.04,
+                      rotate: [0, 180],
+                      transition: { duration: 0.6 },
+                    }}
+                    whileTap={{
+                      scale: [0.9, 0.8, 1],
+                      transition: { duration: 0.2 },
+                    }}
+                    icon={<LuExternalLink />}
+                  />
+                  <Heading
+                    my={{ base: "5px", md: "8px" }}
+                    // maxInlineSize="25ch"
+                    size="2xl"
+                  >
+                    Nakise Digital
+                  </Heading>
+                  <Text maxInlineSize="20ch" mt="5px">
+                    Programs/event management software
+                  </Text>
+                  <List spacing={1} mt={{ base: "8px", md: "10px" }}>
+                    <ListItem>
+                      <ListIcon as={BsCheck2Circle} />
+                      Form Builder
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={BsCheck2Circle} />
+                      Rich Text Editing
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={BsCheck2Circle} />
+                      Roles and permissions
+                    </ListItem>
+                  </List>
+                  <Box position="absolute" sx={{ bottom: 5, right: 5 }}>
+                    <AvatarGroup size="sm" max={2}>
+                      <Avatar
+                        name="Ryan Florence"
+                        src="https://bit.ly/ryan-florence"
+                      />
+                      <Avatar
+                        name="Segun Adebayo"
+                        src="https://bit.ly/sage-adebayo"
+                      />
+                      <Avatar
+                        name="Kent Dodds"
+                        src="https://bit.ly/kent-c-dodds"
+                      />
+                      <Avatar
+                        name="Prosper Otemuyiwa"
+                        src="https://bit.ly/prosper-baba"
+                      />
+                      <Avatar
+                        name="Christian Nwamba"
+                        src="https://bit.ly/code-beast"
+                      />
+                    </AvatarGroup>
+                  </Box>
+                </MotionBox>
+              ))}
+            </AnimatePresence>
+          </Box>
+        </HStack>
+      </Box>
       <Box
         as={motion.div}
         position="absolute"

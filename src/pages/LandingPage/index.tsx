@@ -1,33 +1,29 @@
 /* eslint-disable unused-imports/no-unused-imports */
 /* eslint-disable unused-imports/no-unused-vars */
+import { useRef } from "react"
 import { MotionBox } from "@/reuseables"
 import GlassTint from "@/reuseables/GlassTint"
 
 import {
   Box,
   Button,
-  Container,
   Heading,
   Highlight,
+  IconButton,
   Text,
 } from "@chakra-ui/react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Blobs from "./Blobs"
-import {
-  easeVariants,
-  letter,
-  marqueeVariants,
-  // marqueeVariants,
-  sentence,
-} from "./motionVariants"
+import { easeVariants, letter, sentence } from "./motionVariants"
 import Projects from "./Projects"
 import { BsChevronDoubleDown } from "react-icons/bs"
-import { useRef } from "react"
+import { TbArrowDown } from "react-icons/tb"
 
 const textToAnimate = [`Play by the rules,`, `but be ferocious.`]
 
 const LandingPage = () => {
   const sectionBRef = useRef<HTMLDivElement>(null)
+  const sectionCRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
   const x = useTransform(scrollYProgress, [0, 1], [0, 60])
   const bgTweak = useTransform(
@@ -35,8 +31,8 @@ const LandingPage = () => {
     [0, 50, 100],
     ["#090b2a", "#061313", "#272643"]
   )
-  const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
-  const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
+  // const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
+  // const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
@@ -159,9 +155,6 @@ const LandingPage = () => {
               position="absolute"
               bottom={20}
               left="50%"
-              // sx={{
-              //   transform: "translateX(-50%)",
-              // }}
               initial={{
                 opacity: 0,
                 y: -20,
@@ -205,9 +198,6 @@ const LandingPage = () => {
             justifyContent="center"
             alignItems="center"
             pt={{ base: "60px", md: "4%" }}
-            // maxW="xl"
-
-            // style={{ x: xSlideL }}
           >
             <Text
               mb={2}
@@ -289,7 +279,7 @@ const LandingPage = () => {
             >
               <Heading
                 mb={2}
-                fontSize={{ base: "20px", md: "3.5rem" }}
+                fontSize={{ base: "20px", md: "3.2rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -309,7 +299,7 @@ const LandingPage = () => {
             </MotionBox>
 
             <MotionBox
-              mt={{ base: "5px", md: "20px" }}
+              mt={{ base: "5px", md: "15px" }}
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -322,7 +312,7 @@ const LandingPage = () => {
               <Heading
                 whiteSpace="nowrap"
                 mb={2}
-                fontSize={{ base: "20px", md: "3.5rem" }}
+                fontSize={{ base: "20px", md: "3.2rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -340,7 +330,7 @@ const LandingPage = () => {
               </Heading>
             </MotionBox>
             <MotionBox
-              mt={{ base: "5px", md: "20px" }}
+              mt={{ base: "5px", md: "15px" }}
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -352,7 +342,7 @@ const LandingPage = () => {
               <Heading
                 // whiteSpace="nowrap"
                 mb={2}
-                fontSize={{ base: "20px", md: "3.5rem" }}
+                fontSize={{ base: "20px", md: "3.2rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -368,6 +358,35 @@ const LandingPage = () => {
                 </Highlight>
               </Heading>
             </MotionBox>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <IconButton
+              variant="app-iconButton"
+              as={motion.div}
+              animate={{
+                y: [-50, 0],
+                transition: {
+                  duration: 1.6,
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                  delay: 0.5,
+                  ease: "linear",
+                },
+              }}
+              whileHover={{ scale: 1.8 }}
+              whileTap={{ scale: 0.5 }}
+              cursor="pointer"
+              _hover={{ background: "transparent" }}
+              _focus={{ background: "transparent" }}
+              size="lg"
+              border="1px solid #fff"
+              borderRadius="50%"
+              aria-label="add"
+              icon={<TbArrowDown color="#090b2a" />}
+              onClick={() =>
+                sectionCRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+            />
           </Box>
         </Box>
 
@@ -394,7 +413,9 @@ const LandingPage = () => {
           </MotionBox>
         </MotionBox> */}
       </motion.div>
-      <Projects />
+      <div ref={sectionCRef}>
+        <Projects />
+      </div>
     </Box>
   )
 }

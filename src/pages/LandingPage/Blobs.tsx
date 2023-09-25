@@ -1,3 +1,4 @@
+import React from "react"
 import Blob from "@/reuseables/Blob"
 import { motionGenerator } from "@/utils/mathUtil"
 
@@ -29,4 +30,6 @@ const Blobs = () => {
   )
 }
 
-export default Blobs
+const MemoizedBlobs = React.memo(Blobs)
+
+export default MemoizedBlobs
