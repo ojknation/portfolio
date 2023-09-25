@@ -382,6 +382,7 @@ const LandingPage = () => {
               border="1px solid #fff"
               borderRadius="50%"
               aria-label="add"
+              viewport={{ once: true }}
               icon={<TbArrowDown color="#090b2a" />}
               onClick={() =>
                 sectionCRef.current?.scrollIntoView({ behavior: "smooth" })

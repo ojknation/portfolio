@@ -57,7 +57,6 @@ const stackMap = {
 const Projects = () => {
   const sectionControl = useAnimationControls()
   const cardSlideControl = useAnimationControls()
-  // const projectDetailsTextControl = useAnimationControls()
   const projectsOverlayControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
@@ -134,13 +133,12 @@ const Projects = () => {
       position="relative"
       background={cards[0]}
       animate={sectionControl}
-      initial="offscreen"
-      whileInView="onscreen"
       overflow="hidden"
-      variants={easeVariants.slowAppear}
+      mb="1px"
     >
       <Blobs />
       <Box
+        mb="1px"
         pl={{ base: "10px", md: "40px" }}
         // pt="40px"
         minHeight="100vh"
@@ -259,7 +257,6 @@ const Projects = () => {
                   tabIndex={0}
                   key={index}
                   animate={cardSlideControl}
-                  exit={{ scale: 1.5 }}
                   transition={{ type: "tween", duration: 0.6 }}
                   onClick={() => updateBGToMatchCard(cards[index])}
                 >
@@ -329,10 +326,10 @@ const Projects = () => {
           </Box>
         </HStack>
       </Box>
-      {/* <Box
+      <Box
         as={motion.div}
         position="absolute"
-        minHeight="100vh"
+        minHeight="99vh"
         width="100vw"
         top={0}
         left={0}
@@ -356,8 +353,8 @@ const Projects = () => {
         >
           Projects
         </Heading>
-      </Box> */}
-      <div ref={projectDivRef} />
+      </Box>
+      <Box ref={projectDivRef} />
     </Box>
   )
 }
