@@ -49,6 +49,7 @@ const LandingPage = () => {
       <motion.div
         style={{
           background: bgTweak,
+          scrollSnapType: "y mandatory",
         }}
       >
         <Box pos="relative" bg="brand.bg">
@@ -191,7 +192,11 @@ const LandingPage = () => {
           bg="brand.mink"
           position="relative"
           color="Text.dark"
-          minHeight="60vh"
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
         >
           <MotionBox
             display="flex"
@@ -266,7 +271,7 @@ const LandingPage = () => {
               </Highlight>
             </Text>
           </MotionBox>
-          <Box mt={{ base: "20px", md: "40px" }} mb="10%">
+          <Box mt={{ base: "25px", md: "50px" }} mb="10%">
             <MotionBox
               display="flex"
               justifyContent="center"
@@ -364,13 +369,14 @@ const LandingPage = () => {
               variant="app-iconButton"
               as={motion.div}
               animate={{
-                y: [-50, 0],
+                y: [-90, 0],
+                scale: [1.6, 1],
                 transition: {
                   duration: 1.6,
                   repeat: Infinity,
                   repeatDelay: 0.5,
                   delay: 0.5,
-                  ease: "linear",
+                  // ease: "linear",
                 },
               }}
               whileHover={{ scale: 1.8 }}
