@@ -118,8 +118,8 @@ const Projects = () => {
       x: [0, 2400],
       transition: {
         duration: 1.2,
-        delay: 0.5,
-        ease: "linear",
+        delay: 0.6,
+        // ease: "linear",
       },
     })
 
@@ -157,7 +157,7 @@ const Projects = () => {
       >
         <AnimatePresence initial={false} mode="popLayout">
           <Box
-            // mt="20px"
+            mt="20px"
             as={motion.div}
             display="flex"
             key={lastProject?.name}
@@ -243,7 +243,7 @@ const Projects = () => {
                     transition: { duration: 0.5, ease: "easeInOut" },
                   }}
                   minWidth={{ base: "250px", md: "320px" }}
-                  height={{ base: "350px", md: "400px" }}
+                  height={{ base: "350px", md: "360px" }}
                   style={{
                     background: `${cards[index]}89`,
                     marginRight: "20px",
@@ -329,13 +329,13 @@ const Projects = () => {
       <Box
         as={motion.div}
         position="absolute"
-        minHeight="99vh"
+        minHeight="100vh"
         width="100vw"
         top={0}
         left={0}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        backgroundColor="rgb(255,255,265)"
+        backgroundColor="#fff"
         animate={projectsOverlayControl}
       >
         <Heading

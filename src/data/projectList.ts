@@ -104,7 +104,7 @@ export const projects: TProject[] = [
     description: `Whip Store is an ecommerce platform that allows users to purchase products online, the target is small businesses whose inventory is not too large.
      The system integrates with whatsapp and email to manage orders and send notifications to the users. The system also has a dashboard where the business owners can manage their products,
      I led the development effort on the client side of the application,`,
-    summary: ["Ecommerce", "Payment", "Inventory", "Order Management"],
+    summary: ["Ecommerce", "Payment", "Order Management"],
     stack: ["react", "tanstackQuery", "typescript", "firebase", "chakraUI"],
     url: "https://exotic-whip-web.pages.dev",
     bg: "#FF0080",

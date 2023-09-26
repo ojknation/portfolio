@@ -284,7 +284,7 @@ const LandingPage = () => {
             >
               <Heading
                 mb={2}
-                fontSize={{ base: "20px", md: "3.2rem" }}
+                fontSize={{ base: "20px", md: "2.9rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -317,7 +317,7 @@ const LandingPage = () => {
               <Heading
                 whiteSpace="nowrap"
                 mb={2}
-                fontSize={{ base: "20px", md: "3.2rem" }}
+                fontSize={{ base: "20px", md: "2.9rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -347,7 +347,7 @@ const LandingPage = () => {
               <Heading
                 // whiteSpace="nowrap"
                 mb={2}
-                fontSize={{ base: "20px", md: "3.2rem" }}
+                fontSize={{ base: "20px", md: "2.9rem" }}
                 lineHeight="shorter"
               >
                 <Highlight
@@ -364,12 +364,17 @@ const LandingPage = () => {
               </Heading>
             </MotionBox>
           </Box>
-          <Box display="flex" justifyContent="center" alignItems="center">
+          <Box
+            mt={{ base: "15px", md: 0 }}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
             <IconButton
               variant="app-iconButton"
               as={motion.div}
               animate={{
-                y: [-90, 0],
+                y: [-60, 0],
                 scale: [1.6, 1],
                 transition: {
                   duration: 1.6,
