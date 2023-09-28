@@ -37,14 +37,13 @@ const LandingPage = () => {
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
 
   const { scrollYProgress } = useScroll()
-  // const x = useTransform(scrollYProgress, [0, 1], [0, 60])
   const bgTweak = useTransform(
     scrollYProgress,
     [0, 50, 100],
     ["#090b2a", "#061313", "#272643"]
   )
-  // const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
-  // const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
+  const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
+  const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
@@ -84,7 +83,6 @@ const LandingPage = () => {
                   justifyContent="center"
                   alignItems="center"
                   width="100%"
-                  // style={{ x }}
                   initial={{ opacity: 1, y: 0, x: 0, scale: 1, height: "100%" }}
                   viewport={{ once: true }}
                   animate={{
@@ -142,20 +140,13 @@ const LandingPage = () => {
                     as={motion.div}
                     variant="app-iconButton"
                     width="fit-content"
-                    sx={{
-                      backgroundColor: "transparent",
-                      cursor: "pointer",
-                    }}
+                    cursor="pointer"
                     whileHover={{
                       backgroundColor: "#fff",
                       color: "#090b2a",
                       scale: 1.02,
                       transition: {
-                        duration: 0.3,
-                        type: "spring",
-                        stiffness: 50,
-                        mass: 0.6,
-                        damping: 10,
+                        duration: 0.1,
                       },
                     }}
                     onClick={() =>
@@ -170,20 +161,13 @@ const LandingPage = () => {
                     as={motion.div}
                     variant="app-iconButton"
                     width="fit-content"
-                    sx={{
-                      backgroundColor: "transparent",
-                      cursor: "pointer",
-                    }}
+                    cursor="pointer"
                     whileHover={{
                       backgroundColor: "#fff",
                       color: "#090b2a",
                       scale: 1.02,
                       transition: {
-                        duration: 0.3,
-                        type: "spring",
-                        stiffness: 50,
-                        mass: 0.6,
-                        damping: 10,
+                        duration: 0.1,
                       },
                     }}
                     onClick={() =>
@@ -195,22 +179,30 @@ const LandingPage = () => {
                     Projects
                   </Button>
                 </Stack>
-                {/* <Text
-                  width="350px"
-                  // mt="10%"
-                  fontSize={{ base: "14px", md: "16px" }}
+                <MotionBox
+                  style={{
+                    x: xSlideR,
+                  }}
                 >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  vel pariatur quaerat beatae voluptatem, officiis aspernatur
-                  necessitatibus recusandae omnis nam assumenda placeat libero
-                  magni eos animi deserunt quos, tenetur quod?
-                </Text> */}
+                  <Text
+                    width="350px"
+                    mt="45px"
+                    mb="50px"
+                    fontSize={{ base: "14px", md: "16px" }}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+                    vel pariatur quaerat beatae voluptatem, officiis aspernatur
+                    necessitatibus recusandae omnis nam assumenda placeat libero
+                    magni eos animi deserunt quos, tenetur quod?
+                  </Text>
+                </MotionBox>
                 <Box
                   as={motion.div}
                   justifyContent="start"
                   // mt="5%"
                   alignItems="center"
-                  height="100%"
+                  // height="100%"
+                  height="fit-content"
                   display="flex"
                   initial={{
                     opacity: 0,
@@ -329,6 +321,25 @@ const LandingPage = () => {
                     </Stack>
                   </Box>
                 </Box>
+                <MotionBox
+                  display="flex"
+                  justifyContent="flex-end"
+                  style={{
+                    x: xSlideL,
+                  }}
+                >
+                  <Text
+                    width="350px"
+                    mt="45px"
+                    mb="50px"
+                    fontSize={{ base: "14px", md: "16px" }}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+                    vel pariatur quaerat beatae voluptatem, officiis aspernatur
+                    necessitatibus recusandae omnis nam assumenda placeat libero
+                    magni eos animi deserunt quos, tenetur quod?
+                  </Text>
+                </MotionBox>
               </Box>
             </Box>
             <MotionBox
