@@ -10,7 +10,9 @@ import {
   Heading,
   Highlight,
   IconButton,
+  Stack,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Blobs from "./Blobs"
@@ -18,14 +20,24 @@ import { easeVariants, letter, sentence } from "./motionVariants"
 import Projects from "./Projects"
 import { BsChevronDoubleDown } from "react-icons/bs"
 import { TbArrowDown } from "react-icons/tb"
+import { BsFullscreen } from "react-icons/bs"
+import { BiCollapseAlt } from "react-icons/bi"
+import { FaStarOfLife } from "react-icons/fa"
+import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 
 const textToAnimate = [`Play by the rules,`, `but be ferocious.`]
 
 const LandingPage = () => {
   const sectionBRef = useRef<HTMLDivElement>(null)
   const sectionCRef = useRef<HTMLDivElement>(null)
+  const fullscreenRef = useRef<HTMLDivElement>(null)
+
+  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+
+  const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
+
   const { scrollYProgress } = useScroll()
-  const x = useTransform(scrollYProgress, [0, 1], [0, 60])
+  // const x = useTransform(scrollYProgress, [0, 1], [0, 60])
   const bgTweak = useTransform(
     scrollYProgress,
     [0, 50, 100],
@@ -45,6 +57,7 @@ const LandingPage = () => {
           display: "none",
         },
       }}
+      ref={fullscreenRef}
     >
       <motion.div
         style={{
@@ -60,6 +73,7 @@ const LandingPage = () => {
             sx={{
               width: "inherit",
               height: "inherit",
+              background: "rgb(0, 0, 0, 0.7)",
             }}
           >
             <Box height="100vh">
@@ -70,7 +84,7 @@ const LandingPage = () => {
                   justifyContent="center"
                   alignItems="center"
                   width="100%"
-                  style={{ x }}
+                  // style={{ x }}
                   initial={{ opacity: 1, y: 0, x: 0, scale: 1, height: "100%" }}
                   viewport={{ once: true }}
                   animate={{
@@ -81,7 +95,7 @@ const LandingPage = () => {
                     transition: {
                       duration: 1,
                       ease: "easeInOut",
-                      delay: 5,
+                      delay: 4,
                     },
                     transitionEnd: {
                       display: "none",
@@ -118,35 +132,202 @@ const LandingPage = () => {
                     ))}
                   </MotionBox>
                 </Box>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
+                  justifyContent="end"
+                >
+                  <Button
+                    as={motion.div}
+                    variant="app-iconButton"
+                    width="fit-content"
+                    sx={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    whileHover={{
+                      backgroundColor: "#fff",
+                      color: "#090b2a",
+                      scale: 1.02,
+                      transition: {
+                        duration: 0.3,
+                        type: "spring",
+                        stiffness: 50,
+                        mass: 0.6,
+                        damping: 10,
+                      },
+                    }}
+                    onClick={() =>
+                      sectionBRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    About
+                  </Button>
+                  <Button
+                    as={motion.div}
+                    variant="app-iconButton"
+                    width="fit-content"
+                    sx={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    whileHover={{
+                      backgroundColor: "#fff",
+                      color: "#090b2a",
+                      scale: 1.02,
+                      transition: {
+                        duration: 0.3,
+                        type: "spring",
+                        stiffness: 50,
+                        mass: 0.6,
+                        damping: 10,
+                      },
+                    }}
+                    onClick={() =>
+                      sectionCRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    Projects
+                  </Button>
+                </Stack>
+                {/* <Text
+                  width="350px"
+                  // mt="10%"
+                  fontSize={{ base: "14px", md: "16px" }}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+                  vel pariatur quaerat beatae voluptatem, officiis aspernatur
+                  necessitatibus recusandae omnis nam assumenda placeat libero
+                  magni eos animi deserunt quos, tenetur quod?
+                </Text> */}
                 <Box
                   as={motion.div}
-                  justifyContent="center"
+                  justifyContent="start"
+                  // mt="5%"
                   alignItems="center"
                   height="100%"
                   display="flex"
-                  // maxW="md"
                   initial={{
                     opacity: 0,
                     y: 200,
                   }}
                   animate={{
-                    opacity: [0, 0.4, 0.8, 1],
+                    opacity: [0, 1],
                     y: 0,
                     transition: {
                       duration: 1.2,
                       delay: 4,
                     },
                   }}
+                  sx={{
+                    userSelect: "none",
+                    "&::-webkit-user-select": "none",
+                    "&::-ms-user-select": "none",
+                  }}
                 >
-                  <Text
-                    fontSize="18px"
-                    fontWeight="bold"
-                    // lineHeight={0.9}
-                  >
-                    {`
-                    Hello there! I'm OJK, 
-                    `}
-                  </Text>
+                  <Box>
+                    <Stack
+                      direction="row"
+                      spacing={4}
+                      as={motion.div}
+                      whiteSpace="nowrap"
+                      animate={{
+                        x: isSmallScreen ? [0, -1300] : [0, -2300],
+                        transition: {
+                          duration: isSmallScreen ? 14 : 25,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          delay: 0.5,
+                          ease: "linear",
+                        },
+                      }}
+                    >
+                      {[
+                        "Nodejs",
+                        "Typescript",
+                        "React",
+                        "Postgres",
+                        "MongoDB",
+                        "Prisma",
+                        "Nextjs",
+                        "Firebase",
+                        "GraphQL",
+                        "Express",
+                        "TailwindCSS",
+                      ].map((skill, index, arr) => (
+                        <Stack key={index} direction="row" alignItems="center">
+                          <Text
+                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
+                            fontWeight="bold"
+                            lineHeight={0.9}
+                            px={2}
+                            sx={{
+                              "-webkit-text-fill-color": "transparent",
+                              "-webkit-text-stroke-width": isSmallScreen
+                                ? "2px"
+                                : "4px",
+                            }}
+                          >
+                            {skill}
+                          </Text>
+                          {index < arr.length - 1 && <FaStarOfLife />}
+                        </Stack>
+                      ))}
+                    </Stack>
+                    <Stack
+                      mt="20px"
+                      direction="row"
+                      spacing={4}
+                      as={motion.div}
+                      whiteSpace="nowrap"
+                      animate={{
+                        x: isSmallScreen ? [-1300, 0] : [-2300, 0],
+                        transition: {
+                          duration: isSmallScreen ? 14 : 25,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          ease: "linear",
+                        },
+                      }}
+                    >
+                      {[
+                        "Prisma",
+                        "Nextjs",
+                        "Firebase",
+                        "GraphQL",
+                        "Express",
+                        "TailwindCSS",
+                        "Nodejs",
+                        "Typescript",
+                        "React",
+                        "Postgres",
+                        "MongoDB",
+                      ].map((skill, index, arr) => (
+                        <Stack key={index} direction="row" alignItems="center">
+                          <Text
+                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
+                            fontWeight="bold"
+                            lineHeight={0.9}
+                            px={2}
+                            sx={{
+                              "-webkit-text-fill-color": "transparent",
+                              "-webkit-text-stroke-width": isSmallScreen
+                                ? "2px"
+                                : "4px",
+                            }}
+                          >
+                            {skill}
+                          </Text>
+                          {index < arr.length - 1 && <FaStarOfLife />}
+                        </Stack>
+                      ))}
+                    </Stack>
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -176,13 +357,29 @@ const LandingPage = () => {
                 width="fit-content"
                 rightIcon={<BsChevronDoubleDown />}
                 onClick={() =>
-                  sectionBRef.current?.scrollIntoView({ behavior: "smooth" })
+                  sectionBRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                  })
                 }
               >
                 See More
               </Button>
             </MotionBox>
           </GlassTint>
+          <Box position="absolute" sx={{ bottom: 40, right: 10 }}>
+            <IconButton
+              as={motion.div}
+              whileHover={{ scale: 1.3 }}
+              boxSize={8}
+              cursor="pointer"
+              variant="app-iconButton"
+              aria-label="fullscreen toggle"
+              icon={isFullscreen ? <BiCollapseAlt /> : <BsFullscreen />}
+              onClick={
+                isFullscreen ? () => document.exitFullscreen() : setFullscreen
+              }
+            />
+          </Box>
         </Box>
 
         <Box
@@ -212,7 +409,7 @@ const LandingPage = () => {
               maxInlineSize="60ch"
             >
               <Highlight
-                query={["Hey"]}
+                query={["Hello"]}
                 styles={{
                   border: "1px solid #9400D3",
                   padding: "2px",
@@ -220,7 +417,7 @@ const LandingPage = () => {
                   borderTopRadius: "60%",
                 }}
               >
-                {`👋 Hey nice to meet you. I'm Boluwatife,`}
+                {`👋 Hello world. I'm Boluwatife,`}
               </Highlight>
               <br />
               <Highlight
@@ -245,7 +442,6 @@ const LandingPage = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            // style={{ x: xSlideR }}
             initial="offscreen"
             whileInView="onscreen"
             variants={easeVariants.slideUp}
@@ -401,29 +597,6 @@ const LandingPage = () => {
             />
           </Box>
         </Box>
-
-        {/* <MotionBox
-          whiteSpace="nowrap"
-          variants={marqueeVariants}
-          animate="container"
-          pos="relative"
-          marginBottom="90px"
-        >
-          <MotionBox
-            as="h1"
-            sx={{
-              textTransform: "upperCase",
-              fontSize: { base: "4rem", md: "6rem", xl: "8rem" },
-              "-webkit-text-fill-color": "transparent",
-              "-webkit-text-stroke-width": "8px",
-            }}
-            variants={marqueeVariants}
-            animate="text"
-            fontFamily="monospace"
-          >
-            streams tournaments teams fun games live news tours
-          </MotionBox>
-        </MotionBox> */}
       </motion.div>
       <Projects />
       <div ref={sectionCRef} />

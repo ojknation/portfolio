@@ -54,7 +54,7 @@ export const projects: TProject[] = [
     summary: [
       "Access Control",
       "Workflow Management",
-      "Document Management",
+      "Document Generation",
       "Payment",
     ],
     stack: ["react", "redux", "materialUI", "dotNet"],
