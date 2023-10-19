@@ -6,17 +6,17 @@ const Blobs = () => {
   return (
     <div>
       {[
-        "#FFA500",
+        // "#FFA500",
         // "#7FFF00",
-        "#0bc5ea",
+        // "#0bc5ea",
         "#9400D3",
         "#FF0080",
-        "#00FFFF",
-        // "#00FF7F",
-        "#FF1493",
-        "#FF8F00",
-        "#00CED1",
-        "#7928CA",
+        // "#00FFFF",
+        "#00FF7F",
+        // "#FF1493",
+        // "#FF8F00",
+        // "#00CED1",
+        // "#7928CA",
       ].map((color, index) => (
         <Blob
           key={color}

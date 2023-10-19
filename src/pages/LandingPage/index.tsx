@@ -58,12 +58,7 @@ const LandingPage = () => {
       }}
       ref={fullscreenRef}
     >
-      <motion.div
-        style={{
-          // background: bgTweak,
-          scrollSnapType: "y mandatory",
-        }}
-      >
+      <motion.div>
         <Box pos="relative" bg="brand.bg">
           <Blobs />
 

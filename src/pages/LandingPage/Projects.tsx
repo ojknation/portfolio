@@ -105,7 +105,7 @@ const Projects = () => {
     })
 
     await sectionControl.start({
-      backgroundColor: [bg],
+      background: `linear-gradient(-52deg, ${bg} 30%, #090b2a 80%)`,
       transition: {
         type: "spring",
         stiffness: 50,
@@ -131,240 +131,243 @@ const Projects = () => {
     await updateBGToMatchCard(cards[0])
   }
   return (
-    <Box
-      as={motion.div}
-      position="relative"
-      backgroundColor={lastProject?.bg ?? cards[0]}
-      animate={sectionControl}
-      overflow="hidden"
-      mb="1px"
-    >
-      <Blobs />
+    <Box>
       <Box
+        as={motion.div}
+        position="relative"
+        // backgroundColor={lastProject?.bg ?? cards[0]}
+        bg="brand.bg"
+        animate={sectionControl}
+        overflow="hidden"
         mb="1px"
-        px={{ base: "10px", md: "40px" }}
-        // pt="40px"
-        minHeight="100vh"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDir="column"
-        sx={{
-          width: "inherit",
-          height: "inherit",
-          background: "rgb(0, 0, 0, 0.7)",
-          // background: "rgb(255, 255, 255, 0.41)",
-          boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-          backdropFilter: "blur(90px)",
-        }}
       >
-        <AnimatePresence initial={false} mode="popLayout">
-          <Box
-            mt="20px"
-            as={motion.div}
-            display="flex"
-            key={lastProject?.name}
-            minHeight="25vh"
-            justifyContent="center"
-            alignItems="center"
-            textAlign="center"
-            flexDir="column"
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0.1, 1],
-              y: [24, 0],
-              transition: {
-                duration: 0.9,
-              },
-            }}
-            // animate={projectDetailsTextControl}
-          >
-            <Box>
-              {/* <Text>Project</Text> */}
-              <Heading
-                maxInlineSize="19ch"
-                fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
-                sx={{
-                  "-webkit-text-fill-color": "transparent",
-                  "-webkit-text-stroke-width": isSmallScreen ? "2px" : "3px",
-                }}
-              >
-                {lastProject?.name ?? projectList[0]?.name}
-              </Heading>
-              <Text fontWeight="bold" fontSize="14px">
-                {lastProject?.synopsis ?? projectList[0]?.synopsis}
-              </Text>
-              {/* <Text>TaDA!</Text> */}
-            </Box>
+        <Blobs />
+        <Box
+          mb="1px"
+          px={{ base: "10px", md: "40px" }}
+          // pt="40px"
+          minHeight="100vh"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDir="column"
+          sx={{
+            width: "inherit",
+            height: "inherit",
+            background: "rgb(0, 0, 0, 0.7)",
+            // background: "rgb(255, 255, 255, 0.41)",
+            boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+            backdropFilter: "blur(90px)",
+          }}
+        >
+          <AnimatePresence initial={false} mode="popLayout">
             <Box
               mt="20px"
               as={motion.div}
+              display="flex"
+              key={lastProject?.name}
+              minHeight="25vh"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
+              flexDir="column"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0.1, 1],
+                y: [24, 0],
+                transition: {
+                  duration: 0.9,
+                },
+              }}
               // animate={projectDetailsTextControl}
-              width={{ base: "100%", md: "60%" }}
             >
-              <Text noOfLines={4}>
-                {lastProject?.description ?? projectList[0]?.description}
-              </Text>
-            </Box>
-          </Box>
-        </AnimatePresence>
-
-        <HStack
-          mt="20px"
-          alignItems="start"
-          spacing={2}
-          justify="center"
-          width="100%"
-        >
-          {" "}
-          <Box
-            as={motion.div}
-            maxW={{ base: "container.xl" }}
-            display="flex"
-            justifyContent="space-between"
-            flexWrap="nowrap"
-            overflowX="auto"
-            sx={{
-              marginTop: "46px",
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-            }}
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={easeVariants.slideUp}
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {projectList.map((project, index) => (
-                <MotionBox
-                  layout
-                  position="relative"
-                  boxShadow="lg"
-                  p={{ base: "20px", md: "30px" }}
-                  whileHover={{
-                    scale: 0.97,
-                    transition: { duration: 0.2 },
+              <Box>
+                {/* <Text>Project</Text> */}
+                <Heading
+                  maxInlineSize="19ch"
+                  fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
+                  sx={{
+                    "-webkit-text-fill-color": "transparent",
+                    "-webkit-text-stroke-width": isSmallScreen ? "2px" : "3px",
                   }}
-                  // whileTap={{
-                  // scale: [0.9, 0.8],
-                  // borderRadius: ["30%", "10px"],
-                  // x: 150,
-                  // opacity: [1, 0.6],
-                  // transition: { duration: 0.5, ease: "easeInOut" },
-                  // }}
-                  minWidth={{ base: "250px", md: "320px" }}
-                  height={{ base: "350px", md: "360px" }}
-                  style={{
-                    background: `${cards[index]}89`,
-                    marginRight: "20px",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                    userSelect: "none",
-                    "&::-webkit-user-select": "none",
-                    "&::-ms-user-select": "none",
-                  }}
-                  // role="button"
-                  // tabIndex={0}
-                  key={index}
-                  animate={cardSlideControl}
-                  transition={{ type: "tween", duration: 0.6 }}
-                  onClick={() => updateBGToMatchCard(cards[index])}
                 >
-                  <IconButton
-                    as={motion.div}
-                    variant="app-iconButton"
-                    sx={{
-                      position: "absolute",
-                      right: "15px",
-                      top: "15px",
-                    }}
-                    aria-label="link"
+                  {lastProject?.name ?? projectList[0]?.name}
+                </Heading>
+                <Text fontWeight="bold" fontSize="14px">
+                  {lastProject?.synopsis ?? projectList[0]?.synopsis}
+                </Text>
+                {/* <Text>TaDA!</Text> */}
+              </Box>
+              <Box
+                mt="20px"
+                as={motion.div}
+                // animate={projectDetailsTextControl}
+                width={{ base: "100%", md: "60%" }}
+              >
+                <Text noOfLines={4}>
+                  {lastProject?.description ?? projectList[0]?.description}
+                </Text>
+              </Box>
+            </Box>
+          </AnimatePresence>
+
+          <HStack
+            mt="20px"
+            alignItems="start"
+            spacing={2}
+            justify="center"
+            width="100%"
+          >
+            {" "}
+            <Box
+              as={motion.div}
+              maxW={{ base: "container.xl" }}
+              display="flex"
+              justifyContent="space-between"
+              flexWrap="nowrap"
+              overflowX="auto"
+              sx={{
+                marginTop: "46px",
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+              }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.slideUp}
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                {projectList.map((project, index) => (
+                  <MotionBox
+                    layout
+                    position="relative"
+                    boxShadow="lg"
+                    p={{ base: "20px", md: "30px" }}
                     whileHover={{
-                      scale: 1.04,
-                      rotate: [0, 180],
-                      transition: { duration: 0.6 },
-                    }}
-                    whileTap={{
-                      scale: [0.9, 0.8, 1],
+                      scale: 0.97,
                       transition: { duration: 0.2 },
                     }}
-                    icon={<LuExternalLink />}
-                  />
-                  <Heading
-                    my={{ base: "5px", md: "8px" }}
-                    maxInlineSize="80%"
-                    size="2xl"
+                    // whileTap={{
+                    // scale: [0.9, 0.8],
+                    // borderRadius: ["30%", "10px"],
+                    // x: 150,
+                    // opacity: [1, 0.6],
+                    // transition: { duration: 0.5, ease: "easeInOut" },
+                    // }}
+                    minWidth={{ base: "250px", md: "320px" }}
+                    height={{ base: "350px", md: "360px" }}
+                    style={{
+                      background: `${cards[index]}89`,
+                      marginRight: "20px",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                      userSelect: "none",
+                      "&::-webkit-user-select": "none",
+                      "&::-ms-user-select": "none",
+                    }}
+                    // role="button"
+                    // tabIndex={0}
+                    key={index}
+                    animate={cardSlideControl}
+                    transition={{ type: "tween", duration: 0.6 }}
+                    onClick={() => updateBGToMatchCard(cards[index])}
                   >
-                    {project.name}
-                  </Heading>
-                  <Text maxInlineSize="20ch" mt="5px">
-                    {project.synopsis}
-                  </Text>
-                  {project.summary.map((s, i) => (
-                    <List
-                      key={i}
-                      spacing={1}
-                      mt={{ base: "8px", md: "10px" }}
-                      textTransform="capitalize"
+                    <IconButton
+                      as={motion.div}
+                      variant="app-iconButton"
+                      sx={{
+                        position: "absolute",
+                        right: "15px",
+                        top: "15px",
+                      }}
+                      aria-label="link"
+                      whileHover={{
+                        scale: 1.04,
+                        rotate: [0, 180],
+                        transition: { duration: 0.6 },
+                      }}
+                      whileTap={{
+                        scale: [0.9, 0.8, 1],
+                        transition: { duration: 0.2 },
+                      }}
+                      icon={<LuExternalLink />}
+                    />
+                    <Heading
+                      my={{ base: "5px", md: "8px" }}
+                      maxInlineSize="80%"
+                      size="2xl"
                     >
-                      <ListItem>
-                        <ListIcon as={BsCheck2Circle} />
-                        {s}
-                      </ListItem>
-                    </List>
-                  ))}
-                  <Box position="absolute" sx={{ bottom: 5, right: 5 }}>
-                    <Stack direction="row" spacing="1">
-                      {project.stack.map((s, i) => (
-                        <Icon
-                          boxSize={6}
-                          key={i}
-                          name={s}
-                          as={stackMap[s as keyof typeof stackMap]}
-                          sx={{
-                            background: "#fff",
-                            border: `none`,
-                            borderRadius: "8px",
-                          }}
-                        />
-                      ))}
-                    </Stack>
-                  </Box>
-                </MotionBox>
-              ))}
-            </AnimatePresence>
-          </Box>
-        </HStack>
-      </Box>
-      <Box
-        as={motion.div}
-        position="absolute"
-        minHeight="100vh"
-        width="100vw"
-        top={0}
-        left={0}
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        backgroundColor="#fff"
-        animate={projectsOverlayControl}
-      >
-        <Heading
-          sx={{
-            color: "transparent",
-            fontSize: "16vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh",
-            backgroundClip: "text",
-            "&::-webkit-background-clip": "text",
-            backgroundImage: `url(https://unsplash.it/1400)`,
-          }}
+                      {project.name}
+                    </Heading>
+                    <Text maxInlineSize="20ch" mt="5px">
+                      {project.synopsis}
+                    </Text>
+                    {project.summary.map((s, i) => (
+                      <List
+                        key={i}
+                        spacing={1}
+                        mt={{ base: "8px", md: "10px" }}
+                        textTransform="capitalize"
+                      >
+                        <ListItem>
+                          <ListIcon as={BsCheck2Circle} />
+                          {s}
+                        </ListItem>
+                      </List>
+                    ))}
+                    <Box position="absolute" sx={{ bottom: 5, right: 5 }}>
+                      <Stack direction="row" spacing="1">
+                        {project.stack.map((s, i) => (
+                          <Icon
+                            boxSize={6}
+                            key={i}
+                            name={s}
+                            as={stackMap[s as keyof typeof stackMap]}
+                            sx={{
+                              background: "#fff",
+                              border: `none`,
+                              borderRadius: "8px",
+                            }}
+                          />
+                        ))}
+                      </Stack>
+                    </Box>
+                  </MotionBox>
+                ))}
+              </AnimatePresence>
+            </Box>
+          </HStack>
+        </Box>
+        <Box
+          as={motion.div}
+          position="absolute"
+          minHeight="100vh"
+          width="100vw"
+          top={0}
+          left={0}
+          backgroundRepeat="no-repeat"
+          backgroundSize="cover"
+          backgroundColor="#fff"
+          animate={projectsOverlayControl}
         >
-          Projects
-        </Heading>
+          <Heading
+            sx={{
+              color: "transparent",
+              fontSize: "16vw",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "100vh",
+              backgroundClip: "text",
+              "&::-webkit-background-clip": "text",
+              backgroundImage: `url(https://unsplash.it/1400)`,
+            }}
+          >
+            Projects
+          </Heading>
+        </Box>
+        <Box ref={projectDivRef} />
       </Box>
-      <Box ref={projectDivRef} />
     </Box>
   )
 }
