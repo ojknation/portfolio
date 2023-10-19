@@ -10,6 +10,7 @@ import {
   Stack,
   Text,
   Icon,
+  useMediaQuery,
 } from "@chakra-ui/react"
 import {
   AnimatePresence,
@@ -19,6 +20,7 @@ import {
 } from "framer-motion"
 import { easeVariants } from "./motionVariants"
 import { MotionBox } from "@/reuseables"
+// eslint-disable-next-line unused-imports/no-unused-imports
 import Blobs from "./Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
@@ -60,6 +62,7 @@ const Projects = () => {
   const projectsOverlayControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
+  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
   const [cards, setCards] = useState([
     "#FFA500",
     "#7FFF00",
@@ -95,19 +98,19 @@ const Projects = () => {
 
     await cardSlideControl.start({
       x: [50, 0],
-      opacity: [0.6, 1],
+      // opacity: [0.6, 1],
       transition: {
         duration: 0.5,
       },
     })
 
     await sectionControl.start({
-      backgroundColor: [`${bg}80`, bg],
+      backgroundColor: [bg],
       transition: {
         type: "spring",
         stiffness: 50,
         damping: 10,
-        duration: 0.5,
+        duration: 0.2,
       },
     })
   }
@@ -131,7 +134,7 @@ const Projects = () => {
     <Box
       as={motion.div}
       position="relative"
-      background={cards[0]}
+      backgroundColor={lastProject?.bg ?? cards[0]}
       animate={sectionControl}
       overflow="hidden"
       mb="1px"
@@ -139,7 +142,7 @@ const Projects = () => {
       <Blobs />
       <Box
         mb="1px"
-        pl={{ base: "10px", md: "40px" }}
+        px={{ base: "10px", md: "40px" }}
         // pt="40px"
         minHeight="100vh"
         display="flex"
@@ -149,7 +152,7 @@ const Projects = () => {
         sx={{
           width: "inherit",
           height: "inherit",
-          background: "rgb(0, 0, 0, 0.75)",
+          background: "rgb(0, 0, 0, 0.7)",
           // background: "rgb(255, 255, 255, 0.41)",
           boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
           backdropFilter: "blur(90px)",
@@ -178,10 +181,17 @@ const Projects = () => {
           >
             <Box>
               {/* <Text>Project</Text> */}
-              <Heading maxInlineSize="19ch" size={{ base: "2xl", md: "4xl" }}>
+              <Heading
+                maxInlineSize="19ch"
+                fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
+                sx={{
+                  "-webkit-text-fill-color": "transparent",
+                  "-webkit-text-stroke-width": isSmallScreen ? "2px" : "3px",
+                }}
+              >
                 {lastProject?.name ?? projectList[0]?.name}
               </Heading>
-              <Text fontWeight="bold">
+              <Text fontWeight="bold" fontSize="14px">
                 {lastProject?.synopsis ?? projectList[0]?.synopsis}
               </Text>
               {/* <Text>TaDA!</Text> */}
@@ -227,7 +237,7 @@ const Projects = () => {
             <AnimatePresence mode="popLayout" initial={false}>
               {projectList.map((project, index) => (
                 <MotionBox
-                  // layout
+                  layout
                   position="relative"
                   boxShadow="lg"
                   p={{ base: "20px", md: "30px" }}
@@ -235,13 +245,13 @@ const Projects = () => {
                     scale: 0.97,
                     transition: { duration: 0.2 },
                   }}
-                  whileTap={{
-                    scale: [0.9, 0.5],
-                    borderRadius: ["30%", "10px"],
-                    x: 150,
-                    opacity: [1, 0.6],
-                    transition: { duration: 0.5, ease: "easeInOut" },
-                  }}
+                  // whileTap={{
+                  // scale: [0.9, 0.8],
+                  // borderRadius: ["30%", "10px"],
+                  // x: 150,
+                  // opacity: [1, 0.6],
+                  // transition: { duration: 0.5, ease: "easeInOut" },
+                  // }}
                   minWidth={{ base: "250px", md: "320px" }}
                   height={{ base: "350px", md: "360px" }}
                   style={{
@@ -253,8 +263,8 @@ const Projects = () => {
                     "&::-webkit-user-select": "none",
                     "&::-ms-user-select": "none",
                   }}
-                  role="button"
-                  tabIndex={0}
+                  // role="button"
+                  // tabIndex={0}
                   key={index}
                   animate={cardSlideControl}
                   transition={{ type: "tween", duration: 0.6 }}

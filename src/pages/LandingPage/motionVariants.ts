@@ -53,7 +53,7 @@ export const easeVariants = {
       transition: {
         duration: 1,
       },
-      opacity: [0, 0.2, 0.4, 0.8, 1],
+      opacity: [0, 1],
     },
   },
   slowAppear: {
@@ -87,18 +87,20 @@ export const easeVariants = {
   },
   swooshOut: {
     offscreen: {
-      opacity: 0,
-      letterSpacing: "22px",
+      opacity: 0.8,
+      // letterSpacing: "22px",
+      y: 20,
     },
     onscreen: {
       transition: {
-        duration: 2.9,
-        type: "spring",
-        stiffness: 100,
-        delay: 0.2,
+        duration: 2,
+        // type: "spring",
+        // stiffness: 100,
+        // delay: 0.2,
       },
-      opacity: [0, 0.2, 0.4, 0.8, 1],
-      letterSpacing: ["-10px", "40px", "-3px", "0px"],
+      y: 0,
+      opacity: 1,
+      letterSpacing: ["10px", "-3px", "0px"],
     },
   },
 }

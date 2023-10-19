@@ -37,18 +37,18 @@ const LandingPage = () => {
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
 
   const { scrollYProgress } = useScroll()
-  const bgTweak = useTransform(
-    scrollYProgress,
-    [0, 50, 100],
-    ["#090b2a", "#061313", "#272643"]
-  )
+  // const bgTweak = useTransform(
+  //   scrollYProgress,
+  //   [0, 50, 100],
+  //   ["#090b2a", "#061313", "#272643"]
+  // )
   const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
   const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
       sx={{
-        bg: "brand.mink",
+        // bg: "brand.mink",
         color: "#fff",
         overflowY: "scroll",
         overflowX: "hidden",
@@ -60,7 +60,7 @@ const LandingPage = () => {
     >
       <motion.div
         style={{
-          background: bgTweak,
+          // background: bgTweak,
           scrollSnapType: "y mandatory",
         }}
       >
@@ -75,7 +75,7 @@ const LandingPage = () => {
               background: "rgb(0, 0, 0, 0.7)",
             }}
           >
-            <Box height="100vh">
+            <Box height="100dvh">
               <Box height="100%">
                 <Box
                   as={motion.div}
@@ -139,6 +139,7 @@ const LandingPage = () => {
                   <Button
                     as={motion.div}
                     variant="app-iconButton"
+                    size="sm"
                     width="fit-content"
                     cursor="pointer"
                     whileHover={{
@@ -160,6 +161,7 @@ const LandingPage = () => {
                   <Button
                     as={motion.div}
                     variant="app-iconButton"
+                    size="sm"
                     width="fit-content"
                     cursor="pointer"
                     whileHover={{
@@ -346,7 +348,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.8 }}
               position="absolute"
-              bottom={20}
+              bottom={isSmallScreen ? 40 : 20}
               left="50%"
               initial={{
                 opacity: 0,
@@ -377,235 +379,235 @@ const LandingPage = () => {
               </Button>
             </MotionBox>
           </GlassTint>
-          <Box position="absolute" sx={{ bottom: 40, right: 10 }}>
-            <IconButton
-              as={motion.div}
-              whileHover={{ scale: 1.3 }}
-              boxSize={8}
-              cursor="pointer"
-              variant="app-iconButton"
-              aria-label="fullscreen toggle"
-              icon={isFullscreen ? <BiCollapseAlt /> : <BsFullscreen />}
-              onClick={
-                isFullscreen ? () => document.exitFullscreen() : setFullscreen
-              }
-            />
-          </Box>
+          {!isSmallScreen && (
+            <Box position="absolute" sx={{ bottom: 40, right: 10 }}>
+              <IconButton
+                as={motion.div}
+                whileHover={{ scale: 1.3 }}
+                boxSize={8}
+                cursor="pointer"
+                variant="app-iconButton"
+                aria-label="fullscreen toggle"
+                icon={isFullscreen ? <BiCollapseAlt /> : <BsFullscreen />}
+                onClick={
+                  isFullscreen ? () => document.exitFullscreen() : setFullscreen
+                }
+              />
+            </Box>
+          )}
         </Box>
 
         <Box
           ref={sectionBRef}
-          pl="10%"
-          pr="10%"
-          bg="brand.mink"
           position="relative"
-          color="Text.dark"
-          display="flex"
-          flexDir="column"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
+          color="#fff"
+          background="transparent"
+          overflow="hidden"
+          bg="brand.bg"
         >
-          <MotionBox
+          <Blobs />
+          <Box
+            px="10%"
             display="flex"
+            flexDir="column"
             justifyContent="center"
             alignItems="center"
-            pt={{ base: "60px", md: "4%" }}
+            minHeight="100vh"
+            // pr="10%"
+            sx={{
+              width: "inherit",
+              height: "inherit",
+              background: "rgb(0, 0, 0, 0.7)",
+              // background: "rgb(255, 255, 255, 0.41)",
+              boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+              backdropFilter: "blur(90px)",
+            }}
           >
-            <Text
-              mb={2}
-              fontSize={{ base: "18px", md: "30px" }}
-              lineHeight="shorter"
-              fontWeight="bold"
-              maxInlineSize="60ch"
+            <MotionBox
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              pt={{ base: "30px", md: "4%" }}
             >
-              <Highlight
-                query={["Hello"]}
-                styles={{
-                  border: "1px solid #9400D3",
-                  padding: "2px",
-                  borderRadius: "16px",
-                  borderTopRadius: "60%",
-                }}
+              <Text
+                mb={2}
+                fontSize={{ base: "18px", md: "30px" }}
+                lineHeight="shorter"
+                fontWeight="bold"
+                maxInlineSize="60ch"
               >
-                {`👋 Hello world. I'm Boluwatife,`}
-              </Highlight>
-              <br />
-              <Highlight
-                query={["React", "Typescript", "Node.js", "3 years"]}
-                styles={{
-                  border: "1px solid #0a0000",
-                  padding: "2px",
-                  borderRadius: "16px",
-                  borderTopRadius: "60%",
-                }}
-              >
+                <Highlight
+                  query={["Hello"]}
+                  styles={{
+                    border: "1px solid #9400D3",
+                    background: "white",
+                    padding: "2px",
+                    borderRadius: "16px",
+                    borderTopRadius: "60%",
+                  }}
+                >
+                  {`👋 Hello world. I'm Boluwatife,`}
+                </Highlight>
+                <br />
                 {` a software
                     engineer with a keen focus on crafting seamless and visually
                     stunning user interfaces. I specialize in harnessing the
                     power of React, TypeScript, and Node.js to bring digital
                     experiences to life.`}
-              </Highlight>
-            </Text>
-          </MotionBox>
-          <MotionBox
-            mt={{ base: "20px", md: "50px" }}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={easeVariants.slideUp}
-            viewport={{ once: false }}
-          >
-            <Text
-              mb={2}
-              fontSize={{ base: "18px", md: "30px" }}
-              lineHeight="shorter"
+              </Text>
+            </MotionBox>
+            <MotionBox
+              mt={{ base: "20px", md: "50px" }}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.slideUp}
+              viewport={{ once: false }}
             >
-              <Highlight
-                query={["optimizing", "pixel-perfect", "challenges"]}
-                styles={{
-                  border: "1px solid #0a0000",
-                  padding: "2px",
-                  borderRadius: "16px",
-                  borderTopRadius: "60%",
-                }}
+              <Text
+                mb={2}
+                fontSize={{ base: "18px", md: "30px" }}
+                lineHeight="shorter"
               >
                 {`🚀 With a wealth of experience in the dynamic world of web development, 
                 I've honed my skills in architecting and optimizing frontend systems that deliver seamless user experiences.
                  From building scalable web applications to ensuring pixel-perfect rendering, I thrive on the challenges that frontend engineering presents.`}
-              </Highlight>
-            </Text>
-          </MotionBox>
-          <Box mt={{ base: "25px", md: "50px" }} mb="10%">
-            <MotionBox
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              initial="offscreen"
-              whileInView="onscreen"
-              variants={easeVariants.slideUp}
-              zIndex={3}
-              pos="relative"
-            >
-              <Heading
-                mb={2}
-                fontSize={{ base: "20px", md: "2.9rem" }}
-                lineHeight="shorter"
-              >
-                <Highlight
-                  query={["love"]}
-                  styles={{
-                    color: "Text.dark",
-                    background: "white",
-                    border: "1px solid #f91d78",
-                    borderRadius: "30%",
-                    borderTopRadius: "60%",
-                    borderRightRadius: "60%",
-                  }}
-                >
-                  I really love solving problems,
-                </Highlight>
-              </Heading>
+              </Text>
             </MotionBox>
+            <Box mt={{ base: "25px", md: "50px" }} mb="10%">
+              <MotionBox
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.slideUp}
+                zIndex={3}
+                pos="relative"
+              >
+                <Heading
+                  mb={2}
+                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["love"]}
+                    styles={{
+                      color: "Text.dark",
+                      background: "white",
+                      border: "1px solid #f91d78",
+                      padding: "8px",
+                      borderRadius: "30%",
+                      borderTopRadius: "60%",
+                      borderRightRadius: "60%",
+                    }}
+                  >
+                    I really love solving problems,
+                  </Highlight>
+                </Heading>
+              </MotionBox>
 
-            <MotionBox
-              mt={{ base: "5px", md: "15px" }}
+              <MotionBox
+                mt={{ base: "5px", md: "15px" }}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.swooshOut}
+                zIndex={3}
+                pos="relative"
+              >
+                <Heading
+                  whiteSpace="nowrap"
+                  mb={2}
+                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["boundaries"]}
+                    styles={{
+                      color: "Text.dark",
+                      border: "2px solid #fe0606",
+                      paddingRight: "18px",
+                      borderRadius: "60%",
+                      borderLeftRadius: 0,
+                      background: "white",
+                    }}
+                  >
+                    Pushing boundaries
+                  </Highlight>
+                </Heading>
+              </MotionBox>
+              <MotionBox
+                mt={{ base: "5px", md: "15px" }}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="2vw"
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.slideUp}
+              >
+                <Heading
+                  // whiteSpace="nowrap"
+                  mb={2}
+                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["box"]}
+                    styles={{
+                      color: "Text.dark",
+                      border: "2px solid #090b2a",
+                      padding: "10px 10px 0px",
+                      background: "brand.green",
+                    }}
+                  >
+                    and thinking outside the box.
+                  </Highlight>
+                </Heading>
+              </MotionBox>
+            </Box>
+            <Box
+              mt={{ base: "15px", md: 0 }}
               display="flex"
               justifyContent="center"
               alignItems="center"
-              initial="offscreen"
-              whileInView="onscreen"
-              variants={easeVariants.swooshOut}
-              zIndex={3}
-              pos="relative"
             >
-              <Heading
-                whiteSpace="nowrap"
-                mb={2}
-                fontSize={{ base: "20px", md: "2.9rem" }}
-                lineHeight="shorter"
-              >
-                <Highlight
-                  query={["boundaries"]}
-                  styles={{
-                    color: "Text.dark",
-                    border: "2px solid #fe0606",
-                    borderRadius: "60%",
-                    borderLeftRadius: 0,
-                    background: "white",
-                  }}
-                >
-                  Pushing boundaries
-                </Highlight>
-              </Heading>
-            </MotionBox>
-            <MotionBox
-              mt={{ base: "5px", md: "15px" }}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              fontSize="2vw"
-              initial="offscreen"
-              whileInView="onscreen"
-              variants={easeVariants.slideUp}
-            >
-              <Heading
-                // whiteSpace="nowrap"
-                mb={2}
-                fontSize={{ base: "20px", md: "2.9rem" }}
-                lineHeight="shorter"
-              >
-                <Highlight
-                  query={["box"]}
-                  styles={{
-                    color: "Text.dark",
-                    border: "2px solid #090b2a",
-                    padding: "10px 10px 0px",
-                    background: "brand.green",
-                  }}
-                >
-                  and thinking outside the box.
-                </Highlight>
-              </Heading>
-            </MotionBox>
-          </Box>
-          <Box
-            mt={{ base: "15px", md: 0 }}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <IconButton
-              variant="app-iconButton"
-              as={motion.div}
-              animate={{
-                y: [-60, 0],
-                scale: [1.6, 1],
-                transition: {
-                  duration: 1.6,
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                  delay: 0.5,
-                  // ease: "linear",
-                },
-              }}
-              whileHover={{ scale: 1.8 }}
-              whileTap={{ scale: 0.5 }}
-              cursor="pointer"
-              _hover={{ background: "transparent" }}
-              _focus={{ background: "transparent" }}
-              size="lg"
-              border="1px solid #fff"
-              borderRadius="50%"
-              aria-label="add"
-              viewport={{ once: true }}
-              icon={<TbArrowDown color="#090b2a" />}
-              onClick={() =>
-                sectionCRef.current?.scrollIntoView({ behavior: "smooth" })
-              }
-            />
+              <IconButton
+                variant="app-iconButton"
+                background="white"
+                as={motion.div}
+                animate={{
+                  y: [-40, 0],
+                  scale: [1.2, 1],
+                  transition: {
+                    duration: 1.6,
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                    delay: 0.5,
+                    // ease: "linear",
+                  },
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.5 }}
+                cursor="pointer"
+                _hover={{ background: "white" }}
+                _focus={{ background: "white" }}
+                size="lg"
+                border="1px solid #fff"
+                borderRadius="50%"
+                aria-label="add"
+                viewport={{ once: true }}
+                icon={<TbArrowDown color="#090b2a" />}
+                onClick={() =>
+                  sectionCRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+              />
+            </Box>
           </Box>
         </Box>
       </motion.div>
