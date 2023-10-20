@@ -25,7 +25,7 @@ import { BiCollapseAlt } from "react-icons/bi"
 import { FaStarOfLife } from "react-icons/fa"
 import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 
-const textToAnimate = [`Play by the rules,`, `but be ferocious.`]
+const textToAnimate = [`Play by the rules,`, `but seek to improve the game.`]
 
 const LandingPage = () => {
   const sectionBRef = useRef<HTMLDivElement>(null)
@@ -37,18 +37,13 @@ const LandingPage = () => {
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
 
   const { scrollYProgress } = useScroll()
-  // const bgTweak = useTransform(
-  //   scrollYProgress,
-  //   [0, 50, 100],
-  //   ["#090b2a", "#061313", "#272643"]
-  // )
+
   const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
   const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
       sx={{
-        // bg: "brand.mink",
         color: "#fff",
         overflowY: "scroll",
         overflowX: "hidden",
@@ -59,7 +54,7 @@ const LandingPage = () => {
       ref={fullscreenRef}
     >
       <motion.div>
-        <Box pos="relative" bg="brand.bg">
+        <Box pos="relative" bg="brand.bg" maxH="100dvh" overflow="hidden">
           <Blobs />
 
           <GlassTint
@@ -106,7 +101,7 @@ const LandingPage = () => {
                         key={char + "-" + index}
                         as={motion.span}
                         variants={letter}
-                        fontSize={{ base: "3rem", md: "4rem", xl: "6rem" }}
+                        fontSize={{ base: "4rem", xl: "6rem" }}
                         fontWeight="bold"
                         lineHeight={0.9}
                       >
@@ -185,20 +180,20 @@ const LandingPage = () => {
                     width="350px"
                     mt="45px"
                     mb="50px"
-                    fontSize={{ base: "14px", md: "16px" }}
+                    fontSize={{ base: "14px" }}
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    vel pariatur quaerat beatae voluptatem, officiis aspernatur
-                    necessitatibus recusandae omnis nam assumenda placeat libero
-                    magni eos animi deserunt quos, tenetur quod?
+                    My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
+                    am a software engineer who is deeply fascinated by systems.
+                    I derive great pleasure from engineering the interaction of
+                    processes and data to solve problems.
+                    <br /> Currently, I work as a Software Engineer at{" "}
+                    <strong>Prunedge.</strong>
                   </Text>
                 </MotionBox>
                 <Box
                   as={motion.div}
                   justifyContent="start"
-                  // mt="5%"
                   alignItems="center"
-                  // height="100%"
                   height="fit-content"
                   display="flex"
                   initial={{
@@ -329,12 +324,15 @@ const LandingPage = () => {
                     width="350px"
                     mt="45px"
                     mb="50px"
-                    fontSize={{ base: "14px", md: "16px" }}
+                    fontSize={{ base: "14px" }}
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                    vel pariatur quaerat beatae voluptatem, officiis aspernatur
-                    necessitatibus recusandae omnis nam assumenda placeat libero
-                    magni eos animi deserunt quos, tenetur quod?
+                    My primary tech stack and area of expertise is within the
+                    <strong> JavaScript/TypeScript</strong> ecosystem. However,
+                    my experience extends to other languages and frameworks such
+                    as C# WPF/.NET, Java for Android development, and Python
+                    scripting. I am confident in my ability to{" "}
+                    <strong>learn</strong> and <strong>adapt </strong>
+                    to new technologies <strong>swiftly</strong>.
                   </Text>
                 </MotionBox>
               </Box>
@@ -375,7 +373,7 @@ const LandingPage = () => {
             </MotionBox>
           </GlassTint>
           {!isSmallScreen && (
-            <Box position="absolute" sx={{ bottom: 40, right: 10 }}>
+            <Box position="absolute" sx={{ bottom: 8, left: 10 }}>
               <IconButton
                 as={motion.div}
                 whileHover={{ scale: 1.3 }}
@@ -407,13 +405,11 @@ const LandingPage = () => {
             flexDir="column"
             justifyContent="center"
             alignItems="center"
-            minHeight="100vh"
-            // pr="10%"
+            minHeight="100dvh"
             sx={{
               width: "inherit",
               height: "inherit",
               background: "rgb(0, 0, 0, 0.7)",
-              // background: "rgb(255, 255, 255, 0.41)",
               boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
               backdropFilter: "blur(90px)",
             }}
@@ -426,7 +422,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "18px", md: "30px" }}
+                fontSize={{ base: "18px", md: "24px" }}
                 lineHeight="shorter"
                 fontWeight="bold"
                 maxInlineSize="60ch"
@@ -463,7 +459,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "18px", md: "30px" }}
+                fontSize={{ base: "18px", md: "24px" }}
                 lineHeight="shorter"
               >
                 {`🚀 With a wealth of experience in the dynamic world of web development, 
@@ -471,7 +467,10 @@ const LandingPage = () => {
                  From building scalable web applications to ensuring pixel-perfect rendering, I thrive on the challenges that frontend engineering presents.`}
               </Text>
             </MotionBox>
-            <Box mt={{ base: "25px", md: "50px" }} mb="10%">
+            <Box
+              mt={{ base: "25px", md: "50px" }}
+              mb={{ base: "10%", md: "5%" }}
+            >
               <MotionBox
                 display="flex"
                 justifyContent="center"
@@ -484,7 +483,7 @@ const LandingPage = () => {
               >
                 <Heading
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  fontSize={{ base: "20px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -518,7 +517,7 @@ const LandingPage = () => {
                 <Heading
                   whiteSpace="nowrap"
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  fontSize={{ base: "20px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -547,9 +546,8 @@ const LandingPage = () => {
                 variants={easeVariants.slideUp}
               >
                 <Heading
-                  // whiteSpace="nowrap"
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.9rem" }}
+                  fontSize={{ base: "20px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -577,17 +575,14 @@ const LandingPage = () => {
                 background="white"
                 as={motion.div}
                 animate={{
-                  y: [-40, 0],
+                  y: isSmallScreen ? [-40, 0] : [-50, -10],
                   scale: [1.2, 1],
                   transition: {
                     duration: 1.6,
                     repeat: Infinity,
-                    repeatDelay: 0.5,
-                    delay: 0.5,
-                    // ease: "linear",
                   },
                 }}
-                whileHover={{ scale: 1.2 }}
+                whileHover={{ scale: 1.4 }}
                 whileTap={{ scale: 0.5 }}
                 cursor="pointer"
                 _hover={{ background: "white" }}

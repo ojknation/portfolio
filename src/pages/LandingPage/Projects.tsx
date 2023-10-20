@@ -118,6 +118,7 @@ const Projects = () => {
   const moveProjectsOverlay = async () => {
     await projectsOverlayControl.start({
       opacity: [1, 0.8],
+      scale: [1, 0],
       x: [0, 2400],
       transition: {
         duration: 1.2,
@@ -135,8 +136,9 @@ const Projects = () => {
       <Box
         as={motion.div}
         position="relative"
-        // backgroundColor={lastProject?.bg ?? cards[0]}
-        bg="brand.bg"
+        bg={`linear-gradient(-52deg, ${
+          lastProject?.bg ?? cards[0]
+        } 30%, #090b2a 80%)`}
         animate={sectionControl}
         overflow="hidden"
         mb="1px"
@@ -242,20 +244,13 @@ const Projects = () => {
                     layout
                     position="relative"
                     boxShadow="lg"
-                    p={{ base: "20px", md: "30px" }}
+                    p={{ base: "20px", md: "20px" }}
                     whileHover={{
                       scale: 0.97,
                       transition: { duration: 0.2 },
                     }}
-                    // whileTap={{
-                    // scale: [0.9, 0.8],
-                    // borderRadius: ["30%", "10px"],
-                    // x: 150,
-                    // opacity: [1, 0.6],
-                    // transition: { duration: 0.5, ease: "easeInOut" },
-                    // }}
-                    minWidth={{ base: "250px", md: "320px" }}
-                    height={{ base: "350px", md: "360px" }}
+                    minWidth={{ base: "250px", md: "280px" }}
+                    height={{ base: "320px", md: "320px" }}
                     style={{
                       background: `${cards[index]}89`,
                       marginRight: "20px",
@@ -265,8 +260,6 @@ const Projects = () => {
                       "&::-webkit-user-select": "none",
                       "&::-ms-user-select": "none",
                     }}
-                    // role="button"
-                    // tabIndex={0}
                     key={index}
                     animate={cardSlideControl}
                     transition={{ type: "tween", duration: 0.6 }}
@@ -295,11 +288,11 @@ const Projects = () => {
                     <Heading
                       my={{ base: "5px", md: "8px" }}
                       maxInlineSize="80%"
-                      size="2xl"
+                      // size="2xl"
                     >
                       {project.name}
                     </Heading>
-                    <Text maxInlineSize="20ch" mt="5px">
+                    <Text maxInlineSize="20ch" mt="5px" fontSize="14px">
                       {project.synopsis}
                     </Text>
                     {project.summary.map((s, i) => (
@@ -308,6 +301,7 @@ const Projects = () => {
                         spacing={1}
                         mt={{ base: "8px", md: "10px" }}
                         textTransform="capitalize"
+                        fontSize="14px"
                       >
                         <ListItem>
                           <ListIcon as={BsCheck2Circle} />
@@ -357,10 +351,11 @@ const Projects = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              minHeight: "100vh",
+              minHeight: "100dvh",
               backgroundClip: "text",
               "&::-webkit-background-clip": "text",
               backgroundImage: `url(https://unsplash.it/1400)`,
+              // background: "#090b2a",
             }}
           >
             Projects
