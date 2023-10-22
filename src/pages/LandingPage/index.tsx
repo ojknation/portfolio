@@ -14,9 +14,9 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import Blobs from "./Blobs"
-import { easeVariants, letter, sentence } from "./motionVariants"
+import { motion } from "framer-motion"
+import Blobs from "../../reuseables/Blobs"
+import { easeVariants, letter, sentence } from "../../reuseables/motionVariants"
 import Projects from "./Projects"
 import { BsChevronDoubleDown } from "react-icons/bs"
 import { TbArrowDown } from "react-icons/tb"
@@ -28,6 +28,7 @@ import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 const textToAnimate = [`Play by the rules,`, `but seek to improve the game.`]
 
 const LandingPage = () => {
+  const sectionARef = useRef<HTMLDivElement>(null)
   const sectionBRef = useRef<HTMLDivElement>(null)
   const sectionCRef = useRef<HTMLDivElement>(null)
   const fullscreenRef = useRef<HTMLDivElement>(null)
@@ -35,11 +36,6 @@ const LandingPage = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
 
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
-
-  const { scrollYProgress } = useScroll()
-
-  const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
-  const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
@@ -50,11 +46,22 @@ const LandingPage = () => {
         "&::-webkit-scrollbar": {
           display: "none",
         },
+        scrollBehavior: "smooth",
       }}
+      height="100vh"
+      scrollSnapType="y mandatory"
       ref={fullscreenRef}
     >
-      <motion.div>
-        <Box pos="relative" bg="brand.bg" maxH="100dvh" overflow="hidden">
+      <div>
+        <Box
+          ref={sectionARef}
+          pos="relative"
+          bg="brand.bg"
+          maxH="100vh"
+          overflow="hidden"
+          scrollSnapAlign="center"
+          scrollSnapStop="always"
+        >
           <Blobs />
 
           <GlassTint
@@ -101,7 +108,7 @@ const LandingPage = () => {
                         key={char + "-" + index}
                         as={motion.span}
                         variants={letter}
-                        fontSize={{ base: "4rem", xl: "6rem" }}
+                        fontSize={{ base: "3.5rem", xl: "6rem" }}
                         fontWeight="bold"
                         lineHeight={0.9}
                       >
@@ -114,6 +121,7 @@ const LandingPage = () => {
                         key={char + "-" + index}
                         as={motion.span}
                         variants={letter}
+                        fontSize={{ base: "16px", lg: "24px" }}
                       >
                         {char}
                       </Heading>
@@ -172,9 +180,9 @@ const LandingPage = () => {
                   </Button>
                 </Stack>
                 <MotionBox
-                  style={{
-                    x: xSlideR,
-                  }}
+                // style={{
+                //   x: xSlideR,
+                // }}
                 >
                   <Text
                     width="350px"
@@ -210,8 +218,8 @@ const LandingPage = () => {
                   }}
                   sx={{
                     userSelect: "none",
-                    "&::-webkit-user-select": "none",
-                    "&::-ms-user-select": "none",
+                    "&::WebkitUserSelect": "none",
+                    "&::MsUserSelect": "none",
                   }}
                 >
                   <Box>
@@ -251,8 +259,8 @@ const LandingPage = () => {
                             lineHeight={0.9}
                             px={2}
                             sx={{
-                              "-webkit-text-fill-color": "transparent",
-                              "-webkit-text-stroke-width": isSmallScreen
+                              WebkitTextFillColor: "transparent",
+                              WebkitTextStrokeWidth: isSmallScreen
                                 ? "2px"
                                 : "4px",
                             }}
@@ -299,8 +307,8 @@ const LandingPage = () => {
                             lineHeight={0.9}
                             px={2}
                             sx={{
-                              "-webkit-text-fill-color": "transparent",
-                              "-webkit-text-stroke-width": isSmallScreen
+                              WebkitTextFillColor: "transparent",
+                              WebkitTextStrokeWidth: isSmallScreen
                                 ? "2px"
                                 : "4px",
                             }}
@@ -316,9 +324,9 @@ const LandingPage = () => {
                 <MotionBox
                   display="flex"
                   justifyContent="flex-end"
-                  style={{
-                    x: xSlideL,
-                  }}
+                  // style={{
+                  //   x: xSlideL,
+                  // }}
                 >
                   <Text
                     width="350px"
@@ -373,7 +381,7 @@ const LandingPage = () => {
             </MotionBox>
           </GlassTint>
           {!isSmallScreen && (
-            <Box position="absolute" sx={{ bottom: 8, left: 10 }}>
+            <Box position="absolute" sx={{ bottom: 20, left: 10 }}>
               <IconButton
                 as={motion.div}
                 whileHover={{ scale: 1.3 }}
@@ -397,6 +405,8 @@ const LandingPage = () => {
           background="transparent"
           overflow="hidden"
           bg="brand.bg"
+          scrollSnapAlign="center"
+          scrollSnapStop="always"
         >
           <Blobs />
           <Box
@@ -419,6 +429,10 @@ const LandingPage = () => {
               justifyContent="center"
               alignItems="center"
               pt={{ base: "30px", md: "4%" }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.slideUp}
+              viewport={{ once: false }}
             >
               <Text
                 mb={2}
@@ -426,6 +440,7 @@ const LandingPage = () => {
                 lineHeight="shorter"
                 fontWeight="bold"
                 maxInlineSize="60ch"
+                textAlign="center"
               >
                 <Highlight
                   query={["Hello"]}
@@ -437,14 +452,12 @@ const LandingPage = () => {
                     borderTopRadius: "60%",
                   }}
                 >
-                  {`👋 Hello world. I'm Boluwatife,`}
+                  {`👋 Hello there, I'm Boluwatife,`}
                 </Highlight>
                 <br />
-                {` a software
-                    engineer with a keen focus on crafting seamless and visually
-                    stunning user interfaces. I specialize in harnessing the
-                    power of React, TypeScript, and Node.js to bring digital
-                    experiences to life.`}
+                {`a software engineer passionate about 
+                crafting seamless and visually stunning user interfaces. I specialize 
+                in using React, TypeScript, and Node.js to bring digital experiences to life.`}
               </Text>
             </MotionBox>
             <MotionBox
@@ -461,10 +474,12 @@ const LandingPage = () => {
                 mb={2}
                 fontSize={{ base: "18px", md: "24px" }}
                 lineHeight="shorter"
+                maxInlineSize="80ch"
+                textAlign="center"
               >
                 {`🚀 With a wealth of experience in the dynamic world of web development, 
-                I've honed my skills in architecting and optimizing frontend systems that deliver seamless user experiences.
-                 From building scalable web applications to ensuring pixel-perfect rendering, I thrive on the challenges that frontend engineering presents.`}
+                I've honed my skills in architecting and optimizing systems that deliver seamless user experiences.
+                 From building scalable web applications to ensuring pixel-perfect rendering, I embrace the challenges that come with creating solutions.`}
               </Text>
             </MotionBox>
             <Box
@@ -480,6 +495,7 @@ const LandingPage = () => {
                 variants={easeVariants.slideUp}
                 zIndex={3}
                 pos="relative"
+                viewport={{ once: false }}
               >
                 <Heading
                   mb={2}
@@ -513,6 +529,7 @@ const LandingPage = () => {
                 variants={easeVariants.swooshOut}
                 zIndex={3}
                 pos="relative"
+                viewport={{ once: false }}
               >
                 <Heading
                   whiteSpace="nowrap"
@@ -544,6 +561,7 @@ const LandingPage = () => {
                 initial="offscreen"
                 whileInView="onscreen"
                 variants={easeVariants.slideUp}
+                viewport={{ once: false }}
               >
                 <Heading
                   mb={2}
@@ -600,7 +618,7 @@ const LandingPage = () => {
             </Box>
           </Box>
         </Box>
-      </motion.div>
+      </div>
       <Projects />
       <div ref={sectionCRef} />
     </Box>

@@ -18,10 +18,10 @@ import {
   useAnimationControls,
   useInView,
 } from "framer-motion"
-import { easeVariants } from "./motionVariants"
+import { easeVariants } from "../../reuseables/motionVariants"
 import { MotionBox } from "@/reuseables"
 // eslint-disable-next-line unused-imports/no-unused-imports
-import Blobs from "./Blobs"
+import Blobs from "../../reuseables/Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
 import { ReactComponent as ReactIcon } from "@/assets/stack/react.svg"
@@ -132,7 +132,7 @@ const Projects = () => {
     await updateBGToMatchCard(cards[0])
   }
   return (
-    <Box>
+    <Box scrollSnapAlign="center" scrollSnapStop="always">
       <Box
         as={motion.div}
         position="relative"
@@ -189,8 +189,8 @@ const Projects = () => {
                   maxInlineSize="19ch"
                   fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
                   sx={{
-                    "-webkit-text-fill-color": "transparent",
-                    "-webkit-text-stroke-width": isSmallScreen ? "2px" : "3px",
+                    WebkitTextFillColor: "transparent",
+                    WebkitTextStrokeWidth: isSmallScreen ? "2px" : "3px",
                   }}
                 >
                   {lastProject?.name ?? projectList[0]?.name}
@@ -257,8 +257,8 @@ const Projects = () => {
                       borderRadius: "10px",
                       cursor: "pointer",
                       userSelect: "none",
-                      "&::-webkit-user-select": "none",
-                      "&::-ms-user-select": "none",
+                      "&::WebkitUserSelect": "none",
+                      "&::MsUserSelect": "none",
                     }}
                     key={index}
                     animate={cardSlideControl}
@@ -332,7 +332,7 @@ const Projects = () => {
             </Box>
           </HStack>
         </Box>
-        <Box
+        {/* <Box
           as={motion.div}
           position="absolute"
           minHeight="100vh"
@@ -353,14 +353,15 @@ const Projects = () => {
               alignItems: "center",
               minHeight: "100dvh",
               backgroundClip: "text",
-              "&::-webkit-background-clip": "text",
+              "&::WebkitBackgroundClip": "text",
               backgroundImage: `url(https://unsplash.it/1400)`,
               // background: "#090b2a",
             }}
           >
             Projects
           </Heading>
-        </Box>
+        </Box> */}
+        <Box />
         <Box ref={projectDivRef} />
       </Box>
     </Box>
