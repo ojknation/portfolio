@@ -245,6 +245,7 @@ const LandingPage = () => {
                         "React",
                         "Postgres",
                         "MongoDB",
+                        "Linux",
                         "Prisma",
                         "Nextjs",
                         "Firebase",
@@ -288,6 +289,7 @@ const LandingPage = () => {
                       }}
                     >
                       {[
+                        "Linux",
                         "Prisma",
                         "Nextjs",
                         "Firebase",

@@ -20,7 +20,6 @@ import {
 } from "framer-motion"
 import { easeVariants } from "../../reuseables/motionVariants"
 import { MotionBox } from "@/reuseables"
-// eslint-disable-next-line unused-imports/no-unused-imports
 import Blobs from "../../reuseables/Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
@@ -98,7 +97,6 @@ const Projects = () => {
 
     await cardSlideControl.start({
       x: [50, 0],
-      // opacity: [0.6, 1],
       transition: {
         duration: 0.5,
       },
@@ -123,7 +121,6 @@ const Projects = () => {
       transition: {
         duration: 1.2,
         delay: 0.6,
-        // ease: "linear",
       },
     })
 
@@ -147,7 +144,6 @@ const Projects = () => {
         <Box
           mb="1px"
           px={{ base: "10px", md: "40px" }}
-          // pt="40px"
           minHeight="100vh"
           display="flex"
           justifyContent="center"
@@ -157,7 +153,6 @@ const Projects = () => {
             width: "inherit",
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",
-            // background: "rgb(255, 255, 255, 0.41)",
             boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
             backdropFilter: "blur(90px)",
           }}
@@ -183,7 +178,7 @@ const Projects = () => {
               }}
               // animate={projectDetailsTextControl}
             >
-              <Box>
+              <Box pos="relative">
                 {/* <Text>Project</Text> */}
                 <Heading
                   maxInlineSize="19ch"
@@ -199,6 +194,34 @@ const Projects = () => {
                   {lastProject?.synopsis ?? projectList[0]?.synopsis}
                 </Text>
                 {/* <Text>TaDA!</Text> */}
+                {lastProject?.url && (
+                  <IconButton
+                    as={motion.div}
+                    variant="app-iconButton"
+                    size="sm"
+                    sx={{
+                      position: "absolute",
+                      right: "0px",
+                      top: "-25px",
+                      cursor: "pointer",
+                    }}
+                    aria-label="link"
+                    whileHover={{
+                      scale: 1.04,
+                      rotate: [0, 360],
+                      transition: { duration: 0.6 },
+                    }}
+                    whileTap={{
+                      scale: [0.9, 0.8, 1],
+                      transition: { duration: 0.2 },
+                    }}
+                    icon={<LuExternalLink />}
+                    onClick={() =>
+                      lastProject?.url &&
+                      window.open(lastProject?.url, "_blank")
+                    }
+                  />
+                )}
               </Box>
               <Box
                 mt="20px"
@@ -265,26 +288,31 @@ const Projects = () => {
                     transition={{ type: "tween", duration: 0.6 }}
                     onClick={() => updateBGToMatchCard(cards[index])}
                   >
-                    <IconButton
-                      as={motion.div}
-                      variant="app-iconButton"
-                      sx={{
-                        position: "absolute",
-                        right: "15px",
-                        top: "15px",
-                      }}
-                      aria-label="link"
-                      whileHover={{
-                        scale: 1.04,
-                        rotate: [0, 180],
-                        transition: { duration: 0.6 },
-                      }}
-                      whileTap={{
-                        scale: [0.9, 0.8, 1],
-                        transition: { duration: 0.2 },
-                      }}
-                      icon={<LuExternalLink />}
-                    />
+                    {project?.url && (
+                      <IconButton
+                        as={motion.div}
+                        variant="app-iconButton"
+                        sx={{
+                          position: "absolute",
+                          right: "15px",
+                          top: "15px",
+                        }}
+                        aria-label="link"
+                        whileHover={{
+                          scale: 1.04,
+                          rotate: [0, 180],
+                          transition: { duration: 0.6 },
+                        }}
+                        whileTap={{
+                          scale: [0.9, 0.8, 1],
+                          transition: { duration: 0.2 },
+                        }}
+                        icon={<LuExternalLink />}
+                        onClick={() =>
+                          project?.url && window.open(project?.url, "_blank")
+                        }
+                      />
+                    )}
                     <Heading
                       my={{ base: "5px", md: "8px" }}
                       maxInlineSize="80%"
