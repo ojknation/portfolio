@@ -13,8 +13,6 @@ const quotes = [
   [`Why did you show up`, `What did you learn ?`],
   [`Everything is possible`, `time is the issue.`],
   [`Didn't take much`, `it just took everything.`],
-  [`I just wish I knew`, `but I still don't know.`],
-  [`When all's said and done`, `are you sure that's all ?`],
   [`My mood is stable`, `It's the motivation that swings.`],
 ]
 

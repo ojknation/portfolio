@@ -360,7 +360,8 @@ const LandingPage = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.8 }}
               position="absolute"
-              bottom={isSmallScreen ? 40 : 20}
+              // bottom={isSmallScreen ? 40 : 20}
+              bottom={{ base: "15%", sm: "15%", md: 20 }}
               left="50%"
               initial={{
                 opacity: 0,
@@ -373,7 +374,7 @@ const LandingPage = () => {
                 x: "-50%",
                 transition: {
                   duration: 1.2,
-                  delay: 3,
+                  delay: 2,
                 },
               }}
             >
@@ -447,7 +448,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "18px", md: "24px" }}
+                fontSize={{ base: "16px", md: "24px" }}
                 lineHeight="shorter"
                 fontWeight="bold"
                 maxInlineSize="60ch"
@@ -483,7 +484,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "18px", md: "24px" }}
+                fontSize={{ base: "16px", md: "24px" }}
                 lineHeight="shorter"
                 maxInlineSize="80ch"
                 textAlign="center"
@@ -510,7 +511,7 @@ const LandingPage = () => {
               >
                 <Heading
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.2rem" }}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -545,7 +546,7 @@ const LandingPage = () => {
                 <Heading
                   whiteSpace="nowrap"
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.2rem" }}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -576,7 +577,7 @@ const LandingPage = () => {
               >
                 <Heading
                   mb={2}
-                  fontSize={{ base: "20px", md: "2.2rem" }}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight

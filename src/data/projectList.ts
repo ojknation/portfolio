@@ -30,9 +30,9 @@ export const projects: TProject[] = [
     name: "Leadway",
     synopsis: "Employee Benefits Management System",
     description: `The Portal is a multi-tenant application that allows companies to register and manage their employees and dependents health insurance plans. 
-       After a comapny registers, employees can also self-enroll and manage their dependents. The system also issues an ID card to each employee. The project was executed with great teamwork, I specifically worked on features such as the custom
+       After a comapny registers, employees can also self-enroll and manage their dependents. I specifically worked on features such as the custom
        themeing and layout setup, the employee self-enrollment feature, Core Authentication and Authorization module integrations which included 2FA. I collaborated with colleagues 
-       on subdomain routing on the client side, API integrations, Reuseable components, and the overall architecture of the client side of the application. I led maintenance and support of the application before it was handed over to the client.`,
+       on the overall architecture of the client side of the application.`,
     summary: [
       "Custom Themeing",
       "Two Factor Authentication",
@@ -47,8 +47,7 @@ export const projects: TProject[] = [
     name: "IProkure",
     synopsis: "Procurement processes Management System",
     description: `Iprokure is a procurement management system that allows Government MDA's to manage their procurement processes. 
-    It is a very large system comprising of several user roles ranging from the procurement officers to the vendors, government rank officials, 
-    the application has a complex system of access control and permission management.
+    It comprises of several user roles and permissions ranging, 
     The system digitizes the entire procurement process from the creation of the procurement plan to the award of the contract. Payment, contract lifecycle management, legal documents, 
     State budgets among others are managed on the system, I currently co-lead the team that maintains and supports the client side of the application.`,
     summary: [
@@ -65,10 +64,9 @@ export const projects: TProject[] = [
     name: "Polleasy",
     synopsis: "Election Management System",
     description: `Polleasy is a multi-tenanted election management solution that provides election strategy, planning, political survey, opinion polls, incidence reports,
-     campaign, election management and monitoring services. The system is dynamic and can cater to government structure of different countries, and elections at different levels. 
+     campaign, election management and monitoring services. 
      It has a plethora of user types and roles. I worked on the client side of the application alongside a team of developers,
-     I specifically worked on poll creation workflows which comprises of dynamic interactive forms, drag and drop UI, data visualization and geoJSON maps etc. I also worked on
-     the call center module which allows agents to make calls to voters and log their responses among other features.
+     I specifically worked on poll creation workflows which comprises of dynamic interactive forms, drag and drop UI, voIP calls, data visualization and geoJSON maps.
       `,
     summary: [
       "multi-tenant",

@@ -196,7 +196,7 @@ const Projects = () => {
                     sx={{
                       position: "absolute",
                       right: "0px",
-                      top: "-25px",
+                      top: "-10px",
                       cursor: "pointer",
                     }}
                     aria-label="link"
