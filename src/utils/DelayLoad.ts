@@ -8,6 +8,6 @@ export const DelayLoading = () => {
     setTimeout(() => {
       shouldNotDelay = true
       resolve(1)
-    }, 4000)
+    }, 4200)
   })
 }
