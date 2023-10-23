@@ -1,60 +1,82 @@
+/* eslint-disable unused-imports/no-unused-imports */
+/* eslint-disable unused-imports/no-unused-vars */
+import { ReactElement, useRef } from "react"
 import { MotionBox } from "@/reuseables"
 import GlassTint from "@/reuseables/GlassTint"
 
 import {
   Box,
-  //   Center,
-  Container,
+  Button,
   Heading,
   Highlight,
+  IconButton,
+  Stack,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import Blobs from "./Blobs"
-import {
-  easeVariants,
-  letter,
-  marqueeVariants,
-  sentence,
-} from "./motionVariants"
+import { motion } from "framer-motion"
+import Blobs from "../../reuseables/Blobs"
+import { easeVariants } from "../../reuseables/motionVariants"
 import Projects from "./Projects"
-
-const textToAnimate = [
-  `You know the business, and I know the chemistry. `,
-  `I'm not saying you're not good at what you do.`,
-  `I'm just saying I'm the guy you need
-    to see if you want to stay ahead of the game.`,
-]
+import { BsChevronDoubleDown } from "react-icons/bs"
+import { BsFullscreen } from "react-icons/bs"
+import { BiCollapseAlt } from "react-icons/bi"
+import { FaStarOfLife } from "react-icons/fa"
+import { BsGithub, BsLinkedin } from "react-icons/bs"
+import { RiTwitterXFill } from "react-icons/ri"
+import useFullscreenStatus from "@/hooks/useFullscreenStatus"
+import Contact from "./Contact"
 
 const LandingPage = () => {
-  const { scrollYProgress } = useScroll()
-  const x = useTransform(scrollYProgress, [0, 1], [0, 600])
-  const bgTweak = useTransform(
-    scrollYProgress,
-    [0, 50, 100],
-    ["#090b2a", "#061313", "#272643"]
+  const sectionARef = useRef<HTMLDivElement>(null)
+  const sectionBRef = useRef<HTMLDivElement>(null)
+  const sectionCRef = useRef<HTMLDivElement>(null)
+  const sectionDRef = useRef<HTMLDivElement>(null)
+  const fullscreenRef = useRef<HTMLDivElement>(null)
+
+  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+
+  const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
+
+  const renderIcon = (icon: ReactElement, link: string) => (
+    <IconButton
+      boxSize={8}
+      cursor="pointer"
+      variant="app-iconButton"
+      aria-label="social"
+      as={motion.div}
+      whileHover={{ scale: 1.02 }}
+      icon={icon}
+      size="md"
+      onClick={() => window.open(link, "_blank")}
+    />
   )
-  const xSlideL = useTransform(scrollYProgress, [0, 1], [0, -400])
-  const xSlideR = useTransform(scrollYProgress, [0, 1], [0, 400])
 
   return (
     <Box
       sx={{
-        bg: "brand.bg",
         color: "#fff",
         overflowY: "scroll",
         overflowX: "hidden",
         "&::-webkit-scrollbar": {
           display: "none",
         },
+        scrollBehavior: "smooth",
       }}
+      height="100vh"
+      scrollSnapType="y mandatory"
+      ref={fullscreenRef}
     >
-      <motion.div
-        style={{
-          background: bgTweak,
-        }}
-      >
-        <Box pos="relative">
+      <div>
+        <Box
+          ref={sectionARef}
+          pos="relative"
+          bg="brand.bg"
+          maxH="100vh"
+          overflow="hidden"
+          scrollSnapAlign="start"
+          scrollSnapStop="always"
+        >
           <Blobs />
 
           <GlassTint
@@ -62,157 +84,566 @@ const LandingPage = () => {
             sx={{
               width: "inherit",
               height: "inherit",
+              background: "rgb(0, 0, 0, 0.7)",
             }}
           >
-            <Container height="80vh" maxWidth="lg">
-              <Box
+            <Box height="100dvh">
+              <Box height="100%">
+                <Box
+                  as={motion.div}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  width="100%"
+                  initial={{ opacity: 1, y: 0, x: 0, scale: 1, height: "100%" }}
+                  viewport={{ once: true }}
+                  animate={{
+                    opacity: 0,
+                    scale: 0.8,
+                    y: [20, -200],
+                    height: ["100%", "0%"],
+                    transition: {
+                      duration: 1,
+                      ease: "easeInOut",
+                    },
+                    transitionEnd: {
+                      display: "none",
+                    },
+                  }}
+                />
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    {renderIcon(<BsGithub />, "https://github.com/ojknation")}
+                    {renderIcon(
+                      <BsLinkedin />,
+                      "https://www.linkedin.com/in/boluwatife-adekola-ojo-936a9119b/"
+                    )}
+                    {renderIcon(
+                      <RiTwitterXFill />,
+                      "https://twitter.com/ojknation"
+                    )}
+                  </Stack>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Button
+                      as={motion.div}
+                      variant="app-iconButton"
+                      size="sm"
+                      width="fit-content"
+                      cursor="pointer"
+                      whileHover={{
+                        backgroundColor: "#fff",
+                        color: "#090b2a",
+                        scale: 1.02,
+                        transition: {
+                          duration: 0.1,
+                        },
+                      }}
+                      onClick={() =>
+                        sectionBRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      About
+                    </Button>
+                    <Button
+                      as={motion.div}
+                      variant="app-iconButton"
+                      size="sm"
+                      width="fit-content"
+                      cursor="pointer"
+                      whileHover={{
+                        backgroundColor: "#fff",
+                        color: "#090b2a",
+                        scale: 1.02,
+                        transition: {
+                          duration: 0.1,
+                        },
+                      }}
+                      onClick={() =>
+                        sectionCRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      Projects
+                    </Button>
+                  </Stack>
+                </Stack>
+                <MotionBox
+                // style={{
+                //   x: xSlideR,
+                // }}
+                >
+                  <Text
+                    width="350px"
+                    mt="45px"
+                    mb="50px"
+                    fontSize={{ base: "14px" }}
+                  >
+                    My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
+                    am a <strong>software engineer</strong> who is deeply
+                    fascinated by systems. Currently, I work as a Software
+                    Engineer at{" "}
+                    <strong>
+                      <a
+                        href="https://www.prunedge.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: "underline" }}
+                      >
+                        Prunedge.
+                      </a>
+                    </strong>
+                    <br />
+                    Outside of work, I enjoy listening to and making{" "}
+                    <strong>music</strong>, <strong>laughing </strong>
+                    with <strong>friends</strong> and <strong>learning</strong>{" "}
+                    random things on the internet.
+                  </Text>
+                </MotionBox>
+                <Box
+                  as={motion.div}
+                  justifyContent="start"
+                  alignItems="center"
+                  height="fit-content"
+                  display="flex"
+                  initial={{
+                    opacity: 0,
+                    y: 200,
+                  }}
+                  animate={{
+                    opacity: [0, 1],
+                    y: 0,
+                    transition: {
+                      duration: 1.2,
+                      // delay: 4,
+                    },
+                  }}
+                  sx={{
+                    userSelect: "none",
+                    "&::WebkitUserSelect": "none",
+                    "&::MsUserSelect": "none",
+                  }}
+                >
+                  <Box>
+                    <Stack
+                      direction="row"
+                      spacing={4}
+                      as={motion.div}
+                      whiteSpace="nowrap"
+                      animate={{
+                        x: isSmallScreen ? [0, -1300] : [0, -2300],
+                        transition: {
+                          duration: isSmallScreen ? 14 : 25,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          delay: 0.5,
+                          ease: "linear",
+                        },
+                      }}
+                    >
+                      {[
+                        "Nodejs",
+                        "Typescript",
+                        "React",
+                        "Postgres",
+                        "MongoDB",
+                        "Linux",
+                        "Prisma",
+                        "Nextjs",
+                        "Firebase",
+                        "GraphQL",
+                        "Express",
+                        "TailwindCSS",
+                      ].map((skill, index, arr) => (
+                        <Stack key={index} direction="row" alignItems="center">
+                          <Text
+                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
+                            fontWeight="bold"
+                            lineHeight={0.9}
+                            px={2}
+                            sx={{
+                              WebkitTextFillColor: "transparent",
+                              WebkitTextStrokeWidth: isSmallScreen
+                                ? "2px"
+                                : "4px",
+                            }}
+                          >
+                            {skill}
+                          </Text>
+                          {index < arr.length - 1 && <FaStarOfLife />}
+                        </Stack>
+                      ))}
+                    </Stack>
+                    <Stack
+                      mt="20px"
+                      direction="row"
+                      spacing={4}
+                      as={motion.div}
+                      whiteSpace="nowrap"
+                      animate={{
+                        x: isSmallScreen ? [-1300, 0] : [-2300, 0],
+                        transition: {
+                          duration: isSmallScreen ? 14 : 25,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          ease: "linear",
+                        },
+                      }}
+                    >
+                      {[
+                        "Linux",
+                        "Prisma",
+                        "Nextjs",
+                        "Firebase",
+                        "GraphQL",
+                        "Express",
+                        "TailwindCSS",
+                        "Nodejs",
+                        "Typescript",
+                        "React",
+                        "Postgres",
+                        "MongoDB",
+                      ].map((skill, index, arr) => (
+                        <Stack key={index} direction="row" alignItems="center">
+                          <Text
+                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
+                            fontWeight="bold"
+                            lineHeight={0.9}
+                            px={2}
+                            sx={{
+                              WebkitTextFillColor: "transparent",
+                              WebkitTextStrokeWidth: isSmallScreen
+                                ? "2px"
+                                : "4px",
+                            }}
+                          >
+                            {skill}
+                          </Text>
+                          {index < arr.length - 1 && <FaStarOfLife />}
+                        </Stack>
+                      ))}
+                    </Stack>
+                  </Box>
+                </Box>
+                <MotionBox
+                  display="flex"
+                  justifyContent="flex-end"
+                  // style={{
+                  //   x: xSlideL,
+                  // }}
+                >
+                  <Text
+                    width="350px"
+                    mt="40px"
+                    mb="50px"
+                    fontSize={{ base: "14px" }}
+                  >
+                    My primary tech stack and area of expertise is within the
+                    <strong> JavaScript/TypeScript</strong> ecosystem. However,
+                    my experience extends to other languages and frameworks such
+                    as C# WPF/.NET, Java for Android development, and Python
+                    scripting. I am confident in my ability to{" "}
+                    <strong>learn</strong> and <strong>adapt </strong>
+                    to new technologies <strong>swiftly</strong>.
+                  </Text>
+                </MotionBox>
+              </Box>
+            </Box>
+            <MotionBox
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.8 }}
+              position="absolute"
+              // bottom={isSmallScreen ? 40 : 20}
+              bottom={{ base: "15%", sm: "15%", md: 20 }}
+              left="50%"
+              initial={{
+                opacity: 0,
+                y: -20,
+                x: "-50%",
+              }}
+              animate={{
+                opacity: [0, 0.8, 1],
+                y: 0,
+                x: "-50%",
+                transition: {
+                  duration: 1.2,
+                  delay: 2,
+                },
+              }}
+            >
+              <Button
+                variant="app-iconButton"
+                width="fit-content"
+                rightIcon={<BsChevronDoubleDown />}
+                onClick={() =>
+                  sectionBRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+              >
+                See More
+              </Button>
+            </MotionBox>
+          </GlassTint>
+          {!isSmallScreen && (
+            <Box position="absolute" sx={{ bottom: 20, left: 10 }}>
+              <IconButton
                 as={motion.div}
+                whileHover={{ scale: 1.3 }}
+                boxSize={8}
+                cursor="pointer"
+                variant="app-iconButton"
+                aria-label="fullscreen toggle"
+                icon={isFullscreen ? <BiCollapseAlt /> : <BsFullscreen />}
+                onClick={
+                  isFullscreen ? () => document.exitFullscreen() : setFullscreen
+                }
+              />
+            </Box>
+          )}
+        </Box>
+
+        <Box
+          ref={sectionBRef}
+          position="relative"
+          color="#fff"
+          background="transparent"
+          overflow="hidden"
+          bg="brand.bg"
+          scrollSnapAlign="start"
+          scrollSnapStop="always"
+        >
+          <Blobs />
+          <Box
+            px="10%"
+            display="flex"
+            flexDir="column"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="100dvh"
+            sx={{
+              width: "inherit",
+              height: "inherit",
+              background: "rgb(0, 0, 0, 0.7)",
+              boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+              backdropFilter: "blur(90px)",
+            }}
+          >
+            <MotionBox
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              pt={{ base: "30px", md: "4%" }}
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.slideUp}
+              viewport={{ once: true }}
+            >
+              <Text
+                mb={2}
+                fontSize={{ base: "16px", md: "24px" }}
+                lineHeight="shorter"
+                fontWeight="bold"
+                maxInlineSize="60ch"
+                textAlign="center"
+              >
+                <Highlight
+                  query={["Hello"]}
+                  styles={{
+                    border: "1px solid #9400D3",
+                    background: "white",
+                    padding: "2px",
+                    borderRadius: "16px",
+                    borderTopRadius: "60%",
+                  }}
+                >
+                  {`👋 Hello there, I'm Boluwatife,`}
+                </Highlight>
+                <br />
+                {`a software engineer passionate about 
+                crafting seamless and visually stunning user interfaces. I specialize 
+                in using React, TypeScript, and Node.js to bring digital experiences to life.`}
+              </Text>
+            </MotionBox>
+            <MotionBox
+              mt={{ base: "20px", md: "50px" }}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              initial="offscreen"
+              whileInView="onscreen"
+              variants={easeVariants.slideUp}
+              viewport={{ once: true }}
+            >
+              <Text
+                mb={2}
+                fontSize={{ base: "16px", md: "24px" }}
+                lineHeight="shorter"
+                maxInlineSize="80ch"
+                textAlign="center"
+              >
+                {`🚀 With a wealth of experience in the dynamic world of web development, 
+                I've honed my skills in architecting and optimizing systems that deliver seamless user experiences.
+                 From building scalable web applications to ensuring pixel-perfect rendering, I embrace the challenges that come with creating solutions.`}
+              </Text>
+            </MotionBox>
+            <Box
+              mt={{ base: "25px", md: "50px" }}
+              mb={{ base: "10%", md: "5%" }}
+            >
+              <MotionBox
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                height="100%"
-                fontSize="20px"
-                style={{ x }}
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.slideUp}
+                zIndex={3}
+                pos="relative"
+                viewport={{ once: false }}
               >
-                <MotionBox>
-                  <MotionBox
-                    variants={sentence}
-                    initial="hidden"
-                    animate="visible"
+                <Heading
+                  mb={2}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["love"]}
+                    styles={{
+                      color: "Text.dark",
+                      background: "white",
+                      border: "1px solid #f91d78",
+                      padding: "8px",
+                      borderRadius: "30%",
+                      borderTopRadius: "60%",
+                      borderRightRadius: "60%",
+                    }}
                   >
-                    {textToAnimate[0].split("").map((char, index) => (
-                      <Text
-                        key={char + "-" + index}
-                        as={motion.span}
-                        variants={letter}
-                      >
-                        {char}
-                      </Text>
-                    ))}
-                    <br />
-                    {textToAnimate[1].split("").map((char, index) => (
-                      <Text
-                        key={char + "-" + index}
-                        as={motion.span}
-                        variants={letter}
-                      >
-                        {char}
-                      </Text>
-                    ))}
-                    <br />
-                    {textToAnimate[2].split("").map((char, index) => (
-                      <Box
-                        key={char + "-" + index}
-                        as={motion.span}
-                        variants={letter}
-                      >
-                        {char}
-                      </Box>
-                    ))}
-                  </MotionBox>
-                </MotionBox>
-              </Box>
-            </Container>
-          </GlassTint>
-        </Box>
+                    I really love solving problems,
+                  </Highlight>
+                </Heading>
+              </MotionBox>
 
-        <Box bg="brand.bg" position="relative">
-          <MotionBox
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            pl="10%"
-            pr="10%"
-            pt="5%"
-            style={{ x: xSlideL }}
-          >
-            <Heading
-              mb={2}
-              size={{ base: "2xl", md: "2xl", xl: "4xl" }}
-              lineHeight="shorter"
+              <MotionBox
+                mt={{ base: "5px", md: "15px" }}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.swooshOut}
+                zIndex={3}
+                pos="relative"
+                viewport={{ once: false }}
+              >
+                <Heading
+                  whiteSpace="nowrap"
+                  mb={2}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["boundaries"]}
+                    styles={{
+                      color: "Text.dark",
+                      border: "2px solid #fe0606",
+                      paddingRight: "18px",
+                      borderRadius: "60%",
+                      borderLeftRadius: 0,
+                      background: "white",
+                    }}
+                  >
+                    Pushing boundaries
+                  </Highlight>
+                </Heading>
+              </MotionBox>
+              <MotionBox
+                mt={{ base: "5px", md: "15px" }}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                fontSize="2vw"
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={easeVariants.slideUp}
+                viewport={{ once: false }}
+              >
+                <Heading
+                  mb={2}
+                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  lineHeight="shorter"
+                >
+                  <Highlight
+                    query={["box"]}
+                    styles={{
+                      color: "Text.dark",
+                      border: "2px solid #090b2a",
+                      padding: "10px 10px 0px",
+                      background: "brand.green",
+                    }}
+                  >
+                    and thinking outside the box.
+                  </Highlight>
+                </Heading>
+              </MotionBox>
+            </Box>
+            <Box
+              mt={{ base: "15px", md: 0 }}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              <Highlight
-                query={["Hey", "you"]}
-                styles={{
-                  color: "brand.primary",
-                  background: "brand.secondary",
-                  padding: "2px 30px 60px",
-                  borderRadius: "70%",
+              <Button
+                variant="app-iconButton"
+                width="fit-content"
+                rightIcon={<BsChevronDoubleDown />}
+                as={motion.div}
+                initial={{
+                  opacity: 0,
+                  y: -20,
                 }}
-              >
-                {`Hey nice to meet you. I'm Boluwatife,`}
-              </Highlight>
-              <br />
-              <Highlight
-                query={["React", "Typescript", "nodejs", "3 years"]}
-                styles={{
-                  color: "brand.secondary",
-                  background: "brand.primary",
-                  padding: "2px 30px",
-                  borderRadius: "70%",
+                animate={{
+                  opacity: [0, 0.8, 1],
+                  y: 0,
+                  transition: {
+                    duration: 1.2,
+                    delay: 6,
+                  },
                 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.5 }}
+                cursor="pointer"
+                onClick={() =>
+                  sectionCRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
               >
-                {` a frontend engineer with experience in React, nodejs and Typescript and other technologies`}
-              </Highlight>
-            </Heading>
-          </MotionBox>
-          <MotionBox
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            pl="10%"
-            pr="10%"
-            mt="50px"
-            style={{ x: xSlideR }}
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={easeVariants.slideUp}
-            viewport={{ once: false }}
-          >
-            <Heading
-              mb={2}
-              size={{ base: "2xl", md: "3xl", xl: "4xl" }}
-              lineHeight="shorter"
-            >
-              <Highlight
-                query={["5 years", "grade", "wealth"]}
-                styles={{
-                  color: "brand.primary",
-                  background: "brand.secondary",
-                  padding: "2px 30px 40px",
-                  borderRadius: "70%",
-                }}
-              >
-                {` Over the Past 5 years, I have had a wealth of experience building production grade UI's`}
-              </Highlight>
-            </Heading>
-          </MotionBox>
+                Projects
+              </Button>
+            </Box>
+          </Box>
         </Box>
-
-        <MotionBox
-          whiteSpace="nowrap"
-          variants={marqueeVariants}
-          animate="container"
-          pos="relative"
-          marginBottom="90px"
-        >
-          <MotionBox
-            as="h1"
-            sx={{
-              textTransform: "upperCase",
-              fontSize: { base: "4rem", md: "6rem", xl: "8rem" },
-              "-webkit-text-fill-color": "transparent",
-              "-webkit-text-stroke-width": "8px",
-            }}
-            variants={marqueeVariants}
-            animate="text"
-            fontFamily="monospace"
-          >
-            streams tournaments teams fun games live news tours
-          </MotionBox>
-        </MotionBox>
-      </motion.div>
+      </div>
+      <div ref={sectionCRef} />
       <Projects />
+      <Box
+        ref={sectionDRef}
+        position="relative"
+        color="#fff"
+        background="transparent"
+        overflow="hidden"
+        bg="brand.bg"
+        scrollSnapAlign="start"
+      >
+        {/* <Blobs /> */}
+        <Contact />
+      </Box>
     </Box>
   )
 }

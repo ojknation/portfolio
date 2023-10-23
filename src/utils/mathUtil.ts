@@ -24,13 +24,13 @@ const axisMap = {
 export function motionGenerator(
   factor = 0,
   axis: "x" | "y" | "scale",
-  length = 4
+  isMobile = false
 ): number[] {
   const randomArray = []
-  const lowerLimit = axisMap[axis].lowerLimit
-  const upperLimit = axisMap[axis].upperLimit
+  const lowerLimit = isMobile ? 70 : axisMap[axis].lowerLimit
+  const upperLimit = isMobile ? 450 : axisMap[axis].upperLimit
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < 4; i++) {
     let randomValue = Math.random() * (upperLimit - lowerLimit) + lowerLimit
 
     if (factor > 0) {
