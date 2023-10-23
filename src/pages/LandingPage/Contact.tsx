@@ -52,11 +52,11 @@ const Contact = () => {
       }}
     >
       <Box
+        minHeight="100dvh"
         display="flex"
         flexDir="column"
         justifyContent="center"
         alignItems="center"
-        minHeight="100dvh"
         sx={{
           width: "inherit",
           height: "inherit",

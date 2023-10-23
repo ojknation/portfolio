@@ -450,7 +450,7 @@ const LandingPage = () => {
           background="transparent"
           overflow="hidden"
           bg="brand.bg"
-          scrollSnapAlign="center"
+          scrollSnapAlign="start"
           scrollSnapStop="always"
         >
           <Blobs />
@@ -663,8 +663,8 @@ const LandingPage = () => {
           </Box>
         </Box>
       </div>
-      <div ref={sectionCRef} />
       <Projects />
+      <div ref={sectionCRef} />
       <Box
         ref={sectionDRef}
         position="relative"
@@ -672,7 +672,7 @@ const LandingPage = () => {
         background="transparent"
         overflow="hidden"
         bg="brand.bg"
-        scrollSnapAlign="center"
+        scrollSnapAlign="start"
       >
         {/* <Blobs /> */}
         <Contact />

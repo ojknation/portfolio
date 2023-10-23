@@ -130,7 +130,7 @@ const Projects = () => {
     await updateBGToMatchCard(cards[0])
   }
   return (
-    <Box scrollSnapAlign="center" scrollSnapStop="always">
+    <Box scrollSnapAlign="start" scrollSnapStop="always" overflow="hidden">
       <Box
         as={motion.div}
         position="relative"
@@ -143,7 +143,7 @@ const Projects = () => {
         <Blobs />
         <Box
           px={{ base: "10px", md: "40px" }}
-          minHeight="100vh"
+          minHeight="100dvh"
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -227,7 +227,11 @@ const Projects = () => {
                 // animate={projectDetailsTextControl}
                 width={{ base: "100%", md: "60%" }}
               >
-                <Text noOfLines={6} fontSize="14px">
+                <Text
+                  textAlign={isSmallScreen ? "left" : "inherit"}
+                  noOfLines={isSmallScreen ? 14 : 6}
+                  fontSize="14px"
+                >
                   {lastProject?.description ?? projectList[0]?.description}
                 </Text>
               </Box>
@@ -251,8 +255,8 @@ const Projects = () => {
               justifyContent="space-between"
               flexWrap="nowrap"
               overflowX="auto"
+              marginTop={isSmallScreen ? "23px" : "46px"}
               sx={{
-                marginTop: "46px",
                 "&::-webkit-scrollbar": {
                   display: "none",
                 },
