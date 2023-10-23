@@ -138,11 +138,11 @@ const Projects = () => {
         } 30%, #090b2a 80%)`}
         animate={sectionControl}
         overflow="hidden"
-        mb="1px"
+        // mb="1px"
       >
         <Blobs />
         <Box
-          mb="1px"
+          // mb="1px"
           px={{ base: "10px", md: "40px" }}
           minHeight="100vh"
           display="flex"

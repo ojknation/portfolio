@@ -19,11 +19,13 @@ import Blobs from "../../reuseables/Blobs"
 import { easeVariants, letter, sentence } from "../../reuseables/motionVariants"
 import Projects from "./Projects"
 import { BsChevronDoubleDown } from "react-icons/bs"
-import { TbArrowDown } from "react-icons/tb"
 import { BsFullscreen } from "react-icons/bs"
 import { BiCollapseAlt } from "react-icons/bi"
 import { FaStarOfLife } from "react-icons/fa"
+import { BsGithub, BsLinkedin } from "react-icons/bs"
+import { RiTwitterXFill } from "react-icons/ri"
 import useFullscreenStatus from "@/hooks/useFullscreenStatus"
+import Contact from "./Contact"
 
 const textToAnimate = [`Play by the rules,`, `but seek to improve the game.`]
 
@@ -31,6 +33,7 @@ const LandingPage = () => {
   const sectionARef = useRef<HTMLDivElement>(null)
   const sectionBRef = useRef<HTMLDivElement>(null)
   const sectionCRef = useRef<HTMLDivElement>(null)
+  const sectionDRef = useRef<HTMLDivElement>(null)
   const fullscreenRef = useRef<HTMLDivElement>(null)
 
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
@@ -59,7 +62,7 @@ const LandingPage = () => {
           bg="brand.bg"
           maxH="100vh"
           overflow="hidden"
-          scrollSnapAlign="center"
+          scrollSnapAlign="start"
           scrollSnapStop="always"
         >
           <Blobs />
@@ -132,52 +135,83 @@ const LandingPage = () => {
                   direction="row"
                   spacing={2}
                   alignItems="center"
-                  justifyContent="end"
+                  justifyContent="space-between"
                 >
-                  <Button
-                    as={motion.div}
-                    variant="app-iconButton"
-                    size="sm"
-                    width="fit-content"
-                    cursor="pointer"
-                    whileHover={{
-                      backgroundColor: "#fff",
-                      color: "#090b2a",
-                      scale: 1.02,
-                      transition: {
-                        duration: 0.1,
-                      },
-                    }}
-                    onClick={() =>
-                      sectionBRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                      })
-                    }
-                  >
-                    About
-                  </Button>
-                  <Button
-                    as={motion.div}
-                    variant="app-iconButton"
-                    size="sm"
-                    width="fit-content"
-                    cursor="pointer"
-                    whileHover={{
-                      backgroundColor: "#fff",
-                      color: "#090b2a",
-                      scale: 1.02,
-                      transition: {
-                        duration: 0.1,
-                      },
-                    }}
-                    onClick={() =>
-                      sectionCRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                      })
-                    }
-                  >
-                    Projects
-                  </Button>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <IconButton
+                      as={motion.div}
+                      whileHover={{ scale: 1.02 }}
+                      boxSize={8}
+                      cursor="pointer"
+                      variant="app-iconButton"
+                      aria-label="fullscreen toggle"
+                      icon={<BsGithub />}
+                    />
+                    <IconButton
+                      as={motion.div}
+                      whileHover={{ scale: 1.02 }}
+                      boxSize={8}
+                      cursor="pointer"
+                      variant="app-iconButton"
+                      aria-label="fullscreen toggle"
+                      icon={<BsLinkedin />}
+                    />
+                    <IconButton
+                      as={motion.div}
+                      whileHover={{ scale: 1.02 }}
+                      boxSize={8}
+                      cursor="pointer"
+                      variant="app-iconButton"
+                      aria-label="fullscreen toggle"
+                      icon={<RiTwitterXFill />}
+                    />
+                  </Stack>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Button
+                      as={motion.div}
+                      variant="app-iconButton"
+                      size="sm"
+                      width="fit-content"
+                      cursor="pointer"
+                      whileHover={{
+                        backgroundColor: "#fff",
+                        color: "#090b2a",
+                        scale: 1.02,
+                        transition: {
+                          duration: 0.1,
+                        },
+                      }}
+                      onClick={() =>
+                        sectionBRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      About
+                    </Button>
+                    <Button
+                      as={motion.div}
+                      variant="app-iconButton"
+                      size="sm"
+                      width="fit-content"
+                      cursor="pointer"
+                      whileHover={{
+                        backgroundColor: "#fff",
+                        color: "#090b2a",
+                        scale: 1.02,
+                        transition: {
+                          duration: 0.1,
+                        },
+                      }}
+                      onClick={() =>
+                        sectionCRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      Projects
+                    </Button>
+                  </Stack>
                 </Stack>
                 <MotionBox
                 // style={{
@@ -191,11 +225,24 @@ const LandingPage = () => {
                     fontSize={{ base: "14px" }}
                   >
                     My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
-                    am a software engineer who is deeply fascinated by systems.
-                    I derive great pleasure from engineering the interaction of
-                    processes and data to solve problems.
-                    <br /> Currently, I work as a Software Engineer at{" "}
-                    <strong>Prunedge.</strong>
+                    am a <strong>software engineer</strong> who is deeply
+                    fascinated by systems. Currently, I work as a Software
+                    Engineer at{" "}
+                    <strong>
+                      <a
+                        href="https://www.prunedge.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: "underline" }}
+                      >
+                        Prunedge.
+                      </a>
+                    </strong>
+                    <br />
+                    Outside of work, I enjoy listening to and making{" "}
+                    <strong>music</strong>, <strong>laughing </strong>
+                    with <strong>friends</strong> and <strong>learning</strong>{" "}
+                    random things on the internet.
                   </Text>
                 </MotionBox>
                 <Box
@@ -434,7 +481,7 @@ const LandingPage = () => {
               initial="offscreen"
               whileInView="onscreen"
               variants={easeVariants.slideUp}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
             >
               <Text
                 mb={2}
@@ -470,7 +517,7 @@ const LandingPage = () => {
               initial="offscreen"
               whileInView="onscreen"
               variants={easeVariants.slideUp}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
             >
               <Text
                 mb={2}
@@ -590,39 +637,66 @@ const LandingPage = () => {
               justifyContent="center"
               alignItems="center"
             >
-              <IconButton
+              <Button
                 variant="app-iconButton"
-                background="white"
+                width="fit-content"
+                rightIcon={<BsChevronDoubleDown />}
                 as={motion.div}
+                initial={{
+                  opacity: 0,
+                  y: -20,
+                }}
                 animate={{
-                  y: isSmallScreen ? [-40, 0] : [-50, -10],
-                  scale: [1.2, 1],
+                  opacity: [0, 0.8, 1],
+                  y: 0,
                   transition: {
-                    duration: 1.6,
-                    repeat: Infinity,
+                    duration: 1.2,
+                    delay: 6,
                   },
                 }}
-                whileHover={{ scale: 1.4 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.5 }}
                 cursor="pointer"
-                _hover={{ background: "white" }}
-                _focus={{ background: "white" }}
-                size="lg"
-                border="1px solid #fff"
-                borderRadius="50%"
-                aria-label="add"
-                viewport={{ once: true }}
-                icon={<TbArrowDown color="#090b2a" />}
                 onClick={() =>
                   sectionCRef.current?.scrollIntoView({ behavior: "smooth" })
                 }
-              />
+              >
+                Projects
+              </Button>
             </Box>
           </Box>
         </Box>
       </div>
-      <Projects />
       <div ref={sectionCRef} />
+      <Projects />
+      <Box
+        ref={sectionDRef}
+        position="relative"
+        color="#fff"
+        background="transparent"
+        overflow="hidden"
+        bg="brand.bg"
+        scrollSnapAlign="start"
+      >
+        <Blobs />
+        {/* <Box
+          px="10%"
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100dvh"
+          sx={{
+            width: "inherit",
+            height: "inherit",
+            background: "rgb(0, 0, 0, 0.7)",
+            boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+            backdropFilter: "blur(90px)",
+          }}
+        > */}
+        <Contact />
+        {/* </Box> */}
+      </Box>
     </Box>
   )
 }

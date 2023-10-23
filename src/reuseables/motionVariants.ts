@@ -87,20 +87,16 @@ export const easeVariants = {
   },
   swooshOut: {
     offscreen: {
-      opacity: 0.8,
-      // letterSpacing: "22px",
-      y: 20,
+      opacity: 0.5,
+      y: 45,
     },
     onscreen: {
       transition: {
-        duration: 2,
-        // type: "spring",
-        // stiffness: 100,
-        // delay: 0.2,
+        duration: 1.5,
       },
       y: 0,
       opacity: 1,
-      letterSpacing: ["10px", "-3px", "0px"],
+      letterSpacing: ["0px", "8px", "-3px", "0px"],
     },
   },
 }
