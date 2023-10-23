@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 import Blobs from "../../reuseables/Blobs"
-import { easeVariants, letter, sentence } from "../../reuseables/motionVariants"
+import { easeVariants } from "../../reuseables/motionVariants"
 import Projects from "./Projects"
 import { BsChevronDoubleDown } from "react-icons/bs"
 import { BsFullscreen } from "react-icons/bs"
@@ -26,8 +26,6 @@ import { BsGithub, BsLinkedin } from "react-icons/bs"
 import { RiTwitterXFill } from "react-icons/ri"
 import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 import Contact from "./Contact"
-
-const textToAnimate = [`Play by the rules,`, `but seek to improve the game.`]
 
 const LandingPage = () => {
   const sectionARef = useRef<HTMLDivElement>(null)
@@ -107,44 +105,12 @@ const LandingPage = () => {
                     transition: {
                       duration: 1,
                       ease: "easeInOut",
-                      delay: 4,
                     },
                     transitionEnd: {
                       display: "none",
                     },
                   }}
-                >
-                  <MotionBox
-                    variants={sentence}
-                    initial="hidden"
-                    animate="visible"
-                    maxWidth="lg"
-                  >
-                    {textToAnimate[0].split("").map((char, index) => (
-                      <Heading
-                        key={char + "-" + index}
-                        as={motion.span}
-                        variants={letter}
-                        fontSize={{ base: "3.5rem", xl: "6rem" }}
-                        fontWeight="bold"
-                        lineHeight={0.9}
-                      >
-                        {char}
-                      </Heading>
-                    ))}
-                    <br />
-                    {textToAnimate[1].split("").map((char, index) => (
-                      <Heading
-                        key={char + "-" + index}
-                        as={motion.span}
-                        variants={letter}
-                        fontSize={{ base: "16px", lg: "24px" }}
-                      >
-                        {char}
-                      </Heading>
-                    ))}
-                  </MotionBox>
-                </Box>
+                />
                 <Stack
                   direction="row"
                   spacing={2}
@@ -256,7 +222,7 @@ const LandingPage = () => {
                     y: 0,
                     transition: {
                       duration: 1.2,
-                      delay: 4,
+                      // delay: 4,
                     },
                   }}
                   sx={{
@@ -407,7 +373,7 @@ const LandingPage = () => {
                 x: "-50%",
                 transition: {
                   duration: 1.2,
-                  delay: 6,
+                  delay: 3,
                 },
               }}
             >
@@ -663,8 +629,8 @@ const LandingPage = () => {
           </Box>
         </Box>
       </div>
-      <Projects />
       <div ref={sectionCRef} />
+      <Projects />
       <Box
         ref={sectionDRef}
         position="relative"

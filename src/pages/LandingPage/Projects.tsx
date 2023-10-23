@@ -20,7 +20,6 @@ import {
 } from "framer-motion"
 import { easeVariants } from "../../reuseables/motionVariants"
 import { MotionBox } from "@/reuseables"
-// eslint-disable-next-line unused-imports/no-unused-imports
 import Blobs from "../../reuseables/Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
@@ -37,7 +36,6 @@ import { ReactComponent as CodeIcon } from "@/assets/stack/code.svg"
 import { ReactComponent as ChakraIcon } from "@/assets/stack/chakra.svg"
 import { ReactComponent as DjangoIcon } from "@/assets/stack/django.svg"
 import { ReactComponent as CloudflareIcon } from "@/assets/stack/cloudflare.svg"
-// import BG from "@/assets/ui/projectsBG.jpeg"
 import { TProject, projects } from "@/data/projectList"
 
 const stackMap = {
@@ -175,7 +173,6 @@ const Projects = () => {
                   duration: 0.9,
                 },
               }}
-              // animate={projectDetailsTextControl}
             >
               <Box pos="relative">
                 <Heading
@@ -191,7 +188,6 @@ const Projects = () => {
                 <Text fontWeight="bold" fontSize="14px">
                   {lastProject?.synopsis ?? projectList[0]?.synopsis}
                 </Text>
-                {/* <Text>TaDA!</Text> */}
                 {lastProject?.url && (
                   <IconButton
                     as={motion.div}
@@ -224,7 +220,6 @@ const Projects = () => {
               <Box
                 mt="16px"
                 as={motion.div}
-                // animate={projectDetailsTextControl}
                 width={{ base: "100%", md: "60%" }}
               >
                 <Text
@@ -243,7 +238,6 @@ const Projects = () => {
             alignItems="start"
             spacing={2}
             justify="center"
-            // justify="start"
             width="100%"
           >
             {" "}
@@ -251,7 +245,6 @@ const Projects = () => {
               as={motion.div}
               maxW={{ base: "container.xl" }}
               display="flex"
-              // height={{ base: "320px", md: "320px" }}
               justifyContent="space-between"
               flexWrap="nowrap"
               overflowX="auto"

@@ -1,3 +1,5 @@
+import AppLoader from "@/reuseables/AppLoader"
+import { DelayLoading } from "@/utils/DelayLoad"
 import { Suspense } from "react"
 import { Routes, BrowserRouter as Router, Route } from "react-router-dom"
 import { routes } from "./paths"
@@ -11,8 +13,9 @@ const AppRoutes = () => {
             key={route.path}
             path={route.path}
             element={
-              <Suspense fallback={<div>let me cook....</div>}>
+              <Suspense fallback={<AppLoader />}>
                 <route.component />
+                <DelayLoading />
               </Suspense>
             }
           />
