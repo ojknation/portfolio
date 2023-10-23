@@ -138,11 +138,9 @@ const Projects = () => {
         } 30%, #090b2a 80%)`}
         animate={sectionControl}
         overflow="hidden"
-        // mb="1px"
       >
         <Blobs />
         <Box
-          // mb="1px"
           px={{ base: "10px", md: "40px" }}
           minHeight="100vh"
           display="flex"
@@ -260,6 +258,7 @@ const Projects = () => {
               initial="offscreen"
               whileInView="onscreen"
               variants={easeVariants.slideUp}
+              viewport={{ once: true }}
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 {projectList.map((project, index) => (
@@ -316,7 +315,6 @@ const Projects = () => {
                     <Heading
                       my={{ base: "5px", md: "8px" }}
                       maxInlineSize="80%"
-                      // size="2xl"
                     >
                       {project.name}
                     </Heading>
@@ -360,37 +358,6 @@ const Projects = () => {
             </Box>
           </HStack>
         </Box>
-        {/* <Box
-          as={motion.div}
-          position="absolute"
-          minHeight="100vh"
-          width="100vw"
-          top={0}
-          left={0}
-          backgroundRepeat="no-repeat"
-          backgroundSize="cover"
-          backgroundColor="#fff"
-          animate={projectsOverlayControl}
-        >
-          <Heading
-            sx={{
-              color: "transparent",
-              fontSize: "16vw",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: "100dvh",
-              backgroundClip: "text",
-              "&::WebkitBackgroundClip": "text",
-              backgroundImage: `url(https://unsplash.it/1400)`,
-              // background: "#090b2a",
-            }}
-          >
-            Projects
-          </Heading>
-        </Box> */}
-        <Box />
-        <Box ref={projectDivRef} />
       </Box>
     </Box>
   )

@@ -1,6 +1,6 @@
 /* eslint-disable unused-imports/no-unused-imports */
 /* eslint-disable unused-imports/no-unused-vars */
-import { useRef } from "react"
+import { ReactElement, useRef } from "react"
 import { MotionBox } from "@/reuseables"
 import GlassTint from "@/reuseables/GlassTint"
 
@@ -39,6 +39,20 @@ const LandingPage = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
 
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
+
+  const renderIcon = (icon: ReactElement, link: string) => (
+    <IconButton
+      boxSize={8}
+      cursor="pointer"
+      variant="app-iconButton"
+      aria-label="social"
+      as={motion.div}
+      whileHover={{ scale: 1.02 }}
+      icon={icon}
+      size="md"
+      onClick={() => window.open(link, "_blank")}
+    />
+  )
 
   return (
     <Box
@@ -138,33 +152,15 @@ const LandingPage = () => {
                   justifyContent="space-between"
                 >
                   <Stack direction="row" spacing={2} alignItems="center">
-                    <IconButton
-                      as={motion.div}
-                      whileHover={{ scale: 1.02 }}
-                      boxSize={8}
-                      cursor="pointer"
-                      variant="app-iconButton"
-                      aria-label="fullscreen toggle"
-                      icon={<BsGithub />}
-                    />
-                    <IconButton
-                      as={motion.div}
-                      whileHover={{ scale: 1.02 }}
-                      boxSize={8}
-                      cursor="pointer"
-                      variant="app-iconButton"
-                      aria-label="fullscreen toggle"
-                      icon={<BsLinkedin />}
-                    />
-                    <IconButton
-                      as={motion.div}
-                      whileHover={{ scale: 1.02 }}
-                      boxSize={8}
-                      cursor="pointer"
-                      variant="app-iconButton"
-                      aria-label="fullscreen toggle"
-                      icon={<RiTwitterXFill />}
-                    />
+                    {renderIcon(<BsGithub />, "https://github.com/ojknation")}
+                    {renderIcon(
+                      <BsLinkedin />,
+                      "https://www.linkedin.com/in/boluwatife-adekola-ojo-936a9119b/"
+                    )}
+                    {renderIcon(
+                      <RiTwitterXFill />,
+                      "https://twitter.com/ojknation"
+                    )}
                   </Stack>
                   <Stack direction="row" spacing={2} alignItems="center">
                     <Button
@@ -678,24 +674,8 @@ const LandingPage = () => {
         bg="brand.bg"
         scrollSnapAlign="start"
       >
-        <Blobs />
-        {/* <Box
-          px="10%"
-          display="flex"
-          flexDir="column"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100dvh"
-          sx={{
-            width: "inherit",
-            height: "inherit",
-            background: "rgb(0, 0, 0, 0.7)",
-            boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-            backdropFilter: "blur(90px)",
-          }}
-        > */}
+        {/* <Blobs /> */}
         <Contact />
-        {/* </Box> */}
       </Box>
     </Box>
   )

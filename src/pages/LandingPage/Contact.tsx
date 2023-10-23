@@ -13,6 +13,7 @@ import {
 import { ReactElement } from "react"
 import { BsGithub, BsLinkedin } from "react-icons/bs"
 import { RiTwitterXFill } from "react-icons/ri"
+import BG from "@/assets/ui/codeBG.jpeg"
 
 const Contact = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
@@ -30,7 +31,7 @@ const Contact = () => {
     </strong>
   )
 
-  const renderIcon = (icon: ReactElement) => (
+  const renderIcon = (icon: ReactElement, link: string) => (
     <IconButton
       boxSize={8}
       cursor="pointer"
@@ -39,11 +40,17 @@ const Contact = () => {
       icon={icon}
       size="md"
       sx={{ all: "unset", cursor: "pointer", padding: "8px" }}
+      onClick={() => window.open(link, "_blank")}
     />
   )
 
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundImage: `url(${BG})`,
+        backgroundSize: "cover",
+      }}
+    >
       <Box
         display="flex"
         flexDir="column"
@@ -55,7 +62,7 @@ const Contact = () => {
           height: "inherit",
           background: "rgb(0, 0, 0, 0.7)",
           boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-          backdropFilter: "blur(90px)",
+          backdropFilter: "blur(10px)",
         }}
       >
         <MotionBox
@@ -96,36 +103,46 @@ const Contact = () => {
             divider={<StackDivider borderColor="gray.500" />}
             padding="10px"
           >
-            <Box width="20%">
-              <Text align="center" color="gray.500">
-                Social
-              </Text>
-              <Stack
-                direction="row"
-                spacing={2}
-                alignItems="center"
-                justify="center"
-              >
-                {renderIcon(<BsGithub />)}
-                {renderIcon(<BsLinkedin />)}
-                {renderIcon(<RiTwitterXFill />)}
-              </Stack>
-            </Box>
-            <Box textAlign="center" width="60%">
+            {!isSmallScreen && (
+              <Box width="20%">
+                <Text align="center" color="gray.500">
+                  Social
+                </Text>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
+                  justify="center"
+                >
+                  {renderIcon(<BsGithub />, "https://github.com/ojknation")}
+                  {renderIcon(
+                    <BsLinkedin />,
+                    "https://www.linkedin.com/in/boluwatife-adekola-ojo-936a9119b/"
+                  )}
+                  {renderIcon(
+                    <RiTwitterXFill />,
+                    "https://twitter.com/ojknation"
+                  )}
+                </Stack>
+              </Box>
+            )}
+            <Box textAlign="center" width={!isSmallScreen ? "60%" : "100%"}>
               <Text color="gray.500">Designed & Developed by</Text>
               <Text fontWeight="bold">
                 Boluwatife Adekola-Ojo 🇳🇬 © {new Date().getFullYear()}
               </Text>
             </Box>
-            <Box textAlign="center" width="20%">
-              <Text color="gray.500">Email</Text>
-              <Text fontWeight="bold">
-                {renderLink(
-                  "mailto:theojksound+work@gmail.com",
-                  "theojksound+work@gmail.com"
-                )}
-              </Text>
-            </Box>
+            {!isSmallScreen && (
+              <Box textAlign="center" width="20%">
+                <Text color="gray.500">Email</Text>
+                <Text fontWeight="bold">
+                  {renderLink(
+                    "mailto:theojksound+work@gmail.com",
+                    "theojksound+work@gmail.com"
+                  )}
+                </Text>
+              </Box>
+            )}
           </Stack>
         </Box>
       </Box>
