@@ -66,9 +66,9 @@ export const projects: TProject[] = [
     synopsis: "Election Management System",
     description: `Polleasy is a multi-tenanted election management solution that provides election strategy, planning, political survey, opinion polls, incidence reports,
      campaign, election management and monitoring services. The system is dynamic and can cater to government structure of different countries, and elections at different levels. 
-     It has a plethora of user types and roles, ranging from super admins to executives, campaign managers, agents, and voters. I worked on the client side of the application alongside a team of developers,
-     I specifically worked on poll creation workflows which comprises of dynamic interactive forms, drag and drop UI, data visualization and complex API integrations, I also worked on
-     the call center module which allows agents to make calls to voters and log their responses among other features
+     It has a plethora of user types and roles. I worked on the client side of the application alongside a team of developers,
+     I specifically worked on poll creation workflows which comprises of dynamic interactive forms, drag and drop UI, data visualization and geoJSON maps etc. I also worked on
+     the call center module which allows agents to make calls to voters and log their responses among other features.
       `,
     summary: [
       "multi-tenant",
@@ -115,7 +115,7 @@ export const projects: TProject[] = [
     description: `Flares is a social timeline that allows users to post anonymously, there are different type of posts ranging from text, 
     images and links, posts can also be flared up(voted) and sorted by most recent or the system uses cloudfare workers 
       kv storage and firebase on the backend, it is still being built out to be a full fledged social 
-      network where users can create private timelines and have only their friends follow them`,
+      network where users can create private timelines and have only a selected group follow them.`,
     summary: ["Social Network", "Private timelines", "Blazingly fast"],
     stack: [
       "react",

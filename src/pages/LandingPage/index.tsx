@@ -375,7 +375,7 @@ const LandingPage = () => {
                 >
                   <Text
                     width="350px"
-                    mt="45px"
+                    mt="40px"
                     mb="50px"
                     fontSize={{ base: "14px" }}
                   >

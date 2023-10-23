@@ -83,10 +83,10 @@ const Contact = () => {
             {`Let's talk.`}
           </Heading>
           <Text maxW="450px" mt="15px" mb="50px" fontSize={{ base: "14px" }}>
-            Let's Connect! Whether you prefer electronic carrier pigeons aka{" "}
-            {renderLink("mailto:theojksound+work@gmail.com", "Email")}, chirping
-            on {renderLink("https://twitter.com/ojknation", "Twitter")} yikes x,
-            or getting professionally linked on{" "}
+            Let's Connect! Whether you prefer electronic carrier{" "}
+            {renderLink("mailto:theojksound+work@gmail.com", "pigeons")},
+            chirping on {renderLink("https://twitter.com/ojknation", "Twitter")}{" "}
+            yikes x, or getting professionally linked on{" "}
             {renderLink(
               "https://www.linkedin.com/in/boluwatife-adekola-ojo-936a9119b/",
               "LinkedIn"
@@ -95,7 +95,16 @@ const Contact = () => {
             connect with me—let's get the conversation started!🚀
           </Text>
         </MotionBox>
-        <Box position="absolute" bottom="12px" width="100%" fontSize="14px">
+        <MotionBox
+          position="absolute"
+          bottom="12px"
+          width="100%"
+          fontSize="14px"
+          initial="offscreen"
+          whileInView="onscreen"
+          variants={easeVariants.slideUp}
+          viewport={{ once: true }}
+        >
           <Stack
             borderTop="1px solid"
             borderColor="gray.500"
@@ -106,7 +115,7 @@ const Contact = () => {
             {!isSmallScreen && (
               <Box width="20%">
                 <Text align="center" color="gray.500">
-                  Social
+                  Links
                 </Text>
                 <Stack
                   direction="row"
@@ -144,7 +153,7 @@ const Contact = () => {
               </Box>
             )}
           </Stack>
-        </Box>
+        </MotionBox>
       </Box>
     </Box>
   )

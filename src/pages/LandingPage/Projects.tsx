@@ -134,13 +134,13 @@ const Projects = () => {
       <Box
         as={motion.div}
         position="relative"
-        bg={`linear-gradient(-52deg, ${
+        bg={`linear-gradient(-62deg, ${
           lastProject?.bg ?? cards[0]
         } 30%, #090b2a 80%)`}
         animate={sectionControl}
         overflow="hidden"
       >
-        {/* <Blobs /> */}
+        <Blobs />
         <Box
           px={{ base: "10px", md: "40px" }}
           minHeight="100vh"
@@ -222,12 +222,12 @@ const Projects = () => {
                 )}
               </Box>
               <Box
-                mt="20px"
+                mt="16px"
                 as={motion.div}
                 // animate={projectDetailsTextControl}
                 width={{ base: "100%", md: "60%" }}
               >
-                <Text noOfLines={4}>
+                <Text noOfLines={6} fontSize="14px">
                   {lastProject?.description ?? projectList[0]?.description}
                 </Text>
               </Box>
@@ -235,10 +235,11 @@ const Projects = () => {
           </AnimatePresence>
 
           <HStack
-            mt="20px"
+            mt="16px"
             alignItems="start"
             spacing={2}
             justify="center"
+            // justify="start"
             width="100%"
           >
             {" "}
@@ -246,6 +247,7 @@ const Projects = () => {
               as={motion.div}
               maxW={{ base: "container.xl" }}
               display="flex"
+              // height={{ base: "320px", md: "320px" }}
               justifyContent="space-between"
               flexWrap="nowrap"
               overflowX="auto"
