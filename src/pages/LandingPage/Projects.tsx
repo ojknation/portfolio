@@ -20,6 +20,7 @@ import {
 } from "framer-motion"
 import { easeVariants } from "../../reuseables/motionVariants"
 import { MotionBox } from "@/reuseables"
+// eslint-disable-next-line unused-imports/no-unused-imports
 import Blobs from "../../reuseables/Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
@@ -36,7 +37,7 @@ import { ReactComponent as CodeIcon } from "@/assets/stack/code.svg"
 import { ReactComponent as ChakraIcon } from "@/assets/stack/chakra.svg"
 import { ReactComponent as DjangoIcon } from "@/assets/stack/django.svg"
 import { ReactComponent as CloudflareIcon } from "@/assets/stack/cloudflare.svg"
-
+// import BG from "@/assets/ui/projectsBG.jpeg"
 import { TProject, projects } from "@/data/projectList"
 
 const stackMap = {
@@ -139,7 +140,7 @@ const Projects = () => {
         animate={sectionControl}
         overflow="hidden"
       >
-        <Blobs />
+        {/* <Blobs /> */}
         <Box
           px={{ base: "10px", md: "40px" }}
           minHeight="100vh"
@@ -152,7 +153,7 @@ const Projects = () => {
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",
             boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-            backdropFilter: "blur(90px)",
+            backdropFilter: "blur(95px)",
           }}
         >
           <AnimatePresence initial={false} mode="popLayout">
@@ -177,7 +178,6 @@ const Projects = () => {
               // animate={projectDetailsTextControl}
             >
               <Box pos="relative">
-                {/* <Text>Project</Text> */}
                 <Heading
                   maxInlineSize="19ch"
                   fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}

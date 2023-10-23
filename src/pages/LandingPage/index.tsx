@@ -672,7 +672,7 @@ const LandingPage = () => {
         background="transparent"
         overflow="hidden"
         bg="brand.bg"
-        scrollSnapAlign="start"
+        scrollSnapAlign="center"
       >
         {/* <Blobs /> */}
         <Contact />
