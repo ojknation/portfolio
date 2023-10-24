@@ -226,8 +226,7 @@ const LandingPage = () => {
                     opacity: [0, 1],
                     y: 0,
                     transition: {
-                      duration: 1.2,
-                      // delay: 4,
+                      duration: 0.5,
                     },
                   }}
                   sx={{
