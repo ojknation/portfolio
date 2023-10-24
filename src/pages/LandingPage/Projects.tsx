@@ -57,7 +57,6 @@ const stackMap = {
 const Projects = () => {
   const sectionControl = useAnimationControls()
   const cardSlideControl = useAnimationControls()
-  const projectsOverlayControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
@@ -104,31 +103,22 @@ const Projects = () => {
     await sectionControl.start({
       background: `linear-gradient(-52deg, ${bg} 30%, #090b2a 80%)`,
       transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 10,
+        // type: "spring",
+        // stiffness: 50,
+        // damping: 10,
         duration: 0.2,
       },
     })
   }
 
   const moveProjectsOverlay = async () => {
-    await projectsOverlayControl.start({
-      opacity: [1, 0.8],
-      scale: [1, 0],
-      x: [0, 2400],
-      transition: {
-        duration: 1.2,
-        delay: 0.6,
-      },
-    })
-
     setLastProject(projects[0] as TProject)
 
     await updateBGToMatchCard(cards[0])
   }
   return (
     <Box scrollSnapAlign="start" scrollSnapStop="always" overflow="hidden">
+      <div ref={projectDivRef} />
       <Box
         as={motion.div}
         position="relative"
@@ -168,10 +158,10 @@ const Projects = () => {
               flexDir="column"
               initial={{ opacity: 0 }}
               animate={{
-                opacity: [0.1, 1],
+                opacity: 1,
                 y: [24, 0],
                 transition: {
-                  duration: 0.9,
+                  duration: isSmallScreen ? 0.5 : 0.9,
                 },
               }}
             >
