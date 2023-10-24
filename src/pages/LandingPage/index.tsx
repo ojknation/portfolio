@@ -115,7 +115,7 @@ const LandingPage = () => {
                   direction="row"
                   spacing={2}
                   alignItems="center"
-                  justifyContent="space-between"
+                  justifyContent="center"
                 >
                   <Stack direction="row" spacing={2} alignItems="center">
                     {renderIcon(<BsGithub />, "https://github.com/ojknation")}
@@ -128,7 +128,7 @@ const LandingPage = () => {
                       "https://twitter.com/ojknation"
                     )}
                   </Stack>
-                  <Stack direction="row" spacing={2} alignItems="center">
+                  {/* <Stack direction="row" spacing={2} alignItems="center">
                     <Button
                       as={motion.div}
                       variant="app-iconButton"
@@ -173,222 +173,250 @@ const LandingPage = () => {
                     >
                       Projects
                     </Button>
-                  </Stack>
+                  </Stack> */}
                 </Stack>
-                <MotionBox
+                <Box
                   display="flex"
-                  justifyContent="flex-start"
-                  // style={{
-                  //   x: xSlideR,
-                  // }}
+                  justifyContent="center"
+                  alignItems="center"
+                  height={{ base: "80%" }}
+                  flexDirection="column"
                 >
-                  <Text
-                    width="350px"
-                    mt="45px"
-                    mb={{ base: "30px", md: "20px" }}
-                    fontSize={{
-                      base: "13px",
-                      mm: "14px",
+                  <MotionBox
+                    display="flex"
+                    justifyContent="flex-start"
+                    width="100%"
+                    // style={{
+                    //   x: xSlideR,
+                    // }}
+                  >
+                    <Text
+                      width="350px"
+                      mt="45px"
+                      mb={{ base: "30px", md: "20px" }}
+                      fontSize={{
+                        base: "13px",
+                        mm: "14px",
+                      }}
+                    >
+                      My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK),
+                      I am a <strong>software engineer</strong> who is deeply
+                      fascinated by systems. Currently, I work as a Software
+                      Engineer at{" "}
+                      <strong>
+                        <a
+                          href="https://www.prunedge.com"
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ textDecoration: "underline" }}
+                        >
+                          Prunedge.
+                        </a>
+                      </strong>
+                      <br />
+                      Outside of work, I enjoy listening to and making{" "}
+                      <strong>music</strong>, <strong>laughing </strong>
+                      with <strong>friends</strong> and{" "}
+                      <strong>learning</strong> random things on the internet.
+                    </Text>
+                  </MotionBox>
+                  <Box
+                    display={{ base: "none", mm: "flex" }}
+                    as={motion.div}
+                    justifyContent="start"
+                    alignItems="center"
+                    height="fit-content"
+                    initial={{
+                      opacity: 0,
+                      y: 200,
+                    }}
+                    animate={{
+                      opacity: [0, 1],
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                      },
+                    }}
+                    sx={{
+                      userSelect: "none",
+                      "&::WebkitUserSelect": "none",
+                      "&::MsUserSelect": "none",
                     }}
                   >
-                    My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
-                    am a <strong>software engineer</strong> who is deeply
-                    fascinated by systems. Currently, I work as a Software
-                    Engineer at{" "}
-                    <strong>
-                      <a
-                        href="https://www.prunedge.com"
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{ textDecoration: "underline" }}
+                    <Box>
+                      <Stack
+                        direction="row"
+                        spacing={4}
+                        as={motion.div}
+                        whiteSpace="nowrap"
+                        animate={{
+                          x: isSmallScreen ? [0, -1300] : [0, -2300],
+                          transition: {
+                            duration: isSmallScreen ? 14 : 25,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            delay: 0.5,
+                            ease: "linear",
+                          },
+                        }}
                       >
-                        Prunedge.
-                      </a>
-                    </strong>
-                    <br />
-                    Outside of work, I enjoy listening to and making{" "}
-                    <strong>music</strong>, <strong>laughing </strong>
-                    with <strong>friends</strong> and <strong>learning</strong>{" "}
-                    random things on the internet.
-                  </Text>
-                </MotionBox>
-                <Box
-                  display={{ base: "none", mm: "flex" }}
-                  as={motion.div}
-                  justifyContent="start"
-                  alignItems="center"
-                  height="fit-content"
-                  initial={{
-                    opacity: 0,
-                    y: 200,
-                  }}
-                  animate={{
-                    opacity: [0, 1],
-                    y: 0,
-                    transition: {
-                      duration: 0.5,
-                    },
-                  }}
-                  sx={{
-                    userSelect: "none",
-                    "&::WebkitUserSelect": "none",
-                    "&::MsUserSelect": "none",
-                  }}
-                >
-                  <Box>
-                    <Stack
-                      direction="row"
-                      spacing={4}
-                      as={motion.div}
-                      whiteSpace="nowrap"
-                      animate={{
-                        x: isSmallScreen ? [0, -1300] : [0, -2300],
-                        transition: {
-                          duration: isSmallScreen ? 14 : 25,
-                          repeat: Infinity,
-                          repeatType: "loop",
-                          delay: 0.5,
-                          ease: "linear",
-                        },
-                      }}
-                    >
-                      {[
-                        "Nodejs",
-                        "Typescript",
-                        "React",
-                        "Postgres",
-                        "MongoDB",
-                        "Linux",
-                        "Prisma",
-                        "Nextjs",
-                        "Firebase",
-                        "GraphQL",
-                        "Express",
-                        "TailwindCSS",
-                      ].map((skill, index, arr) => (
-                        <Stack key={index} direction="row" alignItems="center">
-                          <Text
-                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
-                            fontWeight="bold"
-                            lineHeight={0.9}
-                            px={2}
-                            sx={{
-                              WebkitTextFillColor: "transparent",
-                              WebkitTextStrokeWidth: isSmallScreen
-                                ? "2px"
-                                : "4px",
-                            }}
+                        {[
+                          "Nodejs",
+                          "Typescript",
+                          "React",
+                          "Postgres",
+                          "MongoDB",
+                          "Linux",
+                          "Prisma",
+                          "Nextjs",
+                          "Firebase",
+                          "GraphQL",
+                          "Express",
+                          "TailwindCSS",
+                        ].map((skill, index, arr) => (
+                          <Stack
+                            key={index}
+                            direction="row"
+                            alignItems="center"
                           >
-                            {skill}
-                          </Text>
-                          {index < arr.length - 1 && <FaStarOfLife />}
-                        </Stack>
-                      ))}
-                    </Stack>
-                    <Stack
-                      mt="20px"
-                      direction="row"
-                      spacing={4}
-                      as={motion.div}
-                      whiteSpace="nowrap"
-                      animate={{
-                        x: isSmallScreen ? [-1300, 0] : [-2300, 0],
-                        transition: {
-                          duration: isSmallScreen ? 14 : 25,
-                          repeat: Infinity,
-                          repeatType: "loop",
-                          ease: "linear",
-                        },
-                      }}
-                    >
-                      {[
-                        "Linux",
-                        "Prisma",
-                        "Nextjs",
-                        "Firebase",
-                        "GraphQL",
-                        "Express",
-                        "TailwindCSS",
-                        "Nodejs",
-                        "Typescript",
-                        "React",
-                        "Postgres",
-                        "MongoDB",
-                      ].map((skill, index, arr) => (
-                        <Stack key={index} direction="row" alignItems="center">
-                          <Text
-                            fontSize={{ base: "4rem", md: "5rem", xl: "8rem" }}
-                            fontWeight="bold"
-                            lineHeight={0.9}
-                            px={2}
-                            sx={{
-                              WebkitTextFillColor: "transparent",
-                              WebkitTextStrokeWidth: isSmallScreen
-                                ? "2px"
-                                : "4px",
-                            }}
+                            <Text
+                              fontSize={{
+                                base: "4rem",
+                                md: "5rem",
+                                xl: "8rem",
+                              }}
+                              fontWeight="bold"
+                              lineHeight={0.9}
+                              px={2}
+                              sx={{
+                                WebkitTextFillColor: "transparent",
+                                WebkitTextStrokeWidth: isSmallScreen
+                                  ? "2px"
+                                  : "4px",
+                              }}
+                            >
+                              {skill}
+                            </Text>
+                            {index < arr.length - 1 && <FaStarOfLife />}
+                          </Stack>
+                        ))}
+                      </Stack>
+                      <Stack
+                        mt="20px"
+                        direction="row"
+                        spacing={4}
+                        as={motion.div}
+                        whiteSpace="nowrap"
+                        animate={{
+                          x: isSmallScreen ? [-1300, 0] : [-2300, 0],
+                          transition: {
+                            duration: isSmallScreen ? 14 : 25,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: "linear",
+                          },
+                        }}
+                      >
+                        {[
+                          "Linux",
+                          "Prisma",
+                          "Nextjs",
+                          "Firebase",
+                          "GraphQL",
+                          "Express",
+                          "TailwindCSS",
+                          "Nodejs",
+                          "Typescript",
+                          "React",
+                          "Postgres",
+                          "MongoDB",
+                        ].map((skill, index, arr) => (
+                          <Stack
+                            key={index}
+                            direction="row"
+                            alignItems="center"
                           >
-                            {skill}
-                          </Text>
-                          {index < arr.length - 1 && <FaStarOfLife />}
-                        </Stack>
-                      ))}
-                    </Stack>
+                            <Text
+                              fontSize={{
+                                base: "4rem",
+                                md: "5rem",
+                                xl: "8rem",
+                              }}
+                              fontWeight="bold"
+                              lineHeight={0.9}
+                              px={2}
+                              sx={{
+                                WebkitTextFillColor: "transparent",
+                                WebkitTextStrokeWidth: isSmallScreen
+                                  ? "2px"
+                                  : "4px",
+                              }}
+                            >
+                              {skill}
+                            </Text>
+                            {index < arr.length - 1 && <FaStarOfLife />}
+                          </Stack>
+                        ))}
+                      </Stack>
+                    </Box>
                   </Box>
+                  <MotionBox
+                    display="flex"
+                    justifyContent="flex-end"
+                    width="100%"
+                    // style={{
+                    //   x: xSlideL,
+                    // }}
+                  >
+                    <Text
+                      width={{ base: "350px", lg: "400px" }}
+                      mt={{ base: "30px" }}
+                      mb={{ base: "20px", lm: "50px" }}
+                      fontSize={{ base: "13px", mm: "15px" }}
+                    >
+                      My primary tech stack and area of expertise is within the
+                      <strong> JavaScript/TypeScript</strong> ecosystem.
+                      However, my experience extends to other languages and
+                      frameworks such as C# WPF/.NET, Java for Android
+                      development, and Python scripting. I am confident in my
+                      ability to <strong>learn</strong> and{" "}
+                      <strong>adapt </strong>
+                      to new technologies <strong>swiftly</strong>.
+                    </Text>
+                  </MotionBox>
+                  <MotionBox
+                    display={{ sm: "none", mm: "flex" }}
+                    mt="auto"
+                    justifyContent="center"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.8 }}
+                    initial={{
+                      opacity: 0,
+                      y: -20,
+                    }}
+                    animate={{
+                      opacity: [0, 0.8, 1],
+                      y: 0,
+                      transition: {
+                        duration: 1.2,
+                        delay: 2,
+                      },
+                    }}
+                  >
+                    <Button
+                      variant="app-iconButton"
+                      width="fit-content"
+                      rightIcon={<BsChevronDoubleDown />}
+                      onClick={() =>
+                        sectionBRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      See More
+                    </Button>
+                  </MotionBox>
                 </Box>
-                <MotionBox
-                  display="flex"
-                  justifyContent="flex-end"
-                  // style={{
-                  //   x: xSlideL,
-                  // }}
-                >
-                  <Text
-                    width={{ base: "350px", lg: "400px" }}
-                    mt={{ base: "30px" }}
-                    mb={{ base: "20px", lm: "50px" }}
-                    fontSize={{ base: "13px", mm: "15px" }}
-                  >
-                    My primary tech stack and area of expertise is within the
-                    <strong> JavaScript/TypeScript</strong> ecosystem. However,
-                    my experience extends to other languages and frameworks such
-                    as C# WPF/.NET, Java for Android development, and Python
-                    scripting. I am confident in my ability to{" "}
-                    <strong>learn</strong> and <strong>adapt </strong>
-                    to new technologies <strong>swiftly</strong>.
-                  </Text>
-                </MotionBox>
-                <MotionBox
-                  display={{ sm: "none", mm: "flex" }}
-                  justifyContent="center"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.8 }}
-                  initial={{
-                    opacity: 0,
-                    y: -20,
-                  }}
-                  animate={{
-                    opacity: [0, 0.8, 1],
-                    y: 0,
-                    transition: {
-                      duration: 1.2,
-                      delay: 2,
-                    },
-                  }}
-                >
-                  <Button
-                    variant="app-iconButton"
-                    width="fit-content"
-                    rightIcon={<BsChevronDoubleDown />}
-                    onClick={() =>
-                      sectionBRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                      })
-                    }
-                  >
-                    See More
-                  </Button>
-                </MotionBox>
               </Box>
             </Box>
           </GlassTint>
@@ -639,21 +667,21 @@ const LandingPage = () => {
             </Box>
           </Box>
         </Box>
+        <div ref={sectionCRef} />
+        <Projects />
+        <Box
+          ref={sectionDRef}
+          position="relative"
+          color="#fff"
+          background="transparent"
+          overflow="hidden"
+          bg="brand.bg"
+          scrollSnapAlign="start"
+        >
+          {/* <Blobs /> */}
+          <Contact />
+        </Box>
       </div>
-      <div ref={sectionCRef} />
-      <Projects />
-      <Box
-        ref={sectionDRef}
-        position="relative"
-        color="#fff"
-        background="transparent"
-        overflow="hidden"
-        bg="brand.bg"
-        scrollSnapAlign="start"
-      >
-        {/* <Blobs /> */}
-        <Contact />
-      </Box>
     </Box>
   )
 }
