@@ -72,7 +72,7 @@ const LandingPage = () => {
           ref={sectionARef}
           pos="relative"
           bg="brand.bg"
-          // maxH="100vh"
+          maxH="100vh"
           overflow="hidden"
           scrollSnapAlign="start"
           scrollSnapStop="always"
@@ -185,8 +185,11 @@ const LandingPage = () => {
                   <Text
                     width="350px"
                     mt="45px"
-                    mb={{ base: "30px", md: "50px" }}
-                    fontSize={{ base: "13px", mm: "14px", lm: "16px" }}
+                    mb={{ base: "30px", md: "20px" }}
+                    fontSize={{
+                      base: "13px",
+                      mm: "14px",
+                    }}
                   >
                     My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
                     am a <strong>software engineer</strong> who is deeply
@@ -343,9 +346,9 @@ const LandingPage = () => {
                 >
                   <Text
                     width="350px"
-                    mt={{ base: "30px", md: "40px" }}
+                    mt={{ base: "30px" }}
                     mb={{ base: "20px", lm: "50px" }}
-                    fontSize={{ base: "13px", mm: "14px", lm: "16px" }}
+                    fontSize={{ base: "13px", mm: "15px" }}
                   >
                     My primary tech stack and area of expertise is within the
                     <strong> JavaScript/TypeScript</strong> ecosystem. However,
@@ -361,8 +364,6 @@ const LandingPage = () => {
                   justifyContent="center"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.8 }}
-                  // position="absolute"
-                  // bottom={{ lm: "50px", md: 20 }}
                   initial={{
                     opacity: 0,
                     y: -20,
