@@ -508,7 +508,7 @@ const LandingPage = () => {
                 variants={easeVariants.slideUp}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: isSmallScreen }}
+                viewport={{ once: true }}
               >
                 <Heading
                   mb={2}
@@ -547,7 +547,7 @@ const LandingPage = () => {
                 variants={easeVariants.swooshOut}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: isSmallScreen }}
+                viewport={{ once: true }}
               >
                 <Heading
                   whiteSpace="nowrap"
@@ -579,7 +579,7 @@ const LandingPage = () => {
                 initial="offscreen"
                 whileInView="onscreen"
                 variants={easeVariants.slideUp}
-                viewport={{ once: isSmallScreen }}
+                viewport={{ once: true }}
               >
                 <Heading
                   mb={2}
