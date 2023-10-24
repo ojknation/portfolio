@@ -231,7 +231,12 @@ const Projects = () => {
                 <Text
                   // textAlign={isSmallScreen ? "left" : "inherit"}
                   noOfLines={isSmallScreen ? 14 : 6}
-                  fontSize={{ base: "12px", mm: "13px", lm: "14px" }}
+                  fontSize={{
+                    base: "12px",
+                    mm: "13px",
+                    lm: "14px",
+                    md: "16px",
+                  }}
                 >
                   {lastProject?.description ?? projectList[0]?.description}
                 </Text>
@@ -254,7 +259,7 @@ const Projects = () => {
               justifyContent="space-between"
               flexWrap="nowrap"
               overflowX="auto"
-              marginTop={isSmallScreen ? "23px" : "46px"}
+              marginTop={isSmallScreen ? "23px" : "25px"}
               sx={{
                 "&::-webkit-scrollbar": {
                   display: "none",

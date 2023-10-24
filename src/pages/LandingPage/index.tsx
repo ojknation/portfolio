@@ -345,7 +345,7 @@ const LandingPage = () => {
                   // }}
                 >
                   <Text
-                    width="350px"
+                    width={{ base: "350px", lg: "400px" }}
                     mt={{ base: "30px" }}
                     mb={{ base: "20px", lm: "50px" }}
                     fontSize={{ base: "13px", mm: "15px" }}
@@ -508,7 +508,7 @@ const LandingPage = () => {
                 variants={easeVariants.slideUp}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: !isSmallScreen }}
+                viewport={{ once: isSmallScreen }}
               >
                 <Heading
                   mb={2}
@@ -547,7 +547,7 @@ const LandingPage = () => {
                 variants={easeVariants.swooshOut}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: !isSmallScreen }}
+                viewport={{ once: isSmallScreen }}
               >
                 <Heading
                   whiteSpace="nowrap"
@@ -579,7 +579,7 @@ const LandingPage = () => {
                 initial="offscreen"
                 whileInView="onscreen"
                 variants={easeVariants.slideUp}
-                viewport={{ once: !isSmallScreen }}
+                viewport={{ once: isSmallScreen }}
               >
                 <Heading
                   mb={2}
