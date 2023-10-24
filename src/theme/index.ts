@@ -5,7 +5,9 @@ import { colors } from "./colors"
 import { textStyles } from "./textStyles"
 
 const breakpoints = {
-  sm: "320px",
+  sm: "320px", // small mobile
+  mm: "350px", // medium mobile
+  lm: "425px", // large mobile
   md: "768px",
   lg: "960px",
   xl: "1200px",

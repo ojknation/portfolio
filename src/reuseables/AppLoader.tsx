@@ -11,6 +11,7 @@ const quotes = [
   [`Does it work`, `Does it work well ?`],
   [`What's the endgame`, `starting another game ?`],
   [`Enough time has passed`, `What did you learn ?`],
+  [`Good things take time`, `bad times takes things`],
   [`Everything is possible`, `time is the issue.`],
   [`Didn't take much`, `it just took everything.`],
   [`My mood is stable`, `It's the motivation that swings.`],
@@ -30,8 +31,8 @@ const AppLoader = () => {
       >
         <Box
           display="flex"
-          maxH="100dvh"
-          h="100dvh"
+          maxH="100vh"
+          h="100vh"
           justifyContent="center"
           alignItems="center"
         >

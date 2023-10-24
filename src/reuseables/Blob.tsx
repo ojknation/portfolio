@@ -33,10 +33,8 @@ const Blob = ({ bg, x, y, scale }: IBlob) => {
       }}
       transition={{
         duration: 40,
-        ease: "easeInOut",
-        times: [0, 0.4, 0.6, 0.8, 1],
-        repeat: Infinity,
-        repeatDelay: 0,
+        repeat: isSmallScreen ? 0 : Infinity,
+        repeatDelay: isSmallScreen ? 10 : 0,
       }}
     />
   )

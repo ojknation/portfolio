@@ -72,7 +72,7 @@ const LandingPage = () => {
           ref={sectionARef}
           pos="relative"
           bg="brand.bg"
-          maxH="100vh"
+          // maxH="100vh"
           overflow="hidden"
           scrollSnapAlign="start"
           scrollSnapStop="always"
@@ -87,7 +87,7 @@ const LandingPage = () => {
               background: "rgb(0, 0, 0, 0.7)",
             }}
           >
-            <Box height="100dvh">
+            <Box height="100vh">
               <Box height="100%">
                 <Box
                   as={motion.div}
@@ -176,15 +176,17 @@ const LandingPage = () => {
                   </Stack>
                 </Stack>
                 <MotionBox
-                // style={{
-                //   x: xSlideR,
-                // }}
+                  display="flex"
+                  justifyContent="flex-start"
+                  // style={{
+                  //   x: xSlideR,
+                  // }}
                 >
                   <Text
                     width="350px"
                     mt="45px"
-                    mb="50px"
-                    fontSize={{ base: "14px" }}
+                    mb={{ base: "30px", md: "50px" }}
+                    fontSize={{ base: "13px", mm: "14px", lm: "16px" }}
                   >
                     My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK), I
                     am a <strong>software engineer</strong> who is deeply
@@ -208,11 +210,11 @@ const LandingPage = () => {
                   </Text>
                 </MotionBox>
                 <Box
+                  display={{ base: "none", mm: "flex" }}
                   as={motion.div}
                   justifyContent="start"
                   alignItems="center"
                   height="fit-content"
-                  display="flex"
                   initial={{
                     opacity: 0,
                     y: 200,
@@ -341,9 +343,9 @@ const LandingPage = () => {
                 >
                   <Text
                     width="350px"
-                    mt="40px"
-                    mb="50px"
-                    fontSize={{ base: "14px" }}
+                    mt={{ base: "30px", md: "40px" }}
+                    mb={{ base: "20px", lm: "50px" }}
+                    fontSize={{ base: "13px", mm: "14px", lm: "16px" }}
                   >
                     My primary tech stack and area of expertise is within the
                     <strong> JavaScript/TypeScript</strong> ecosystem. However,
@@ -354,43 +356,41 @@ const LandingPage = () => {
                     to new technologies <strong>swiftly</strong>.
                   </Text>
                 </MotionBox>
+                <MotionBox
+                  display={{ sm: "none", mm: "flex" }}
+                  justifyContent="center"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.8 }}
+                  // position="absolute"
+                  // bottom={{ lm: "50px", md: 20 }}
+                  initial={{
+                    opacity: 0,
+                    y: -20,
+                  }}
+                  animate={{
+                    opacity: [0, 0.8, 1],
+                    y: 0,
+                    transition: {
+                      duration: 1.2,
+                      delay: 2,
+                    },
+                  }}
+                >
+                  <Button
+                    variant="app-iconButton"
+                    width="fit-content"
+                    rightIcon={<BsChevronDoubleDown />}
+                    onClick={() =>
+                      sectionBRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    See More
+                  </Button>
+                </MotionBox>
               </Box>
             </Box>
-            <MotionBox
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.8 }}
-              position="absolute"
-              // bottom={isSmallScreen ? 40 : 20}
-              bottom={{ base: "15%", sm: "15%", md: 20 }}
-              left="50%"
-              initial={{
-                opacity: 0,
-                y: -20,
-                x: "-50%",
-              }}
-              animate={{
-                opacity: [0, 0.8, 1],
-                y: 0,
-                x: "-50%",
-                transition: {
-                  duration: 1.2,
-                  delay: 2,
-                },
-              }}
-            >
-              <Button
-                variant="app-iconButton"
-                width="fit-content"
-                rightIcon={<BsChevronDoubleDown />}
-                onClick={() =>
-                  sectionBRef.current?.scrollIntoView({
-                    behavior: "smooth",
-                  })
-                }
-              >
-                See More
-              </Button>
-            </MotionBox>
           </GlassTint>
           {!isSmallScreen && (
             <Box position="absolute" sx={{ bottom: 20, left: 10 }}>
@@ -427,7 +427,7 @@ const LandingPage = () => {
             flexDir="column"
             justifyContent="center"
             alignItems="center"
-            minHeight="100dvh"
+            minHeight="100vh"
             sx={{
               width: "inherit",
               height: "inherit",
@@ -448,7 +448,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "16px", md: "24px" }}
+                fontSize={{ base: "14px", mm: "16px", md: "24px" }}
                 lineHeight="shorter"
                 fontWeight="bold"
                 maxInlineSize="60ch"
@@ -484,7 +484,7 @@ const LandingPage = () => {
             >
               <Text
                 mb={2}
-                fontSize={{ base: "16px", md: "24px" }}
+                fontSize={{ base: "14px", mm: "16px", md: "24px" }}
                 lineHeight="shorter"
                 maxInlineSize="80ch"
                 textAlign="center"
@@ -507,11 +507,16 @@ const LandingPage = () => {
                 variants={easeVariants.slideUp}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: false }}
+                viewport={{ once: !isSmallScreen }}
               >
                 <Heading
                   mb={2}
-                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  fontSize={{
+                    base: "16px",
+                    mm: "18px",
+                    lm: "24px",
+                    md: "2.2rem",
+                  }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -541,12 +546,12 @@ const LandingPage = () => {
                 variants={easeVariants.swooshOut}
                 zIndex={3}
                 pos="relative"
-                viewport={{ once: false }}
+                viewport={{ once: !isSmallScreen }}
               >
                 <Heading
                   whiteSpace="nowrap"
                   mb={2}
-                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  fontSize={{ base: "18px", lm: "24px", md: "2.2rem" }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -573,11 +578,16 @@ const LandingPage = () => {
                 initial="offscreen"
                 whileInView="onscreen"
                 variants={easeVariants.slideUp}
-                viewport={{ once: false }}
+                viewport={{ once: !isSmallScreen }}
               >
                 <Heading
                   mb={2}
-                  fontSize={{ base: "18px", md: "2.2rem" }}
+                  fontSize={{
+                    base: "16px",
+                    mm: "18px",
+                    lm: "24px",
+                    md: "2.2rem",
+                  }}
                   lineHeight="shorter"
                 >
                   <Highlight
@@ -596,7 +606,7 @@ const LandingPage = () => {
             </Box>
             <Box
               mt={{ base: "15px", md: 0 }}
-              display="flex"
+              display={{ base: "none", mm: "flex" }}
               justifyContent="center"
               alignItems="center"
             >

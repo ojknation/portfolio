@@ -141,7 +141,8 @@ const Projects = () => {
         <Blobs />
         <Box
           px={{ base: "10px", md: "40px" }}
-          minHeight="100dvh"
+          py={{ base: "20px", mm: "10px" }}
+          minHeight="100vh"
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -177,7 +178,12 @@ const Projects = () => {
               <Box pos="relative">
                 <Heading
                   maxInlineSize="19ch"
-                  fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
+                  fontSize={{
+                    base: "3rem",
+                    lm: "4rem",
+                    md: "5rem",
+                    xl: "6rem",
+                  }}
                   sx={{
                     WebkitTextFillColor: "transparent",
                     WebkitTextStrokeWidth: isSmallScreen ? "2px" : "3px",
@@ -196,7 +202,7 @@ const Projects = () => {
                     sx={{
                       position: "absolute",
                       right: "0px",
-                      top: "-10px",
+                      top: "-24px",
                       cursor: "pointer",
                     }}
                     aria-label="link"
@@ -223,9 +229,9 @@ const Projects = () => {
                 width={{ base: "100%", md: "60%" }}
               >
                 <Text
-                  textAlign={isSmallScreen ? "left" : "inherit"}
+                  // textAlign={isSmallScreen ? "left" : "inherit"}
                   noOfLines={isSmallScreen ? 14 : 6}
-                  fontSize="14px"
+                  fontSize={{ base: "12px", mm: "13px", lm: "14px" }}
                 >
                   {lastProject?.description ?? projectList[0]?.description}
                 </Text>
@@ -265,13 +271,13 @@ const Projects = () => {
                     layout
                     position="relative"
                     boxShadow="lg"
-                    p={{ base: "20px", md: "20px" }}
+                    p={{ base: "18px", mm: "20px", md: "20px" }}
                     whileHover={{
                       scale: 0.97,
                       transition: { duration: 0.2 },
                     }}
                     minWidth={{ base: "250px", md: "280px" }}
-                    height={{ base: "320px", md: "320px" }}
+                    height={{ base: "290px", lm: "320px", md: "320px" }}
                     style={{
                       background: `${cards[index]}89`,
                       marginRight: "20px",

@@ -52,7 +52,7 @@ const Contact = () => {
       }}
     >
       <Box
-        minHeight="100dvh"
+        minHeight="100vh"
         display="flex"
         flexDir="column"
         justifyContent="center"
@@ -74,7 +74,7 @@ const Contact = () => {
         >
           <Heading
             maxInlineSize="19ch"
-            fontSize={{ base: "4rem", md: "5rem", xl: "6rem" }}
+            fontSize={{ base: "3rem", lm: "4rem", md: "5rem", xl: "6rem" }}
             sx={{
               WebkitTextFillColor: "transparent",
               WebkitTextStrokeWidth: isSmallScreen ? "2px" : "3px",
