@@ -3,18 +3,17 @@ import { defineStyleConfig } from "@chakra-ui/react"
 export const blurPerformance = {
   WebkitBackfaceVisibility: "hidden",
   WebkitTransform: "translate3d(0,0,0)",
-  MsWebkitTransform: "translateZ(0)",
+  MsWebkitTransform: "translate3d(0,0,0)",
   backfaceVisibility: "hidden",
   transform: "translate3d(0,0,0)",
-  msTransform: "translateZ(0)",
+  msTransform: "translate3d(0,0,0)",
+  willChange: "transform",
 }
 
 export const Glass = defineStyleConfig({
   baseStyle: {
-    ...blurPerformance,
     background: "rgb(255, 255, 255, 0.11)",
-    boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-    backdropFilter: "blur(90px)",
+    // backdropFilter: "blur(90px)",
   },
   variants: {
     rounded: {

@@ -26,6 +26,9 @@ import { BsGithub, BsLinkedin } from "react-icons/bs"
 import { RiTwitterXFill } from "react-icons/ri"
 import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 import Contact from "./Contact"
+import { blurPerformance } from "@/theme/custom"
+
+const colors = ["#FF1493", "#9400D3", "#7928CA"]
 
 const LandingPage = () => {
   const sectionARef = useRef<HTMLDivElement>(null)
@@ -34,7 +37,10 @@ const LandingPage = () => {
   const sectionDRef = useRef<HTMLDivElement>(null)
   const fullscreenRef = useRef<HTMLDivElement>(null)
 
-  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+  const [isSmallScreen] = useMediaQuery("(max-width: 833px)", {
+    ssr: true,
+    fallback: true,
+  })
 
   const { isFullscreen, setFullscreen } = useFullscreenStatus(fullscreenRef)
 
@@ -76,16 +82,23 @@ const LandingPage = () => {
           overflow="hidden"
           scrollSnapAlign="start"
           scrollSnapStop="always"
+          sx={blurPerformance}
         >
-          <Blobs />
+          {!isSmallScreen && <Blobs />}
 
           <GlassTint
             variant="smooth"
             sx={{
               width: "inherit",
               height: "inherit",
-              background: "rgb(0, 0, 0, 0.7)",
             }}
+            background={{
+              base: `linear-gradient(240deg, ${
+                colors[Math.floor(Math.random() * colors.length)]
+              } -150%, #090b2a 57%)`,
+              md: "rgb(0, 0, 0, 0.7)",
+            }}
+            backdropFilter={{ base: "none", md: "blur(90px)" }}
           >
             <Box height="100vh">
               <Box height="100%">
@@ -405,8 +418,9 @@ const LandingPage = () => {
           bg="brand.bg"
           scrollSnapAlign="start"
           scrollSnapStop="always"
+          sx={blurPerformance}
         >
-          <Blobs />
+          {!isSmallScreen && <Blobs />}
           <Box
             px="10%"
             display="flex"
@@ -415,17 +429,16 @@ const LandingPage = () => {
             alignItems="center"
             minHeight="100vh"
             sx={{
-              WebkitBackfaceVisibility: "hidden",
-              WebkitTransform: "translate3d(0,0,0)",
-              MsWebkitTransform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-              transform: "translate3d(0,0,0)",
-              msTransform: "translateZ(0)",
               width: "inherit",
               height: "inherit",
-              background: "rgb(0, 0, 0, 0.7)",
-              boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
+              // background: "rgb(0, 0, 0, 0.7)",
               backdropFilter: "blur(90px)",
+            }}
+            background={{
+              base: `linear-gradient(240deg, ${
+                colors[Math.floor(Math.random() * colors.length)]
+              } -150%, #090b2a 57%)`,
+              md: "rgb(0, 0, 0, 0.7)",
             }}
           >
             <MotionBox
@@ -642,7 +655,6 @@ const LandingPage = () => {
           bg="brand.bg"
           scrollSnapAlign="start"
         >
-          {/* <Blobs /> */}
           <Contact />
         </Box>
       </div>

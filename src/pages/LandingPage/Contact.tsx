@@ -48,6 +48,7 @@ const Contact = () => {
   return (
     <Box
       sx={{
+        ...blurPerformance,
         backgroundImage: `url(${BG})`,
         backgroundSize: "cover",
       }}
@@ -59,11 +60,9 @@ const Contact = () => {
         justifyContent="center"
         alignItems="center"
         sx={{
-          ...blurPerformance,
           width: "inherit",
           height: "inherit",
           background: "rgb(0, 0, 0, 0.7)",
-          boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
           backdropFilter: "blur(10px)",
         }}
       >

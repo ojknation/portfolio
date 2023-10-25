@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-imports */
 import { useEffect, useRef, useState } from "react"
 import {
   Box,
@@ -121,6 +122,7 @@ const Projects = () => {
     <Box scrollSnapAlign="start" scrollSnapStop="always" overflow="hidden">
       <div ref={projectDivRef} />
       <Box
+        sx={blurPerformance}
         as={motion.div}
         position="relative"
         bg={`linear-gradient(-62deg, ${
@@ -129,7 +131,7 @@ const Projects = () => {
         animate={sectionControl}
         overflow="hidden"
       >
-        <Blobs />
+        {!isSmallScreen && <Blobs />}
         <Box
           px={{ base: "10px", md: "40px" }}
           py={{ base: "20px", mm: "10px" }}
@@ -139,17 +141,15 @@ const Projects = () => {
           alignItems="center"
           flexDir="column"
           sx={{
-            ...blurPerformance,
             width: "inherit",
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",
-            boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-            backdropFilter: "blur(95px)",
           }}
+          backdropFilter={{ base: "none", md: "blur(95px)" }}
         >
           <AnimatePresence initial={false} mode="popLayout">
             <Box
-              mt="20px"
+              mt={{ base: "10px", md: "20px" }}
               as={motion.div}
               display="flex"
               key={lastProject?.name}

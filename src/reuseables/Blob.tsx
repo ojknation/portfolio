@@ -26,15 +26,15 @@ const Blob = ({ bg, x, y, scale }: IBlob) => {
       width={isSmallScreen ? 90 : 150}
       animate={{
         scale: scale ?? genScale(),
-        x: x ?? [10, 500, 320, 20, 60],
-        y: y ?? [0, 450, 30, -2, 0],
+        x: isSmallScreen ? [30, 360, 40, 450] : x,
+        y,
         rotate: [20, 360, 70, -70, 0],
         borderRadius: ["40%", "20%"],
       }}
       transition={{
         duration: 40,
         repeat: isSmallScreen ? 0 : Infinity,
-        repeatDelay: isSmallScreen ? 10 : 0,
+        repeatDelay: isSmallScreen ? 10 : 5,
       }}
     />
   )

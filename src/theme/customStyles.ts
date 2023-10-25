@@ -3,8 +3,7 @@ import { blurPerformance } from "./custom"
 export const glass = {
   ...blurPerformance,
   background: "rgb(255, 255, 255, 0.11)",
-  boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
-  backdropFilter: "blur(32px)",
+  // backdropFilter: "blur(32px)",
 }
 
 export const cardGlass = {
