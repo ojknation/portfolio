@@ -108,11 +108,11 @@ const LandingPage = () => {
                   justifyContent="center"
                   alignItems="center"
                   width="100%"
-                  initial={{ opacity: 1, height: "20%" }}
+                  initial={{ opacity: 1, height: "30%" }}
                   viewport={{ once: true }}
                   animate={{
                     opacity: 0.6,
-                    height: ["20%", "0%"],
+                    height: ["30%", "0%"],
                     transition: {
                       duration: 0.8,
                       ease: "easeInOut",
@@ -123,10 +123,22 @@ const LandingPage = () => {
                   }}
                 />
                 <Stack
+                  as={motion.div}
                   direction="row"
                   spacing={2}
                   alignItems="center"
                   justifyContent="center"
+                  initial={{
+                    opacity: 0,
+                    y: 20,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.8,
+                    },
+                  }}
                 >
                   <Stack direction="row" spacing={2} alignItems="center">
                     {renderIcon(<BsGithub />, "https://github.com/ojknation")}
@@ -160,6 +172,16 @@ const LandingPage = () => {
                     display="flex"
                     justifyContent="flex-start"
                     width="100%"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: "linear",
+                        delay: 0.2,
+                      },
+                    }}
                   >
                     <Text
                       width="350px"
@@ -335,9 +357,16 @@ const LandingPage = () => {
                     display="flex"
                     justifyContent="flex-end"
                     width="100%"
-                    // style={{
-                    //   x: xSlideL,
-                    // }}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: "linear",
+                        delay: 0.2,
+                      },
+                    }}
                   >
                     <Text
                       width={{ base: "350px", lg: "400px" }}
@@ -431,7 +460,6 @@ const LandingPage = () => {
             sx={{
               width: "inherit",
               height: "inherit",
-              // background: "rgb(0, 0, 0, 0.7)",
               backdropFilter: "blur(90px)",
             }}
             background={{
