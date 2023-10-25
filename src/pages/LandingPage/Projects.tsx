@@ -37,6 +37,7 @@ import { ReactComponent as ChakraIcon } from "@/assets/stack/chakra.svg"
 import { ReactComponent as DjangoIcon } from "@/assets/stack/django.svg"
 import { ReactComponent as CloudflareIcon } from "@/assets/stack/cloudflare.svg"
 import { TProject, projects } from "@/data/projectList"
+import { blurPerformance } from "@/theme/custom"
 
 const stackMap = {
   react: ReactIcon,
@@ -138,10 +139,7 @@ const Projects = () => {
           alignItems="center"
           flexDir="column"
           sx={{
-            WebkitBackfaceVisibility: "hidden",
-            backfaceVisibility: "hidden",
-            transform: "translate3d(0,0,0)",
-            msTransform: "translateZ(0)",
+            ...blurPerformance,
             width: "inherit",
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",

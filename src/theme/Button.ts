@@ -13,6 +13,8 @@ export const Button = {
 
     "app-iconButton": {
       WebkitBackfaceVisibility: "hidden",
+      WebkitTransform: "translate3d(0,0,0)",
+      MsWebkitTransform: "translateZ(0)",
       backfaceVisibility: "hidden",
       transform: "translate3d(0,0,0)",
       msTransform: "translateZ(0)",

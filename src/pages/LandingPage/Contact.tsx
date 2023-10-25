@@ -14,6 +14,7 @@ import { ReactElement } from "react"
 import { BsGithub, BsLinkedin } from "react-icons/bs"
 import { RiTwitterXFill } from "react-icons/ri"
 import BG from "@/assets/ui/codeBG.jpeg"
+import { blurPerformance } from "@/theme/custom"
 
 const Contact = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
@@ -58,10 +59,7 @@ const Contact = () => {
         justifyContent="center"
         alignItems="center"
         sx={{
-          WebkitBackfaceVisibility: "hidden",
-          backfaceVisibility: "hidden",
-          transform: "translate3d(0,0,0)",
-          msTransform: "translateZ(0)",
+          ...blurPerformance,
           width: "inherit",
           height: "inherit",
           background: "rgb(0, 0, 0, 0.7)",
