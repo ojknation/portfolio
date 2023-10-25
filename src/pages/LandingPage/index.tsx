@@ -657,7 +657,7 @@ const LandingPage = () => {
                   y: 0,
                   transition: {
                     duration: 1.2,
-                    delay: 6,
+                    delay: 5,
                   },
                 }}
                 whileHover={{ scale: 1.05 }}
