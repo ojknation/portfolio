@@ -1,4 +1,8 @@
 export const glass = {
+  WebkitBackfaceVisibility: "hidden",
+  backfaceVisibility: "hidden",
+  transform: "translate3d(0,0,0)",
+  msTransform: "translateZ(0)",
   background: "rgb(255, 255, 255, 0.11)",
   boxShadow: "0 4px 30px rgb(0, 0, 0, 0.1)",
   backdropFilter: "blur(32px)",

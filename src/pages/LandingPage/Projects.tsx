@@ -138,6 +138,10 @@ const Projects = () => {
           alignItems="center"
           flexDir="column"
           sx={{
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+            transform: "translate3d(0,0,0)",
+            msTransform: "translateZ(0)",
             width: "inherit",
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",
