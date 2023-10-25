@@ -95,15 +95,13 @@ const LandingPage = () => {
                   justifyContent="center"
                   alignItems="center"
                   width="100%"
-                  initial={{ opacity: 1, y: 0, x: 0, scale: 1, height: "100%" }}
+                  initial={{ opacity: 1, height: "20%" }}
                   viewport={{ once: true }}
                   animate={{
-                    opacity: 0,
-                    scale: 0.8,
-                    y: [20, -200],
-                    height: ["100%", "0%"],
+                    opacity: 0.6,
+                    height: ["20%", "0%"],
                     transition: {
-                      duration: 1,
+                      duration: 0.8,
                       ease: "easeInOut",
                     },
                     transitionEnd: {
@@ -128,67 +126,27 @@ const LandingPage = () => {
                       "https://twitter.com/ojknation"
                     )}
                   </Stack>
-                  {/* <Stack direction="row" spacing={2} alignItems="center">
-                    <Button
-                      as={motion.div}
-                      variant="app-iconButton"
-                      size="sm"
-                      width="fit-content"
-                      cursor="pointer"
-                      whileHover={{
-                        backgroundColor: "#fff",
-                        color: "#090b2a",
-                        scale: 1.02,
-                        transition: {
-                          duration: 0.1,
-                        },
-                      }}
-                      onClick={() =>
-                        sectionBRef.current?.scrollIntoView({
-                          behavior: "smooth",
-                        })
-                      }
-                    >
-                      About
-                    </Button>
-                    <Button
-                      as={motion.div}
-                      variant="app-iconButton"
-                      size="sm"
-                      width="fit-content"
-                      cursor="pointer"
-                      whileHover={{
-                        backgroundColor: "#fff",
-                        color: "#090b2a",
-                        scale: 1.02,
-                        transition: {
-                          duration: 0.1,
-                        },
-                      }}
-                      onClick={() =>
-                        sectionCRef.current?.scrollIntoView({
-                          behavior: "smooth",
-                        })
-                      }
-                    >
-                      Projects
-                    </Button>
-                  </Stack> */}
                 </Stack>
-                <Box
+                <MotionBox
                   display="flex"
                   justifyContent="center"
                   alignItems="center"
                   height={{ base: "80%" }}
                   flexDirection="column"
+                  initial={{
+                    opacity: 0.8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    transition: {
+                      duration: 0.5,
+                    },
+                  }}
                 >
                   <MotionBox
                     display="flex"
                     justifyContent="flex-start"
                     width="100%"
-                    // style={{
-                    //   x: xSlideR,
-                    // }}
                   >
                     <Text
                       width="350px"
@@ -226,15 +184,14 @@ const LandingPage = () => {
                     justifyContent="start"
                     alignItems="center"
                     height="fit-content"
-                    initial={{
-                      opacity: 0,
-                      y: 200,
-                    }}
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{
-                      opacity: [0, 1],
+                      opacity: 1,
                       y: 0,
                       transition: {
-                        duration: 0.5,
+                        duration: 0.2,
+                        ease: "linear",
+                        delay: 0.6,
                       },
                     }}
                     sx={{
@@ -255,7 +212,7 @@ const LandingPage = () => {
                             duration: isSmallScreen ? 14 : 25,
                             repeat: Infinity,
                             repeatType: "loop",
-                            delay: 0.5,
+                            delay: 1,
                             ease: "linear",
                           },
                         }}
@@ -313,6 +270,7 @@ const LandingPage = () => {
                             duration: isSmallScreen ? 14 : 25,
                             repeat: Infinity,
                             repeatType: "loop",
+                            delay: 1,
                             ease: "linear",
                           },
                         }}
@@ -416,7 +374,7 @@ const LandingPage = () => {
                       See More
                     </Button>
                   </MotionBox>
-                </Box>
+                </MotionBox>
               </Box>
             </Box>
           </GlassTint>

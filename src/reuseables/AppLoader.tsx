@@ -10,7 +10,6 @@ const quotes = [
   [`Don't go with the flow,`, `be the flow.`],
   [`Does it work,`, `Does it work well ?`],
   [`What's the endgame,`, `starting another game ?`],
-  [`Enough time has passed,`, `What did you learn ?`],
   [`Good things take time,`, `bad times takes things.`],
   [`Everything is possible,`, `time is the issue.`],
   [`Didn't take much,`, `it just took everything.`],
@@ -20,7 +19,7 @@ const quotes = [
 const AppLoader = () => {
   const randIndex = Math.floor(Math.random() * quotes.length)
   return (
-    <Box bg="brand.bg" overflow="hidden">
+    <Box bg="brand.bg" overflow="hidden" maxH="100dvh">
       <GlassTint
         variant="smooth"
         sx={{
