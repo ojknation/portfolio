@@ -21,7 +21,6 @@ import {
 } from "framer-motion"
 import { easeVariants } from "../../reuseables/motionVariants"
 import { MotionBox } from "@/reuseables"
-import Blobs from "../../reuseables/Blobs"
 import { LuExternalLink } from "react-icons/lu"
 import { BsCheck2Circle } from "react-icons/bs"
 import { ReactComponent as ReactIcon } from "@/assets/stack/react.svg"
@@ -61,7 +60,7 @@ const Projects = () => {
   const cardSlideControl = useAnimationControls()
   const projectDivRef = useRef(null)
   const projectIsInView = useInView(projectDivRef)
-  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)")
   const [cards, setCards] = useState([
     "#FFA500",
     "#7FFF00",

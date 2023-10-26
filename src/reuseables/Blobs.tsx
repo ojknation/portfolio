@@ -4,7 +4,7 @@ import { motionGenerator } from "@/utils/mathUtil"
 import { useMediaQuery } from "@chakra-ui/react"
 
 const Blobs = () => {
-  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)")
 
   return (
     <div>

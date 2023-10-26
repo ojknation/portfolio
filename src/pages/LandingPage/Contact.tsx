@@ -17,7 +17,7 @@ import BG from "@/assets/ui/codeBG.jpeg"
 import { blurPerformance } from "@/theme/custom"
 
 const Contact = () => {
-  const [isSmallScreen] = useMediaQuery("(max-width: 833px)")
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)")
 
   const renderLink = (link: string, text: string) => (
     <strong>

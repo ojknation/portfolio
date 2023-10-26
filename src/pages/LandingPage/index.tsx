@@ -28,7 +28,7 @@ import useFullscreenStatus from "@/hooks/useFullscreenStatus"
 import Contact from "./Contact"
 import { blurPerformance } from "@/theme/custom"
 
-const colors = ["#FF1493", "#9400D3", "#7928CA"]
+const colors = ["#FF1493", "#9400D3", "#7928CA", "#FF0080"]
 
 const LandingPage = () => {
   const sectionARef = useRef<HTMLDivElement>(null)
@@ -37,7 +37,7 @@ const LandingPage = () => {
   const sectionDRef = useRef<HTMLDivElement>(null)
   const fullscreenRef = useRef<HTMLDivElement>(null)
 
-  const [isSmallScreen] = useMediaQuery("(max-width: 833px)", {
+  const [isSmallScreen] = useMediaQuery("(max-width: 768px)", {
     ssr: true,
     fallback: true,
   })
@@ -194,7 +194,6 @@ const LandingPage = () => {
                   >
                     <Text
                       width="350px"
-                      // mb={{ base: "30px", md: "20px" }}
                       fontSize={{
                         base: "14px",
                       }}
@@ -251,7 +250,7 @@ const LandingPage = () => {
                         animate={{
                           x: isSmallScreen ? [0, -1300] : [0, -2300],
                           transition: {
-                            duration: isSmallScreen ? 14 : 25,
+                            duration: isSmallScreen ? 35 : 45,
                             repeat: Infinity,
                             repeatType: "loop",
                             delay: 1,
@@ -270,6 +269,7 @@ const LandingPage = () => {
                           "Nextjs",
                           "Firebase",
                           "GraphQL",
+                          "Docker",
                           "Express",
                           "TailwindCSS",
                         ].map((skill, index, arr) => (
@@ -323,6 +323,7 @@ const LandingPage = () => {
                           "Nextjs",
                           "Firebase",
                           "GraphQL",
+                          "Docker",
                           "Express",
                           "TailwindCSS",
                           "Nodejs",
@@ -377,8 +378,6 @@ const LandingPage = () => {
                   >
                     <Text
                       width={{ base: "350px", lg: "400px" }}
-                      // mt={{ base: "30px" }}
-                      // mb={{ base: "20px", lm: "50px" }}
                       fontSize={{ base: "14px", mm: "15px" }}
                     >
                       My primary tech stack and area of expertise is within the
