@@ -89,7 +89,7 @@ export const easeVariants = {
   swooshOut: {
     offscreen: {
       opacity: 0.5,
-      y: 45,
+      y: 25,
     },
     onscreen: {
       transition: {
