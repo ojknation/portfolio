@@ -114,8 +114,13 @@ const Projects = () => {
     await updateBGToMatchCard(cards[0])
   }
   return (
-    <Box scrollSnapAlign="start" scrollSnapStop="always" overflow="hidden">
-      <div ref={projectDivRef} />
+    <Box
+      scrollSnapAlign="start"
+      scrollSnapStop="always"
+      overflow="hidden"
+      ref={projectDivRef}
+    >
+      <div />
       <Box
         as={motion.div}
         position="relative"
