@@ -37,7 +37,6 @@ import { ReactComponent as ChakraIcon } from "@/assets/stack/chakra.svg"
 import { ReactComponent as DjangoIcon } from "@/assets/stack/django.svg"
 import { ReactComponent as CloudflareIcon } from "@/assets/stack/cloudflare.svg"
 import { TProject, projects } from "@/data/projectList"
-import { blurPerformance } from "@/theme/custom"
 
 const stackMap = {
   react: ReactIcon,
@@ -102,11 +101,8 @@ const Projects = () => {
     })
 
     await sectionControl.start({
-      background: `linear-gradient(-52deg, ${bg} 30%, #090b2a 80%)`,
+      background: `linear-gradient(-52deg, ${bg} 30%, #070716 80%)`,
       transition: {
-        // type: "spring",
-        // stiffness: 50,
-        // damping: 10,
         duration: 0.2,
       },
     })
@@ -121,7 +117,6 @@ const Projects = () => {
     <Box scrollSnapAlign="start" scrollSnapStop="always" overflow="hidden">
       <div ref={projectDivRef} />
       <Box
-        sx={blurPerformance}
         as={motion.div}
         position="relative"
         bg={`linear-gradient(-62deg, ${

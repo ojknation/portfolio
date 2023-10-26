@@ -47,13 +47,14 @@ export const easeVariants = {
   slideUp: {
     offscreen: {
       y: 50,
+      opacity: 0,
     },
     onscreen: {
+      opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: 0.8,
       },
-      opacity: [0, 1],
     },
   },
   slowAppear: {
@@ -96,7 +97,7 @@ export const easeVariants = {
       },
       y: 0,
       opacity: 1,
-      letterSpacing: ["0px", "8px", "-3px", "0px"],
+      letterSpacing: ["0px", "4px", "-3px", "0px"],
     },
   },
 }

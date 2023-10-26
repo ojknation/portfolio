@@ -2,12 +2,18 @@ import React from "react"
 import Blob from "@/reuseables/Blob"
 import { motionGenerator } from "@/utils/mathUtil"
 import { useMediaQuery } from "@chakra-ui/react"
+import { MotionBox } from "./MotionBox"
+import { easeVariants } from "./motionVariants"
 
 const Blobs = () => {
   const [isSmallScreen] = useMediaQuery("(max-width: 768px)")
 
   return (
-    <div>
+    <MotionBox
+      initial="offscreen"
+      animate="onscreen"
+      variants={easeVariants.slideUp}
+    >
       {["#FF1493", "#9400D3", "#7928CA"].map((color, index) => (
         <Blob
           key={color}
@@ -17,7 +23,7 @@ const Blobs = () => {
           scale={motionGenerator((index + 1) * 4, "scale")}
         />
       ))}
-    </div>
+    </MotionBox>
   )
 }
 

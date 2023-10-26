@@ -95,7 +95,7 @@ const LandingPage = () => {
             background={{
               base: `linear-gradient(240deg, ${
                 colors[Math.floor(Math.random() * colors.length)]
-              } -150%, #090b2a 57%)`,
+              } -150%, #070716 57%)`,
               md: "rgb(0, 0, 0, 0.7)",
             }}
             backdropFilter={{ base: "none", md: "blur(90px)" }}
@@ -448,7 +448,6 @@ const LandingPage = () => {
           ref={sectionBRef}
           position="relative"
           color="#fff"
-          background="transparent"
           overflow="hidden"
           bg="brand.bg"
           scrollSnapAlign="start"
@@ -471,7 +470,7 @@ const LandingPage = () => {
             background={{
               base: `linear-gradient(240deg, ${
                 colors[Math.floor(Math.random() * colors.length)]
-              } -150%, #090b2a 57%)`,
+              } -150%, #070716 57%)`,
               md: "rgb(0, 0, 0, 0.7)",
             }}
           >
@@ -547,7 +546,8 @@ const LandingPage = () => {
                 <Heading
                   mb={2}
                   fontSize={{
-                    base: "16px",
+                    base: "14px",
+                    sm: "16px",
                     mm: "18px",
                     lm: "24px",
                     md: "2.2rem",
@@ -618,7 +618,8 @@ const LandingPage = () => {
                 <Heading
                   mb={2}
                   fontSize={{
-                    base: "16px",
+                    base: "14px",
+                    sm: "16px",
                     mm: "18px",
                     lm: "24px",
                     md: "2.2rem",
@@ -629,7 +630,7 @@ const LandingPage = () => {
                     query={["box"]}
                     styles={{
                       color: "Text.dark",
-                      border: "2px solid #090b2a",
+                      border: "2px solid #070716",
                       padding: "10px 10px 0px",
                       background: "brand.green",
                     }}
