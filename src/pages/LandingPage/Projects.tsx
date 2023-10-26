@@ -131,7 +131,6 @@ const Projects = () => {
         animate={sectionControl}
         overflow="hidden"
       >
-        {!isSmallScreen && <Blobs />}
         <Box
           px={{ base: "10px", md: "40px" }}
           py={{ base: "20px", mm: "10px" }}
@@ -145,7 +144,6 @@ const Projects = () => {
             height: "inherit",
             background: "rgb(0, 0, 0, 0.7)",
           }}
-          backdropFilter={{ base: "none", md: "blur(95px)" }}
         >
           <AnimatePresence initial={false} mode="popLayout">
             <Box
