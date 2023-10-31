@@ -13,7 +13,6 @@ const quotes = [
   [`Good things take time,`, `bad times takes things.`],
   [`Everything is possible,`, `time is the issue.`],
   [`Didn't take much,`, `it just took everything.`],
-  [`My mood is stable,`, `It's the motivation that swings.`],
   [`Where can I get nothing?`, `I heard it lasts forever.`],
 ]
 
