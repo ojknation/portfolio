@@ -6,9 +6,7 @@ import { letter, sentence } from "./motionVariants"
 
 const quotes = [
   [`Play by the rules,`, `but seek to improve the game.`],
-  [`Find your balance,`, `and leave there.`],
   [`Don't go with the flow,`, `be the flow.`],
-  [`Does it work,`, `Does it work well ?`],
   [`What's the endgame,`, `starting another game ?`],
   [`Good things take time,`, `bad times takes things.`],
   [`Everything is possible,`, `time is the issue.`],
