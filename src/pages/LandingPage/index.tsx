@@ -200,21 +200,9 @@ const LandingPage = () => {
                     >
                       My name is <strong>Adekola-Ojo Boluwatife </strong>(OJK),
                       I am a <strong>software engineer</strong> who is deeply
-                      fascinated by systems. Currently, I work as a Software
-                      Engineer at{" "}
-                      <strong>
-                        <a
-                          href="https://www.prunedge.com"
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ textDecoration: "underline" }}
-                        >
-                          Prunedge.
-                        </a>
-                      </strong>
-                      <br />
-                      Outside of work, I enjoy listening to and making{" "}
-                      <strong>music</strong>, <strong>laughing </strong>
+                      fascinated by systems. Outside of work, I enjoy listening
+                      to and making <strong>music</strong>,{" "}
+                      <strong>laughing </strong>
                       with <strong>friends</strong> and{" "}
                       <strong>learning</strong> random things on the internet.
                     </Text>
