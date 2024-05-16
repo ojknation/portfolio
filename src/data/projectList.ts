@@ -10,6 +10,15 @@ export type TProject = {
 
 export const projects: TProject[] = [
   {
+    name: "NFT NFT Gallery",
+    synopsis: "Ninja NFT gallery",
+    description: `Ninja NFT gallery is a platform that displays NFTs minted on the Ninja Protocol platform. The platform features a rich UI with advanced searching and sorting capabilities.`,
+    summary: ["NFT", "Minting", "Gallery"],
+    stack: ["react", "tanstackQuery", "typescript", "firebase"],
+    url: "https://www.gallery.ninjaprotocol.io",
+    bg: "#020817",
+  },
+  {
     name: "Nakise",
     synopsis: "Beneficiary Management System",
     description: `Nakise is a beneficiary management system that allows organizations to register and manage their beneficiaries for various programs/events.

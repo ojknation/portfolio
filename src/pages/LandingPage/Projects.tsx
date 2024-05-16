@@ -61,6 +61,7 @@ const Projects = () => {
   const projectIsInView = useInView(projectDivRef)
   const [isSmallScreen] = useMediaQuery("(max-width: 768px)")
   const [cards, setCards] = useState([
+    "#020817",
     "#FFA500",
     "#7FFF00",
     "#0bc5ea",
@@ -85,7 +86,7 @@ const Projects = () => {
 
     setLastRemovedCard(bg)
     setLastProject(selectedProject!)
-    if (cards.length < 7) {
+    if (cards.length < 8) {
       setCards([...cardShift, lastRemovedCard!])
       setProjectList([...projectShift, lastProject as TProject])
     } else {
